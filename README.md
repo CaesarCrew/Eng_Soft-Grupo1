@@ -160,6 +160,4 @@ na esquerda e clica na opção "Meus agendamentos"
 | E1     | O cliente não efetuou login |
 | -      | 1. O sistema exibe uma mensagem de erro, informando ao usuário que é necessário estar logado para efetuar essa operação |
 | E2     | O cliente não possui consultas agendadas |
-| -      | 1. O sistema avisa o usuário que não há consultas agendadas
-2. O sistema pergunta se o usuário deseja agendar uma nova consulta
-3. Se sim, o usuário é redirecionado à página de agendamento|
+| -      | 1. O sistema avisa o usuário que não há consultas agendadas 2. O sistema pergunta se o usuário deseja agendar uma nova consulta 3. Se sim, o usuário é redirecionado à página de agendamento|
