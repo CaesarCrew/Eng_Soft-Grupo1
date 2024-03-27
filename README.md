@@ -61,3 +61,60 @@ Realiza o login dos usuários na plataforma
 | Cadastrar | Redirecionar o usuário para a tela de cadastro | - |
 | Redefinir senha | Redirecionar o usuário para a tela de Redefinir senha | - |
 
+
+# RF_04 - Cancelar Consulta
+
+#### Autor: @uGonzaguinha - Gustavo Gonzaga dos Santos.
+- - -
+#### Revisor : @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | Cancelar Consulta |
+| Resumo |  Permite que os usuários cancelem uma consulta que foi previamente agendada. |
+| Ator primário |  Usuário |
+| Atores secundários |  Não possui |
+| Pré-condição | O usuário deve estar autenticado no sistema para acessar este recurso. |
+| Pós-condições |  O sistema registra o cancelamento, atualiza os dados da consulta e exibe uma mensagem de confirmação. |
+
+## Descrição Sucinta:
+Realiza o cancelamento de consultas agendadas pelos usuários.
+
+## Fluxo principal:
+1. O ator acessa a tela inicial do sistema e seleciona a opção "Cancelar Consulta";
+2. O sistema apresenta a tela LOGIN E SENHA solicitando os mesmos, após a verificação das credenciais, o acesso é liberado pelo sistema para cancelamento;
+3. O sistema exibe na tela o formulário de cancelamento de consulta contendo:
+   - Nome do Paciente
+   - Data da Consulta
+   - Hora da Consulta
+4. O usuário preenche os campos obrigatórios corretamente.
+5. O usuário confirma o cancelamento da consulta.
+6. O sistema registra o cancelamento, atualiza os dados da consulta e exibe uma mensagem de confirmação.
+
+## Fluxos Alternativos:
+
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+| E1     | Campos obrigatórios não preenchidos                              |
+| -      | O sistema exibe uma mensagem de erro informando que todos os campos obrigatórios devem ser preenchidos corretamente para prosseguir com o cancelamento da consulta. |
+| E2     | Data e/ou hora inválidas                              |
+| -      | O sistema exibe uma mensagem de erro informando que a data e/ou hora da consulta fornecidas são inválidas. Solicita ao usuário selecionar uma data e hora válidas para cancelar. |
+
+
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- | --- |
+| Nome do Paciente | Sim | Sim | Texto |
+| Data da Consulta | Sim | Sim | Date |
+| Hora da Consulta | Sim | Sim | Time |
+
+
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+| Confirmar | Confirma o cancelamento da consulta | Enter |
+| Cancelar  | Cancela o cancelamento da consulta | - |
