@@ -62,6 +62,77 @@ Realiza o login dos usuários na plataforma
 | Redefinir senha | Redirecionar o usuário para a tela de Redefinir senha | - |
 
 
+# RF03 - Agendar Consulta 
+
+#### Autor: @Hatilancaio - Hatilan Caio Alves Fontes.
+- - -
+#### Revisor : @Brenoborgesbr - Breno Borges
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | Agendar Conculta |
+| Resumo |  Ao acessar a página de agendamento, o usuário deve ser capaz de realizar as seguintes ações: agendar uma nova consulta, editar consultas existentes |
+| Ator primário |  Usuário |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar disponível e deve possuir uma conta registrada |
+| Pós-condições |  Após realizar o agendamento de uma consulta, o usuário é redirecionado para a página inicial do sistema. Se ocorrer algum erro durante o agendamento, o usuário permanece na página de agendamento com uma mensagem de erro. |
+
+## Descrição sucinta:
+Permite que os usuários agendem uma nova consulta no sistema.
+
+## Fluxo Principal:
+1. O usuário acessa a interface do sistema e seleciona a opção 
+"Agendar Consulta".
+2. O sistema apresenta a tela LOGIN E SENHA solicitando os mesmos, após a confirmação da acessibilidade o acesso é liberado pelo sistema.
+3. O usuário peenche os campos do foemulário, incluindo:
+    - Nome do Paciente
+    - Data da Consulta
+    - Hora da Consulta
+4. O usuário confirma o agendamento da consulta.
+5. O sistema registra os dados da nova consulta e exibe uma mensagem de confirmação de sucesso.
+6. O usuário é direcionado de volta à tela inicial do sistema.
+
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- | --- |
+| Nome do Paciente | Sim | Sim | Texto |
+| Data da Consulta | Sim | Sim | Date(dd/mm/aaaa) |
+| Hora da Consulta | Sim | Sim | Time(hh:mm) |
+
+## Fluxos Alternativos:
+FA01 - **Verificar Disponibilidade de Horários:**
+1. Antes de preencher os campos do formulário, o usuário opta por verificar a disponibilidade de horários.
+2. O sistema exibe um calendário com os horários disponíveis para agendamento.
+3. O usuário seleciona uma data e horário disponível e prossegue com os preenchimento do formulário.
+4. O fluxo principal continua a partir do preenchimento do formulário.
+
+FA02 - **Editar Consulta:**
+1. O usuário acessa a tela inicial do sistema e seleciona a opção "Editar Consulta".
+2. O sistema exibe uma lista das consultas agendadas pelo usuário.
+3. O usuário seleciona a consulta que deseja editar.
+4. O sistema permite que o usuário edite as informações da consulta, como nome do paciente, dara e hora.
+5. O usuário confirma as alterações.
+6. O sistema atualiza os dados da consulta e exibe uma confirmação.
+
+## Exceções:
+| Código | Descrição |
+| --- | --- |
+| E1 | Campos obrigatórios não preenchidos |
+| - | O sistema exibe uma mensagem de erro informando que todos os campos obrigatórios devem ser preenchidos corretamente para prosseguir com o agendamento da consulta. |
+| E2 | Data e/ou hora inválidas |
+| - | O sistema exibe uma mensagem de erro informando que a data e/ou hora da consulta fornecidas são inválidas. Solicita ao usuário selecionar uma data e hora válidas para a consulta. |
+| E3 | Erro no processamento do agendamento |
+| - | O sistema exibe uma mensagem de erro informando que ocorreu um erro no processamento do agendamento da consulta. Solicita ao usuário tentar novamente mais tarde ou entrar em contato com o suporte técnico. |
+
+## Opções dos Usuários:
+| Opção | Descrição | Atalho |
+| --- | --- | --- |
+| Confirmar | Confirma o agendamento da consulta | Enter |
+| Continuar(FA) | Usado no fluxo alternativo para confirmar a escolha do horário disponível | Enter |
+| Editar | Edita os detalhes de uma consulta agendada | - |
+
+
+
 # RF_04 - Cancelar Consulta
 
 #### Autor: @uGonzaguinha - Gustavo Gonzaga dos Santos.
@@ -111,17 +182,6 @@ N/A
 | Data da Consulta | Sim | Sim | Date |
 | Hora da Consulta | Sim | Sim | Time |
 
-
-
-## Opções dos Usuários:
-| Item | Descrição | Atalho |
-| --- | --- | --- |
-| Confirmar | Confirma o cancelamento da consulta | Enter |
-| Cancelar  | Cancela o cancelamento da consulta | - |
-
-# Eng_Soft-Grupo1
-Trabalho da disciplina de Engenharia de Software da turma de 2024.1
-
 # RF_05 - Listar consultas
 
 #### Autor: @CaesarCrew - João Pedro
@@ -160,4 +220,6 @@ na esquerda e clica na opção "Meus agendamentos"
 | E1     | O cliente não efetuou login |
 | -      | 1. O sistema exibe uma mensagem de erro, informando ao usuário que é necessário estar logado para efetuar essa operação |
 | E2     | O cliente não possui consultas agendadas |
-| -      | 1. O sistema avisa o usuário que não há consultas agendadas 2. O sistema pergunta se o usuário deseja agendar uma nova consulta 3. Se sim, o usuário é redirecionado à página de agendamento|
+| -      | 1. O sistema avisa o usuário que não há consultas agendadas |
+| -      | 2. O sistema pergunta se o usuário deseja agendar uma nova consulta |
+| -      | 3. Se sim, o usuário é redirecionado à página de agendamento |
