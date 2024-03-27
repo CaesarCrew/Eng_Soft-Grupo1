@@ -118,3 +118,48 @@ N/A
 | --- | --- | --- |
 | Confirmar | Confirma o cancelamento da consulta | Enter |
 | Cancelar  | Cancela o cancelamento da consulta | - |
+
+# Eng_Soft-Grupo1
+Trabalho da disciplina de Engenharia de Software da turma de 2024.1
+
+# RF_05 - Listar consultas
+
+#### Autor: @CaesarCrew - João Pedro
+
+- - -
+#### Revisor: @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| --- | --- |
+| Caso de uso | Listar consulta |
+| Resumo | O usuário precisa ser capaz de visualizar as consultas agendadas em seu nome  |
+| Ator primários | Usuário |
+| Atores secundários | Não possui |
+| Pré-condições | O usuário deve estar logado no sistema |
+| Pós-condições | Se houver consultas registradas no sistema,  o usuário é redirecionado para a lista de consultas agendadas|
+
+## Descrição Sucinta:
+Exibe a lista das consultas agendadas pelo usuário
+
+## Fluxo Principal:
+1. De qualquer página, o usuário usará do menu de navegação, selecionando a opção "Meus agendamentos"
+2. O sistema redireciona o usuário para a página de agendamentos
+
+## Fluxos Alternativos
+
+#### FA01 - Acesso pelo perfil
+1. O cliente clicará no ícone de perfil
+2. O sistema exibe a página de perfil
+3. O cliente usa o menu de navegação interno da seção perfil
+na esquerda e clica na opção "Meus agendamentos"
+4. O sistema imprime na tela as próximas consultas do cliente
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+| E1     | O cliente não efetuou login |
+| -      | 1. O sistema exibe uma mensagem de erro, informando ao usuário que é necessário estar logado para efetuar essa operação |
+| E2     | O cliente não possui consultas agendadas |
+| -      | 1. O sistema avisa o usuário que não há consultas agendadas
+2. O sistema pergunta se o usuário deseja agendar uma nova consulta
+3. Se sim, o usuário é redirecionado à página de agendamento|
