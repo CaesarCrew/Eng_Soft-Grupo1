@@ -22,7 +22,8 @@ return [
     ["name"=>"horario_disponivel" , "create" => "CREATE TABLE horario_disponivel(
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         dia_da_semana VARCHAR(30) NOT NULL,
-        horario DATETIME NOT NULL,
+        data DATE NOT NULL,
+        hora TIME NOT NULL,
         disponivel TINYINT NOT NULL CHECK (disponivel  IN (0, 1))
     )"],
 
