@@ -7,7 +7,7 @@
             "app/helpers/constants.php",
             "app/router/router.php",
             "app/core/controller.php",
-            "app/database/connect.php"
+            "app/database/Connect.php"
         ],
         "psr-4": {
             "app\\": "app/"

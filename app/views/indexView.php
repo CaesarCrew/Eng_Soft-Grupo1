@@ -7,6 +7,6 @@
     <title><?php echo $title ;?></title>
 </head>
 <body>
-    <h2><?php require $viewName ;?></h2>
+    <?php require $viewName ;?>
 </body>
 </html>
