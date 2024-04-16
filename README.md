@@ -404,3 +404,45 @@ N/A
 ## Opções dos Usuários:
 | Item | Descrição | Atalho |
 | --- | --- | --- |
+
+
+# RF_09 - deletar horário da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | deletar horário da agenda |
+| Resumo | 	Esta requisição detalha as etapas para deletar o horário cadastrado na agenda. A funcionalidade permite que a secretária delete o horários cadastrado. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de deleta  horário.|
+| Pós-condições | horário é deletado com sucesso e o usuário será redirecionado para a tela de visualização dos horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa deletar um horário da agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para excluir o horário selecionado.
+
+## Fluxo principal:
+
+1. A secretária clica no botão delete do horário que deseja deletar.
+2. O sistema remove o horário selecionado da agenda.
+
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
