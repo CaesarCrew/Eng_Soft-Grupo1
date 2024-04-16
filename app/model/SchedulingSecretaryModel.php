@@ -49,7 +49,7 @@ class SchedulingSecretaryModel extends Connect{
         
     }
     public function getTimeTables  ($inicio , $limite){
-        $stmt = $this->pdo->prepare("SELECT dia_da_semana, DATE_FORMAT(STR_TO_DATE(data, '%Y-%m-%d'), '%d-%m-%Y') AS data, hora
+        $stmt = $this->pdo->prepare("SELECT id, dia_da_semana, DATE_FORMAT(STR_TO_DATE(data, '%Y-%m-%d'), '%d-%m-%Y') AS data, hora
         FROM horario_disponivel
         ORDER BY data DESC
         LIMIT $inicio, $limite; ");
@@ -62,5 +62,12 @@ class SchedulingSecretaryModel extends Connect{
         $stmt->execute();
         $amount =  $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $amount;
+    }
+    public function deleteRecord ($id){
+        $stmt = $this->pdo->prepare("DELETE  FROM horario_disponivel where id= :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        
+        return;
     }
 }
