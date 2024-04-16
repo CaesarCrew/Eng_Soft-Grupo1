@@ -363,7 +363,9 @@ N/A
 | Item | Descrição | Atalho |
 | --- | --- | --- |
 
-# RF_07 - Mostrar horários da agenda
+
+# RF_08 - Mostrar horários da agenda
+
 
 #### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
 

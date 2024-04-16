@@ -48,5 +48,19 @@ class SchedulingSecretaryModel extends Connect{
         }
         
     }
-
+    public function getTimeTables  ($inicio , $limite){
+        $stmt = $this->pdo->prepare("SELECT dia_da_semana, DATE_FORMAT(STR_TO_DATE(data, '%Y-%m-%d'), '%d-%m-%Y') AS data, hora
+        FROM horario_disponivel
+        ORDER BY data DESC
+        LIMIT $inicio, $limite; ");
+        $stmt->execute();
+        $rows =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
+    public function numberOfLines (){
+        $stmt = $this->pdo->prepare("SELECT COUNT(data) count FROM horario_disponivel");
+        $stmt->execute();
+        $amount =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $amount;
+    }
 }

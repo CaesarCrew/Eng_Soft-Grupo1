@@ -4,11 +4,12 @@ function routes(){
     return[
         'GET' =>[
             '/' => "HomeController@index",
-            '/agenda/adicionar-horarios' => "SchedulingSecretaryController@showAddScheduleForm",
+            '/agenda' => "SchedulingSecretaryController@showAddScheduleForm",
+            '/agenda' => "SchedulingSecretaryController@showTimetables"
         ],
 
         'POST' =>[
-            '/agenda/adicionar-horarios' => "SchedulingSecretaryController@AddScheduleForm",
+            '/agenda' => "SchedulingSecretaryController@AddScheduleForm",
         ],
 
         'PUT' =>[
