@@ -39,6 +39,12 @@
                 <td><?php echo  $dado["dia_da_semana"] ;?></td>
                 <td><?php echo $dado["data"] ;?></td>
                 <td><?php echo $dado["hora"] ;?></td>
+                <td>
+                    <form method="POST" action="/agenda/id/<?php echo $dado["id"]?>">
+                        <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         <?php } ?>
     </tbody>

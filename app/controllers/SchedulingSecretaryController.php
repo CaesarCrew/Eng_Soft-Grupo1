@@ -5,10 +5,36 @@ namespace app\controllers;
 use app\model\SchedulingSecretaryModel;
 
 class SchedulingSecretaryController{
-    public function showAddScheduleForm($params){
+    // public function showAddScheduleForm($params){
+        
+    //     return[
+    //         "view" => "secretary/SchedulingSecretaryView.php",
+    //         "data" => ["title" => "agenda"]
+    //     ];
+    // }
+    public function showSchedule(){
+        $page = 1;
+
+        if(isset($_GET["pagina"])){
+            $page = filter_input(INPUT_GET, "pagina" ,FILTER_VALIDATE_INT);
+        }
+
+        if (!$page) {
+            $page = 1;
+        }
+
+        $limite = 4;
+        $inicio = ($page * $limite) - $limite;
+        
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        $dados = $SchedulingSecretaryModel->getTimeTables($inicio , $limite);
+        
+        $amount = $SchedulingSecretaryModel->numberOfLines();
+        $pages = ceil((int)$amount[0]["count"]/ $limite); ;
+        $SchedulingSecretaryModel->closeConnection();
         return[
             "view" => "secretary/SchedulingSecretaryView.php",
-            "data" => ["title" => "agenda"]
+            "data" => ["title" => "agenda" ,"dados" => $dados ,"page" => $page , "pages"=>$pages]
         ];
     }
 
@@ -56,32 +82,23 @@ class SchedulingSecretaryController{
 
         $SchedulingSecretaryModel->closeConnection();
         
-        return  $this->showTimetables();
+        return  $this->showSchedule();
     }
-    public function showTimetables(){
-        $page = 1;
+    
+    public function deleteSchedule($params){
+        $id = isset($params["id"]) ? $params["id"] : null;
 
-        if(isset($_GET["pagina"])){
-            $page = filter_input(INPUT_GET, "pagina" ,FILTER_VALIDATE_INT);
+        if (!$id) {
+            echo "ID inválido.";
+            return;
         }
-
-        if (!$page) {
-            $page = 1;
-        }
-
-        $limite = 4;
-        $inicio = ($page * $limite) - $limite;
-        
         $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $dados = $SchedulingSecretaryModel->getTimeTables($inicio , $limite);
-        
-        $amount = $SchedulingSecretaryModel->numberOfLines();
-        $pages = ceil((int)$amount[0]["count"]/ $limite); ;
-       
-        return[
-            "view" => "secretary/SchedulingSecretaryView.php",
-            "data" => ["title" => "agenda" ,"dados" => $dados ,"page" => $page , "pages"=>$pages]
-        ];
+        $SchedulingSecretaryModel->deleteRecord($params["id"]);
+        $SchedulingSecretaryModel->closeConnection();
+
+        header("Location: http://localhost/agenda");
+        exit();
+
     }
     
 }
