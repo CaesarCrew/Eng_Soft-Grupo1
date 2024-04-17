@@ -446,3 +446,51 @@ N/A
 ## Opções dos Usuários:
 | Item | Descrição | Atalho |
 | --- | --- | --- |
+
+# RF_10 - editar horário da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | editar horário da agenda |
+| Resumo | 	Esta requisição detalha as etapas para editar horários cadastrado na agenda. A funcionalidade permite que a secretária edite  horários cadastrado. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de edição de horário.|
+| Pós-condições | O horário é editado com sucesso e o usuário é redirecionado para a tela de visualização dos horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa editar um horário da agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para editar o horário selecionado.
+
+## Fluxo principal:
+
+1. A secretária acessa a página de horários.
+2. A secretária identifica o horário que deseja editar.
+3. A secretária clica no botão "Editar" associado ao horário desejado.
+4. O sistema exibe um formulário preenchido com os dados atuais do horário selecionado.
+5. A secretária faz as alterações desejadas nos campos de data e hora.
+6. A secretária confirma as alterações clicando no botão "Confirmar Edição".
+7. O sistema salva as alterações e exibe uma mensagem de sucesso.
+8. O usuário é redirecionado para a tela de visualização dos horários atualizada
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+| Data | Sim | Sim | DD/MM/AAAA |
+| Hora | Sim | Sim | HH:MM |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
