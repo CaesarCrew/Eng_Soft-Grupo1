@@ -1,6 +1,15 @@
 # Eng_Soft-Grupo1
 Trabalho da disciplina de Engenharia de Software da turma de 2024.1
 
+### Iteração #1 (03/04/2024 á 16/04/2024)
+
+#### Objetivo: Implementar a base do sistema de cadastro de pacientes.
+
+- [x] RF_06 configuração de roteamento e criação de tabela. 1.1 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_07 realizar cadastro de horario 1.2 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_08 mostrar horario cadastrado 1.3 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_09 deletar horario 1.4 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_10 editar horário 1.5 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
 
 
 # RF_01 - Realizar Login do Usuário
@@ -266,3 +275,231 @@ na esquerda e clica na opção "Meus agendamentos"
 | -      | 1. O sistema avisa o usuário que não há consultas agendadas |
 | -      | 2. O sistema pergunta se o usuário deseja agendar uma nova consulta |
 | -      | 3. Se sim, o usuário é redirecionado à página de agendamento |
+
+# RF_06 - configuração de roteamento e criação de tabelas do sistema
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | configuração de roteamento e criação de tabelas do sistema |
+| Resumo |  Esta requisição detalha a configuração das rotas e do banco de dados para a aplicação de consultas médicas, abrangendo funcionalidades como login, cadastro de usuários, marcação, edição e exclusão de consultas, criação de consultas por usuários e secretárias, e criação de agendas para secretárias.  |
+| Ator primário |  Desenvolvedor |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar instalado e configurado para utilizar o Composer.O arquivo configuração deve estar configurado corretamente com as informações de conexão com o banco de dados.Mysql deve está configurado corretamente.|
+| Pós-condições |  O banco de dados está configurado e possui as tabelas necessárias para armazenar informações de usuários, consultas e agendas.O sistema de rotas estão configuradas corretamente.
+|
+
+
+## Descrição Sucinta:
+Esta requisição define as etapas para configurar as rotas e o banco de dados da aplicação de consultas médicas. O desenvolvedor deve adicionar as rotas necessárias para funcionalidades como login, cadastro de usuários, marcação, edição e exclusão de consultas, criação de consultas por usuários e secretárias, e criação de agendas para secretárias. As informações de conexão com o banco de dados devem ser configuradas no arquivo .env, e as tabelas já estão criadas para armazenar dados de usuários, consultas e agendas..
+
+
+## Fluxo principal:
+
+1. O desenvolvedor identifica as funcionalidades que precisam de rotas e decide os caminhos para essas funcionalidades.
+2. O desenvolvedor cria as rotas no arquivo de configuração de rotas da aplicação, como o arquivo router.php.
+3. Para cada rota criada, o desenvolvedor especifica qual método do controlador deve ser chamado quando a rota é acessada
+4. O desenvolvedor configura as informações de conexão com o banco de dados no arquivo de configuração.
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+|    |           |
+
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- | --- |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+
+# RF_07 - Realizar cadastro de horário
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | Cadastro de horário |
+| Resumo | Esta requisição define as etapas para que a secretária possa cadastrar novos horários na aplicação. O desenvolvedor deve criar as funcionalidades necessárias para permitir o cadastro de horários pela secretária  |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de cadastro de horário.|
+| Pós-condições | O horário é cadastrado com sucesso no sistema, ou uma mensagem de erro é exibida caso ocorra algum problema.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa cadastrar novos horários na aplicação. O desenvolvedor deve criar as funcionalidades necessárias para permitir o cadastro de horários pela secretária.
+
+## Fluxo principal:
+
+1. A secretária acessa a página de agenda.
+2. O sistema exibe o formulário de cadastro de horário.
+3. A secretária preenche os campos do formulário, incluindo a data e a hora.
+4.  secretária envia o formulário de cadastro.
+5. O sistema valida os dados recebidos.
+6. O sistema verifica se já existe um horário cadastrado para a mesma data e hora.
+7. Se já existir um horário cadastrado para a mesma data e hora, o sistema exibe uma mensagem de erro informando que não é possível cadastrar o horário.
+8. Se não existir um horário cadastrado para a mesma data e hora, o sistema salva o novo horário no banco de dados.
+9. O sistema exibe uma mensagem de sucesso informando que o horário foi cadastrado com sucesso.
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+|1| Já existe um horário cadastrado para a data e hora especificadas.           |
+
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+| Data | Sim | Sim | data |
+| Hora | Sim | Sim | hora |
+
+
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+
+
+# RF_08 - Mostrar horários da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | Mostrar horários da agenda |
+| Resumo | 	Esta requisição detalha as etapas para exibir os horários cadastrados na agenda. A funcionalidade permite que a secretária visualize os horários disponíveis. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de visualização dos horários.|
+| Pós-condições |A secretária visualiza os horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa visualizar os horários cadastrados na agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para exibir esses horários de forma clara e organizada.
+
+## Fluxo principal:
+
+1. A secretária acessa a página de horário.
+2. O sistema exibe os horário cadastrado.
+
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+
+
+# RF_09 - deletar horário da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | deletar horário da agenda |
+| Resumo | 	Esta requisição detalha as etapas para deletar o horário cadastrado na agenda. A funcionalidade permite que a secretária delete o horários cadastrado. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de deleta  horário.|
+| Pós-condições | horário é deletado com sucesso e o usuário será redirecionado para a tela de visualização dos horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa deletar um horário da agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para excluir o horário selecionado.
+
+## Fluxo principal:
+
+1. A secretária clica no botão delete do horário que deseja deletar.
+2. O sistema remove o horário selecionado da agenda.
+
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+
+# RF_10 - editar horário da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | editar horário da agenda |
+| Resumo | 	Esta requisição detalha as etapas para editar horários cadastrado na agenda. A funcionalidade permite que a secretária edite  horários cadastrado. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de edição de horário.|
+| Pós-condições | O horário é editado com sucesso e o usuário é redirecionado para a tela de visualização dos horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa editar um horário da agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para editar o horário selecionado.
+
+## Fluxo principal:
+
+1. A secretária acessa a página de horários.
+2. A secretária identifica o horário que deseja editar.
+3. A secretária clica no botão "Editar" associado ao horário desejado.
+4. O sistema exibe um formulário preenchido com os dados atuais do horário selecionado.
+5. A secretária faz as alterações desejadas nos campos de data e hora.
+6. A secretária confirma as alterações clicando no botão "Confirmar Edição".
+7. O sistema salva as alterações e exibe uma mensagem de sucesso.
+8. O usuário é redirecionado para a tela de visualização dos horários atualizada
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+| Data | Sim | Sim | DD/MM/AAAA |
+| Hora | Sim | Sim | HH:MM |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
