@@ -18,6 +18,12 @@ class SchedulingSecretaryController{
         if(isset($_GET["pagina"])){
             $page = filter_input(INPUT_GET, "pagina" ,FILTER_VALIDATE_INT);
         }
+        if (isset($_GET['edit']) && $_GET['edit'] === 'success') {
+            echo "<p>Edição realizada com sucesso!</p>";
+        }
+        if (isset($_GET['delete']) && $_GET['delete'] === 'success') {
+            echo "<p>deletado  com sucesso!</p>";
+        }
 
         if (!$page) {
             $page = 1;
@@ -38,20 +44,17 @@ class SchedulingSecretaryController{
         ];
     }
 
-    public function AddScheduleForm($params){
-        $date = $_POST['data'];
-        $times = isset($_POST['times']) ? $_POST['times'] : [];
-
+    public function dayOfTheWeek($date){
         $dayOfTheWeek = null;
         
         $formatoData = 'Y-m-d'; 
-        $formatoTime = 'H:i';
+        
 
         if(!empty($date)){
             $dateTime = \DateTime::createFromFormat($formatoData, $date);
         }else{
             echo "data não enviada";
-            return;
+            return null;
         }
         
         if ($dateTime && $dateTime->format($formatoData) === $date) {
@@ -68,8 +71,23 @@ class SchedulingSecretaryController{
             $dayOfTheWeek = $daysOfTheWeek[$dateTime->format('N')];
         } else {
             echo "A data $date não é válida.";
+            return null;
+        }
+        return $dayOfTheWeek;
+    }
+
+    public function AddScheduleForm($params){
+        $date = $_POST['data'];
+        $times = isset($_POST['times']) ? $_POST['times'] : [];
+        $formatoTime = 'H:i';
+        
+        
+        $dayOfTheWeek = $this->dayOfTheWeek($date);
+
+        if($dayOfTheWeek === null){
             return;
         }
+
         $SchedulingSecretaryModel = new SchedulingSecretaryModel;
         foreach($times as $time){
             $dateTime = \DateTime::createFromFormat($formatoTime, $time);
@@ -86,19 +104,50 @@ class SchedulingSecretaryController{
     }
     
     public function deleteSchedule($params){
-        $id = isset($params["id"]) ? $params["id"] : null;
+        $id = isset($params["delete_id"]) ? $params["delete_id"] : null;
 
         if (!$id) {
             echo "ID inválido.";
             return;
         }
         $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $SchedulingSecretaryModel->deleteRecord($params["id"]);
+        $SchedulingSecretaryModel->deleteRecord($id);
         $SchedulingSecretaryModel->closeConnection();
 
-        header("Location: http://localhost/agenda");
+        $this->showSchedule();
+        header("Location: http://localhost/agenda?delete=success");
         exit();
+    }
 
+    public function putSchedule($params){
+        
+        $id = isset($params["put_id"]) ? $params["put_id"] : null;
+        $date = $_POST['data'];
+        $time  = $_POST['hora'];
+        $formatoTime = 'H:i';
+
+
+        $dateTime = \DateTime::createFromFormat($formatoTime, $time);
+            if (!$dateTime   ||  $dateTime->format($formatoTime) !== $time) {
+                echo "A hora $time não é válida.";
+                return;
+        }
+        
+        if (!$id) {
+            echo "ID inválido.";
+            return;
+        }
+
+        $dayOfTheWeek = $this->dayOfTheWeek($date);
+        
+        
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        $SchedulingSecretaryModel->putRecord($id , $dayOfTheWeek ,$date ,$time);
+        $SchedulingSecretaryModel->closeConnection();
+        
+        $this->showSchedule();
+        header("Location: http://localhost/agenda?edit=success");
+        exit();
     }
     
 }

@@ -11,7 +11,8 @@ function routes(){
 
         'POST' =>[
             '/agenda' => "SchedulingSecretaryController@AddScheduleForm",
-            '/agenda/id/[0-9]+' => "SchedulingSecretaryController@deleteSchedule",
+            '/agenda/delete_id/[0-9]+' => "SchedulingSecretaryController@deleteSchedule",
+            '/agenda/put_id/[0-9]+' => "SchedulingSecretaryController@putSchedule",
         ],
 
         'PUT' =>[
