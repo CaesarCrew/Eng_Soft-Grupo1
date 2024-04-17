@@ -70,4 +70,14 @@ class SchedulingSecretaryModel extends Connect{
         
         return;
     }
+    public function putRecord($id ,$dia_da_semana,$date , $time){
+        $stmt = $this->pdo->prepare("UPDATE horario_disponivel SET dia_da_semana = :dia_da_semana, `data` = :data, hora = :hora WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':dia_da_semana', $dia_da_semana);
+        $stmt->bindParam(':data', $date);
+        $stmt->bindParam(':hora', $time);
+        $stmt->execute();
+        
+        return;
+    }
 }
