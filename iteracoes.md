@@ -1,14 +1,11 @@
-# Planejamento das Iterações:
+# Iteração #1 (03/04/2024 á 16/04/2024)
+---
+## Planejamento
 
-## Iteração #1
-
-### Objetivo:
-
-# Relatório das Iterações:
-
-## Iteração #1 (03/04/2024 á 16/04/2024)
-
-#### Objetivo: Implementar a base do sistema de cadastro de pacientes.
+### Objetivo: Implementar a base do sistema de cadastro de pacientes.
+---
+## Relatório
+### Objetivo: Atingido✔
 
 - [x] RF_06 configuração de roteamento e criação de tabela. 1.1 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por [Hátilan Caio Alves Fontes](https://github.com/Hatilancaio)
 - [x] RF_07 realizar cadastro de horario 1.2 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por [Hátilan Caio Alves Fontes](https://github.com/Hatilancaio)
