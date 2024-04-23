@@ -72,10 +72,10 @@ Realiza o login dos usuários na plataforma
 
 # RF02 - Cadastrar Usuário
 
-#### Autor: @brenoborgesbr - Breno Borges.
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
 
 - - -
-#### Revisor : @uGonzaguinha - Gustavo Gonzaga dos Santos.
+#### Revisor : @Hatilancaio - Hátilan
 
 | Item            | Descrição                                                              |
 | --------------- | ---------------------------------------------------------------------- |
@@ -108,8 +108,8 @@ Realiza o cadastramento dos usuários na plataforma
 | Nome     | Sim          | Sim       | Texto        |
 | Email    | Sim          | Sim       | Texto        |
 | Senha    | Sim          | Sim       | Texto        |
-| CPF      | Sim          | Sim       | Alfanumérico |
-| Endereço | Não          | Sim       | Texto        |
+| CPF      | Sim          | Sim       | Texto |
+| data de nascimento | Sim          | Sim       | Data        |
 | Contato  | Sim          | Sim       | Numérico     |
 | Gênero   | Sim          | Sim       | Checkbox     |
 
