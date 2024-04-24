@@ -112,6 +112,13 @@ Realiza o cadastramento dos usuários na plataforma
 | data de nascimento | Sim          | Sim       | Data        |
 | Contato  | Sim          | Sim       | Numérico     |
 | Gênero   | Sim          | Sim       | Checkbox     |
+| CEP   | Sim          | Sim       | Texto     |
+| Logradouro   | Sim          | Sim       | Texto     |
+| Número   | Sim          | Sim       | Texto     |
+| Complemento   | Não          | Sim       | Texto     |
+| Bairro   | Sim          | Sim       | Texto     |
+| Cidade   | Sim          | Sim       | Texto     |
+| Estado   | Sim          | Sim       | Texto     |
 
 
 # RF03 - Agendar Consulta 
