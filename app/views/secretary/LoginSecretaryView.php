@@ -33,7 +33,7 @@ $authUserController->login();
 <h1>Login Secretaria</h1>
 
 <div class="form_login">
-    <form method="POST" action="/teste2/loginSecretaria">
+    <form method="POST" action="/loginSecretaria">
         <label for="usuario">Usuário:</label>
         <input type="text" id="usuario" name="usuario" required><br>
         <label for="senha">Senha:</label>
