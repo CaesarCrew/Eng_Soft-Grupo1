@@ -80,4 +80,12 @@ class SchedulingSecretaryModel extends Connect{
         
         return;
     }
+<<<<<<< HEAD
+<<<<<<<< HEAD:app/database/SchedulingSecretaryModel.php
 }
+========
+}
+>>>>>>>> 3eaeb9238c78d65631be2e2cf0fbdde2de0fe883:app/model/SchedulingSecretaryModel.php
+=======
+}
+>>>>>>> 3eaeb9238c78d65631be2e2cf0fbdde2de0fe883

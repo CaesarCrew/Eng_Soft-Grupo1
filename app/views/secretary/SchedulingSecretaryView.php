@@ -224,7 +224,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
             
             <tr>
                 <td><?php echo  $dado["dia_da_semana"] ;?></td>
+<<<<<<< HEAD
                 <form method="POST" action="/agenda?>">
+=======
+                <form method="POST" action="/agenda/put_id/<?php echo $dado["id"]?>">
+>>>>>>> 3eaeb9238c78d65631be2e2cf0fbdde2de0fe883
 
                     <td>
                         
@@ -236,6 +240,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                         <input name = "hora" type="time" id="edit-hora-<?php echo $dado["id"]; ?>" value="<?php echo substr($dado["hora"], 0, 5); ?>" style="display: none;">
                     </td>
                     <td>
+<<<<<<< HEAD
                         <!-- <button type="submit"  id="enviar-<?php echo $dado["id"]; ?>" style="display: none;">Confirmar</button> -->
                         <button type="submit"  id="enviar-<?php echo $dado["id"]; ?>" style="display: none;" value="<?php echo $dado["id"]; ?>" name ="put">Confirmar</button>
                     </td>
@@ -248,6 +253,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                         <form method="POST" action="/agenda">
                             <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
                             <button type="submit" name ="delete">Delete</button>
+=======
+                        <button type="submit" id="enviar-<?php echo $dado["id"]; ?>" style="display: none;">Confirmar</button>
+                    </td>
+                </form>
+                    <td>
+                            <button onclick="toggleEdit(<?php echo $dado['id']; ?>)">Editar</button>
+                    </td>
+                    <td>
+                        <form method="POST" action="/agenda/delete_id/<?php echo $dado["id"]?>">
+                            <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
+                            <button type="submit">Delete</button>
+>>>>>>> 3eaeb9238c78d65631be2e2cf0fbdde2de0fe883
                         </form>
                     </td>
                     
