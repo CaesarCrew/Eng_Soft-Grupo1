@@ -1,17 +1,16 @@
 <?php
-require_once 'app/database/AuthSecretaryModel.php';
-use app\database\AuthSecretary;
+use app\database\AuthSecretaryModel;
 class AuthUserController{
 
     public function login() {
-        $AuthSecretary = new AuthSecretary;
+        $AuthSecretaryModel = new AuthSecretaryModel;
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (!empty($_POST["usuario"]) && !empty($_POST["senha"])) {
                 $usuario = $_POST["usuario"];
                 $senha = $_POST["senha"];
 
-                $isValidUser = $AuthSecretary->checkUser($usuario, $senha);
+                $isValidUser = $AuthSecretaryModel->checkUser($usuario, $senha);
                 
                 if ($isValidUser) {
                     echo "Sucesso!"; // Fazer direcionamento paara a pagina de agendamento
