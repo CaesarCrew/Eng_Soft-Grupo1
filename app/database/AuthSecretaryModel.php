@@ -4,7 +4,7 @@ use PDO;
 use Connect;
 use PDOException;
 
-class AuthSecretary extends Connect{
+class AuthSecretaryModel extends Connect{
     private $pdo;
 
     public function __construct() {  
