@@ -1,6 +1,15 @@
 # Eng_Soft-Grupo1
 Trabalho da disciplina de Engenharia de Software da turma de 2024.1
 
+### Iteração #1 (03/04/2024 á 16/04/2024)
+
+#### Objetivo: Implementar a base do sistema de cadastro de pacientes.
+
+- [x] RF_06 configuração de roteamento e criação de tabela. 1.1 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_07 realizar cadastro de horario 1.2 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_08 mostrar horario cadastrado 1.3 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_09 deletar horario 1.4 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
+- [x] RF_10 editar horário 1.5 [Gabriel barbosa dos santos martiliano](https://github.com/gabrielbdsm) Revisado por @Hatilancaio - Hátilan
 
 
 # RF_01 - Realizar Login do Usuário
@@ -63,10 +72,10 @@ Realiza o login dos usuários na plataforma
 
 # RF02 - Cadastrar Usuário
 
-#### Autor: @brenoborgesbr - Breno Borges.
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
 
 - - -
-#### Revisor : @uGonzaguinha - Gustavo Gonzaga dos Santos.
+#### Revisor : @Hatilancaio - Hátilan
 
 | Item            | Descrição                                                              |
 | --------------- | ---------------------------------------------------------------------- |
@@ -99,10 +108,17 @@ Realiza o cadastramento dos usuários na plataforma
 | Nome     | Sim          | Sim       | Texto        |
 | Email    | Sim          | Sim       | Texto        |
 | Senha    | Sim          | Sim       | Texto        |
-| CPF      | Sim          | Sim       | Alfanumérico |
-| Endereço | Não          | Sim       | Texto        |
+| CPF      | Sim          | Sim       | Texto |
+| data de nascimento | Sim          | Sim       | Data        |
 | Contato  | Sim          | Sim       | Numérico     |
 | Gênero   | Sim          | Sim       | Checkbox     |
+| CEP   | Sim          | Sim       | Texto     |
+| Logradouro   | Sim          | Sim       | Texto     |
+| Número   | Sim          | Sim       | Texto     |
+| Complemento   | Não          | Sim       | Texto     |
+| Bairro   | Sim          | Sim       | Texto     |
+| Cidade   | Sim          | Sim       | Texto     |
+| Estado   | Sim          | Sim       | Texto     |
 
 
 # RF03 - Agendar Consulta 
@@ -400,6 +416,96 @@ N/A
 ## Campos do Formulário:
 | Campo | Obrigatório? | Editável? | Formato |
 | --- | --- | --- |--- |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+
+
+# RF_09 - deletar horário da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | deletar horário da agenda |
+| Resumo | 	Esta requisição detalha as etapas para deletar o horário cadastrado na agenda. A funcionalidade permite que a secretária delete o horários cadastrado. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de deleta  horário.|
+| Pós-condições | horário é deletado com sucesso e o usuário será redirecionado para a tela de visualização dos horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa deletar um horário da agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para excluir o horário selecionado.
+
+## Fluxo principal:
+
+1. A secretária clica no botão delete do horário que deseja deletar.
+2. O sistema remove o horário selecionado da agenda.
+
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+
+## Opções dos Usuários:
+| Item | Descrição | Atalho |
+| --- | --- | --- |
+
+# RF_10 - editar horário da agenda
+
+
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
+
+- - -
+#### Revisor : @Hatilancaio - Hátilan
+
+| Item | Descrição |
+| ---  | --- |
+| Caso de Uso | editar horário da agenda |
+| Resumo | 	Esta requisição detalha as etapas para editar horários cadastrado na agenda. A funcionalidade permite que a secretária edite  horários cadastrado. |
+| Ator primário |  Secretária |
+| Atores secundários |  Não possui |
+| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de edição de horário.|
+| Pós-condições | O horário é editado com sucesso e o usuário é redirecionado para a tela de visualização dos horários disponíveis na agenda.|
+
+## Descrição Sucinta:
+Esta requisição define as etapas para que a secretária possa editar um horário da agenda da aplicação. O desenvolvedor deve implementar as funcionalidades necessárias para editar o horário selecionado.
+
+## Fluxo principal:
+
+1. A secretária acessa a página de horários.
+2. A secretária identifica o horário que deseja editar.
+3. A secretária clica no botão "Editar" associado ao horário desejado.
+4. O sistema exibe um formulário preenchido com os dados atuais do horário selecionado.
+5. A secretária faz as alterações desejadas nos campos de data e hora.
+6. A secretária confirma as alterações clicando no botão "Confirmar Edição".
+7. O sistema salva as alterações e exibe uma mensagem de sucesso.
+8. O usuário é redirecionado para a tela de visualização dos horários atualizada
+
+## Fluxos Alternativos:
+N/A
+
+## Exceções:
+| Código | Descrição                                        |
+|--------|--------------------------------------------------|
+      
+## Campos do Formulário:
+| Campo | Obrigatório? | Editável? | Formato |
+| --- | --- | --- |--- |
+| Data | Sim | Sim | DD/MM/AAAA |
+| Hora | Sim | Sim | HH:MM |
 
 ## Opções dos Usuários:
 | Item | Descrição | Atalho |

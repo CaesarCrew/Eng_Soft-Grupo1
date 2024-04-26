@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model;
+namespace app\database;
 use PDO;
 use Connect;
 use PDOException;
@@ -49,7 +49,7 @@ class SchedulingSecretaryModel extends Connect{
         
     }
     public function getTimeTables  ($inicio , $limite){
-        $stmt = $this->pdo->prepare("SELECT dia_da_semana, DATE_FORMAT(STR_TO_DATE(data, '%Y-%m-%d'), '%d-%m-%Y') AS data, hora
+        $stmt = $this->pdo->prepare("SELECT id, dia_da_semana, DATE_FORMAT(STR_TO_DATE(data, '%Y-%m-%d'), '%d-%m-%Y') AS data, hora
         FROM horario_disponivel
         ORDER BY data DESC
         LIMIT $inicio, $limite; ");
@@ -62,5 +62,22 @@ class SchedulingSecretaryModel extends Connect{
         $stmt->execute();
         $amount =  $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $amount;
+    }
+    public function deleteRecord ($id){
+        $stmt = $this->pdo->prepare("DELETE  FROM horario_disponivel where id= :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        
+        return;
+    }
+    public function putRecord($id ,$dia_da_semana,$date , $time){
+        $stmt = $this->pdo->prepare("UPDATE horario_disponivel SET dia_da_semana = :dia_da_semana, `data` = :data, hora = :hora WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':dia_da_semana', $dia_da_semana);
+        $stmt->bindParam(':data', $date);
+        $stmt->bindParam(':hora', $time);
+        $stmt->execute();
+        
+        return;
     }
 }
