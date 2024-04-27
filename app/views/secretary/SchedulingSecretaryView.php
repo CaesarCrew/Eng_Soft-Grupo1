@@ -224,10 +224,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
             
             <tr>
                 <td><?php echo  $dado["dia_da_semana"] ;?></td>
-                <form method="POST" action="/agenda?>">
 
+                <form method="POST" action="/agenda?>">
                     <td>
-                        
                         <span id="data-<?php echo $dado["id"]; ?>"><?php echo $dado["data"]; ?></span>
                         <input name = "data" type="date" id="edit-data-<?php echo $dado["id"]; ?>" value="<?php echo date("Y-m-d", strtotime(str_replace("-", "/", $dado["data"]))); ?>" style="display: none;">
                     </td>
@@ -248,6 +247,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                         <form method="POST" action="/agenda">
                             <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
                             <button type="submit" name ="delete">Delete</button>
+                        <button type="submit" id="enviar-<?php echo $dado["id"]; ?>" style="display: none;">Confirmar</button>
+                    </td>
+                </form>
+                    <td>
+                            <button onclick="toggleEdit(<?php echo $dado['id']; ?>)">Editar</button>
+                    </td>
+                    <td>
+                        <form method="POST" action="/agenda/delete_id/<?php echo $dado["id"]?>">
+                            <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
+                            <button type="submit">Delete</button>
                         </form>
                     </td>
                     

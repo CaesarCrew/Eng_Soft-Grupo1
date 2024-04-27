@@ -1,7 +1,6 @@
 <?php
 
 namespace app\database;
-
 use PDO;
 use Connect;
 use PDOException;
