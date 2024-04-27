@@ -509,4 +509,8 @@ N/A
 
 ## Opções dos Usuários:
 | Item | Descrição | Atalho |
+<<<<<<< HEAD
 | --- | --- | --- |
+=======
+| --- | --- | --- |
+>>>>>>> 3eaeb9238c78d65631be2e2cf0fbdde2de0fe883
