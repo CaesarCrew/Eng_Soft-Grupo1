@@ -1,11 +1,16 @@
 <?php
 
+use app\middleware\MiddlewareSession;
+
 require __DIR__ . "/vendor/autoload.php";
+require __DIR__ ."/app/middleware/MiddlewareSession.php";
+
 
 
 $dotenv =  Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$MiddlewareSession = new MiddlewareSession;
 
 $connect = new Connect();
 $connect->getConnection();
@@ -15,7 +20,12 @@ switch ($url) {
     case '/':
         include 'app/views/homeView.php';
         break;
-    case 'agenda':
+    case 'homeSecretaria':
+        $MiddlewareSession->handleSecretary();
+        include 'app/views/secretary/DiarySecretaryView.php';
+        break;
+    case 'horarios':
+        $MiddlewareSession->handleSecretary();
         include 'app/views/secretary/SchedulingSecretaryView.php';
         break;
     case 'cadastro':

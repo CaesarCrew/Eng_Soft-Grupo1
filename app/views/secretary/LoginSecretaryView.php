@@ -11,10 +11,13 @@ class AuthUserController{
                 $usuario = $_POST["usuario"];
                 $senha = $_POST["senha"];
 
-                $isValidUser = $AuthSecretaryModel->checkUser($usuario, $senha);
+                $secretary_id = $AuthSecretaryModel->checkUser($usuario, $senha);
                 
-                if ($isValidUser) {
+                if ($secretary_id) {
+                    $_SESSION['secretary_id'] = $secretary_id;
                     echo "Sucesso!"; // Fazer direcionamento paara a pagina de agendamento
+                    header('Location: http://localhost/homeSecretaria');
+                    exit();
                 } else {
                     echo "Usuário ou senha incorretos.";
                 }

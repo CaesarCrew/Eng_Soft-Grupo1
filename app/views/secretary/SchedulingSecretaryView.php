@@ -113,7 +113,7 @@ class SchedulingSecretaryController{
         $SchedulingSecretaryModel->closeConnection();
 
         $this->showSchedule();
-        header("Location: http://localhost/agenda?delete=success");
+        header("Location: http://localhost/horarios?delete=success");
         exit();
     }
 
@@ -169,7 +169,7 @@ $pages = $showSchedule["data"]["pages"];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addHorario'])) {
     $SchedulingSecretaryController->AddScheduleForm();
-    header("Location: http://localhost/agenda");
+    header("Location: http://localhost/horarios");
     exit();
 }
 
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
 ?>
 
 
-<form method="POST" action="/agenda">
+<form method="POST" action="/horarios">
     <label for="data">Data:</label>
     <input type="date" id="data" name="data" required><br><br>
 
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
             <tr>
                 <td><?php echo  $dado["dia_da_semana"] ;?></td>
 
-                <form method="POST" action="/agenda?>">
+                <form method="POST" action="/horarios?>">
                     <td>
                         <span id="data-<?php echo $dado["id"]; ?>"><?php echo $dado["data"]; ?></span>
                         <input name = "data" type="date" id="edit-data-<?php echo $dado["id"]; ?>" value="<?php echo date("Y-m-d", strtotime(str_replace("-", "/", $dado["data"]))); ?>" style="display: none;">
@@ -244,22 +244,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                     </td>
                     <td>
                         <!-- <form method="POST" action="/agenda/delete_id/<?php echo $dado["id"]?>"> -->
-                        <form method="POST" action="/agenda">
+                        <form method="POST" action="/horarios">
                             <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
                             <button type="submit" name ="delete">Delete</button>
                         <button type="submit" id="enviar-<?php echo $dado["id"]; ?>" style="display: none;">Confirmar</button>
                     </td>
                 </form>
-                    <td>
-                            <button onclick="toggleEdit(<?php echo $dado['id']; ?>)">Editar</button>
-                    </td>
-                    <td>
-                        <form method="POST" action="/agenda/delete_id/<?php echo $dado["id"]?>">
-                            <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                    
+                   
                 <td>
 </td>
 
