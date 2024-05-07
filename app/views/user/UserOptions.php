@@ -9,5 +9,8 @@
 <body>
     <a href="#">agendar nova consulta</a>
     <a href="#">verificar agendamentos</a>
+    <form method="POST" action="/logout">
+    <button type="submit">Logout</button>
+    </form>
 </body>
 </html>

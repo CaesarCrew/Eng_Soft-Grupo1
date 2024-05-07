@@ -209,6 +209,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     <!-- <button type="submit">Adicionar Horário</button> -->
     <button type="submit" name="addHorario">Adicionar Horário</button>
 </form>
+
+<form method="POST" action="/logout">
+    <button type="submit" name="logout">Logout</button>
+</form>
  
 <table >
     <thead>
