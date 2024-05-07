@@ -25,7 +25,7 @@ switch ($url) {
         include 'app/views/secretary/DiarySecretaryView.php';
         break;
     case 'homeUsuario':
-        $MiddlewareSession->handleSecretary();
+        $MiddlewareSession->handleUser();
         include 'app/views/user/UserOptions.php';
         break;
     case 'horarios':

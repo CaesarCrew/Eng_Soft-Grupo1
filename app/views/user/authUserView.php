@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signUp'])) {
 }
 
 ?>
-<form method="POST" action="/teste2/cadastro" style="display: flex; flex-direction: column;">
+<form method="POST" action="/cadastro" style="display: flex; flex-direction: column;">
     <label for="nome">Nome</label>
     <input type="text" id="nome" name="nome" required>
     
