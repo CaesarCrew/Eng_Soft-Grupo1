@@ -51,6 +51,24 @@ class AuthUserModel  extends Connect{
         }
     }
 
+    public function checkUser($email, $senha) {
+        $stmt = $this->pdo->prepare("SELECT id, senha FROM usuario WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $id = $result['id'];
+            $hashedPassword = $result['senha'];
+            
+        
+            if ($hashedPassword && password_verify($senha, $hashedPassword)) {
+                return $id; // Senha correta
+            } else {
+                return null; // Senha incorreta 
+            }
+        }
+    }
+
     public function signUp($Nome, $senha, $email, $telefone, $cpf, $genero, $data_de_nascimento ,  $cep ,$logradouro ,$numero ,$complemento ,$bairro , $cidade , $estado){
         
         try {

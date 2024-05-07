@@ -3,7 +3,7 @@
 use app\middleware\MiddlewareSession;
 
 require __DIR__ . "/vendor/autoload.php";
-require __DIR__ ."/app/middleware/MiddlewareSession.php";
+require __DIR__ . "/app/middleware/MiddlewareSession.php";
 
 
 
@@ -24,6 +24,10 @@ switch ($url) {
         $MiddlewareSession->handleSecretary();
         include 'app/views/secretary/DiarySecretaryView.php';
         break;
+    case 'homeUsuario':
+        $MiddlewareSession->handleUser();
+        include 'app/views/user/UserOptions.php';
+        break;
     case 'horarios':
         $MiddlewareSession->handleSecretary();
         include 'app/views/secretary/SchedulingSecretaryView.php';
@@ -33,6 +37,9 @@ switch ($url) {
         break;
     case 'loginSecretaria':
         include 'app/views/secretary/LoginSecretaryView.php';
+        break;
+    case 'login':
+        include 'app/views/user/LoginUserView.php';
         break;
     default:
         include 'app/views/erro_404.php';
