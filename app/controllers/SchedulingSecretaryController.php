@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\model\SchedulingSecretaryModel;
+use app\database\SchedulingSecretaryModel;
 
 class SchedulingSecretaryController{
     // public function showAddScheduleForm($params){
