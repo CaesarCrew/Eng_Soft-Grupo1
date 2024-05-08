@@ -41,6 +41,9 @@ switch ($url) {
     case 'login':
         include 'app/views/user/LoginUserView.php';
         break;
+    case 'logout':
+        $MiddlewareSession->logout();
+        break;
     default:
         include 'app/views/erro_404.php';
         break;

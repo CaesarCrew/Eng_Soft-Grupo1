@@ -3,10 +3,8 @@ namespace app\database;
 use PDO;
 use Connect;
 use PDOException;
-
 class AuthSecretaryModel extends Connect{
     private $pdo;
-
     public function __construct() {  
         $this->pdo = $this->getConnection();
         
@@ -23,8 +21,8 @@ class AuthSecretaryModel extends Connect{
         if ($result) {
             $id = $result['id'];
             $hashedPassword = $result['senha'];
-            
-        
+
+
             if ($hashedPassword && password_verify($senha, $hashedPassword)) {
                 return $id; // Senha correta
             } else {
@@ -33,5 +31,4 @@ class AuthSecretaryModel extends Connect{
         }
     }
 }
-
 ?>
