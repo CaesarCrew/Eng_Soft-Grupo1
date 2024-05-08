@@ -13,6 +13,6 @@ Aproveitem!
 * Nova função de deletar horario.
 * Nova função de editar horário.
 ---
-### [Iterações](https://github.com/CaesarCrew/Eng_Soft-Grupo1/blob/patch-organizar-markdowns2/iteracoes.md)
-### [Requisitos do sistema](https://github.com/CaesarCrew/Eng_Soft-Grupo1/blob/patch-organizar-markdowns2/requisitos.md)
+### [Iterações](https://github.com/CaesarCrew/Eng_Soft-Grupo1/blob/patch_organizar_markdowns2/iteracoes.md)
+### [Requisitos do sistema](https://github.com/CaesarCrew/Eng_Soft-Grupo1/blob/patch_organizar_markdowns2/requisitos.md)
 Projeto realizado para Engenharia de Software da turma de 2024.1
