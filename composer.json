@@ -1,0 +1,25 @@
+{
+    "name": "healthconnect/consultorio",
+    "version": "1.0.0",
+    "description": "",
+    "autoload": {
+        "files": [
+            "app/helpers/constants.php",
+            "app/database/Connect.php"
+        ],
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gabrielbdsm",
+            "email": "gabrielmartiliano2@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "php" : ">=8.0"
+    }
+    
+}
