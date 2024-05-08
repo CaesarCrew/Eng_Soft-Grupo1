@@ -299,72 +299,7 @@ Esta requisição define as etapas para configurar as rotas e o banco de dados d
 ## Fluxos Alternativos:
 N/A
 
-## Exceções:
-| Código | Descrição                                        |
-|--------|--------------------------------------------------|
-|    |           |
-
-## Campos do Formulário:
-| Campo | Obrigatório? | Editável? | Formato |
-| --- | --- | --- | --- |
-
-## Opções dos Usuários:
-| Item | Descrição | Atalho |
-| --- | --- | --- |
-
-# RF_07 - Realizar cadastro de horário
-
-#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
-
-- - -
-#### Revisor : @Hatilancaio - Hátilan
-
-| Item | Descrição |
-| ---  | --- |
-| Caso de Uso | Cadastro de horário |
-| Resumo | Esta requisição define as etapas para que a secretária possa cadastrar novos horários na aplicação. O desenvolvedor deve criar as funcionalidades necessárias para permitir o cadastro de horários pela secretária  |
-| Ator primário |  Secretária |
-| Atores secundários |  Não possui |
-| Pré-condição | O sistema deve estar configurado corretamente e a secretária deve ter acesso à funcionalidade de cadastro de horário.|
-| Pós-condições | O horário é cadastrado com sucesso no sistema, ou uma mensagem de erro é exibida caso ocorra algum problema.|
-
-## Descrição Sucinta:
-Esta requisição define as etapas para que a secretária possa cadastrar novos horários na aplicação. O desenvolvedor deve criar as funcionalidades necessárias para permitir o cadastro de horários pela secretária.
-
-## Fluxo principal:
-
-1. A secretária acessa a página de agenda.
-2. O sistema exibe o formulário de cadastro de horário.
-3. A secretária preenche os campos do formulário, incluindo a data e a hora.
-4.  secretária envia o formulário de cadastro.
-5. O sistema valida os dados recebidos.
-6. O sistema verifica se já existe um horário cadastrado para a mesma data e hora.
-7. Se já existir um horário cadastrado para a mesma data e hora, o sistema exibe uma mensagem de erro informando que não é possível cadastrar o horário.
-8. Se não existir um horário cadastrado para a mesma data e hora, o sistema salva o novo horário no banco de dados.
-9. O sistema exibe uma mensagem de sucesso informando que o horário foi cadastrado com sucesso.
-
-## Fluxos Alternativos:
-N/A
-
-## Exceções:
-| Código | Descrição                                        |
-|--------|--------------------------------------------------|
-|1| Já existe um horário cadastrado para a data e hora especificadas.           |
-
-## Campos do Formulário:
-| Campo | Obrigatório? | Editável? | Formato |
-| --- | --- | --- |--- |
-| Data | Sim | Sim | data |
-| Hora | Sim | Sim | hora |
-
-
-
-## Opções dos Usuários:
-| Item | Descrição | Atalho |
-| --- | --- | --- |
-
-
-# RF_08 - Mostrar horários da agenda
+# RF_07 - Mostrar horários da agenda
 
 
 #### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
@@ -393,20 +328,8 @@ Esta requisição define as etapas para que a secretária possa visualizar os ho
 ## Fluxos Alternativos:
 N/A
 
-## Exceções:
-| Código | Descrição                                        |
-|--------|--------------------------------------------------|
-      
-## Campos do Formulário:
-| Campo | Obrigatório? | Editável? | Formato |
-| --- | --- | --- |--- |
 
-## Opções dos Usuários:
-| Item | Descrição | Atalho |
-| --- | --- | --- |
-
-
-# RF_09 - deletar horário da agenda
+# RF_08 - deletar horário da agenda
 
 
 #### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
@@ -435,19 +358,8 @@ Esta requisição define as etapas para que a secretária possa deletar um horá
 ## Fluxos Alternativos:
 N/A
 
-## Exceções:
-| Código | Descrição                                        |
-|--------|--------------------------------------------------|
-      
-## Campos do Formulário:
-| Campo | Obrigatório? | Editável? | Formato |
-| --- | --- | --- |--- |
 
-## Opções dos Usuários:
-| Item | Descrição | Atalho |
-| --- | --- | --- |
-
-# RF_10 - editar horário da agenda
+# RF_09 - editar horário da agenda
 
 
 #### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
@@ -480,17 +392,9 @@ Esta requisição define as etapas para que a secretária possa editar um horár
 
 ## Fluxos Alternativos:
 N/A
-
-## Exceções:
-| Código | Descrição                                        |
-|--------|--------------------------------------------------|
-      
+     
 ## Campos do Formulário:
 | Campo | Obrigatório? | Editável? | Formato |
 | --- | --- | --- |--- |
 | Data | Sim | Sim | DD/MM/AAAA |
 | Hora | Sim | Sim | HH:MM |
-
-## Opções dos Usuários:
-| Item | Descrição | Atalho |
-| --- | --- | --- |
