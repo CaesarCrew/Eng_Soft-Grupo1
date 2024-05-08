@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\model\SchedulingSecretaryModel;
+use app\database\SchedulingSecretaryModel;
 
 class SchedulingSecretaryController{
     // public function showAddScheduleForm($params){
@@ -115,7 +115,7 @@ class SchedulingSecretaryController{
         $SchedulingSecretaryModel->closeConnection();
 
         $this->showSchedule();
-        header("Location: http://localhost/agenda?delete=success");
+        header("Location: http://localhost/horario?delete=success");
         exit();
     }
 
@@ -146,7 +146,7 @@ class SchedulingSecretaryController{
         $SchedulingSecretaryModel->closeConnection();
         
         $this->showSchedule();
-        header("Location: http://localhost/agenda?edit=success");
+        header("Location: http://localhost/horario?edit=success");
         exit();
     }
     

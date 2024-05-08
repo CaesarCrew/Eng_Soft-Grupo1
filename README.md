@@ -72,10 +72,10 @@ Realiza o login dos usuários na plataforma
 
 # RF02 - Cadastrar Usuário
 
-#### Autor: @brenoborgesbr - Breno Borges.
+#### Autor: @gabrielbdsm - Gabriel barbosa dos santos martiliano
 
 - - -
-#### Revisor : @uGonzaguinha - Gustavo Gonzaga dos Santos.
+#### Revisor : @Hatilancaio - Hátilan
 
 | Item            | Descrição                                                              |
 | --------------- | ---------------------------------------------------------------------- |
@@ -108,10 +108,17 @@ Realiza o cadastramento dos usuários na plataforma
 | Nome     | Sim          | Sim       | Texto        |
 | Email    | Sim          | Sim       | Texto        |
 | Senha    | Sim          | Sim       | Texto        |
-| CPF      | Sim          | Sim       | Alfanumérico |
-| Endereço | Não          | Sim       | Texto        |
+| CPF      | Sim          | Sim       | Texto |
+| data de nascimento | Sim          | Sim       | Data        |
 | Contato  | Sim          | Sim       | Numérico     |
 | Gênero   | Sim          | Sim       | Checkbox     |
+| CEP   | Sim          | Sim       | Texto     |
+| Logradouro   | Sim          | Sim       | Texto     |
+| Número   | Sim          | Sim       | Texto     |
+| Complemento   | Não          | Sim       | Texto     |
+| Bairro   | Sim          | Sim       | Texto     |
+| Cidade   | Sim          | Sim       | Texto     |
+| Estado   | Sim          | Sim       | Texto     |
 
 
 # RF03 - Agendar Consulta 
@@ -502,4 +509,8 @@ N/A
 
 ## Opções dos Usuários:
 | Item | Descrição | Atalho |
+<<<<<<< HEAD
 | --- | --- | --- |
+=======
+| --- | --- | --- |
+>>>>>>> 3eaeb9238c78d65631be2e2cf0fbdde2de0fe883

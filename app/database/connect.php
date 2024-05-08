@@ -8,17 +8,18 @@ class Connect
     public function getConnection()
     {   
         try{
-
+            
             $this->pdo = new  PDO("mysql:host=".$_ENV['DB_HOST']
             ,$_ENV['DB_USERNAME']
             ,$_ENV['DB_PASSWORD']
         );
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo->exec("USE ".$_ENV['DB_NAME']);
-        $this->checkBankAndTable();
+        
        
         return $this->pdo;
         }catch(PDOException $err){
+            $this->checkBankAndTable();
             return  null;
         }
     }

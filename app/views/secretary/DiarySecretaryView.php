@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ;?></title>
+    <title>Document</title>
 </head>
 <body>
-    <?php require $viewName ;?>
+    <a href="http://localhost/horarios">horarios</a>
+            <form method="POST" action="/logout">
+        <button type="submit">Logout</button>
+        </form>
 </body>
 </html>
