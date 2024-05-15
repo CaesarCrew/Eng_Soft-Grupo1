@@ -113,7 +113,6 @@ class AuthUserModel  extends Connect{
             echo "Erro ao cadastrar endereço: " . $e->getMessage();
         }
     }
-
 }
 
 

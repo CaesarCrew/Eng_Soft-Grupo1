@@ -1,8 +1,8 @@
 <?php
 use app\database\AuthUserModel;
 
-class LoginUserController{
-    public function login(){
+class LoginUserController {
+    public function login() {
         $AuthUserModel = new AuthUserModel;
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -25,13 +25,9 @@ class LoginUserController{
     }
 }
 
-?>
-
-<?php
 $LoginUserController = new LoginUserController;
 $LoginUserController->login();
 ?>
-
 
 <h1>Login Usuário</h1>
 
@@ -43,4 +39,5 @@ $LoginUserController->login();
         <input type="password" id="senha" name="senha" required><br>
         <input type="submit" name="submit" value="Enviar">
     </form>
+    <a href="app/views/user/SendMailPassword.php">Esqueceu sua senha?</a>
 </div>

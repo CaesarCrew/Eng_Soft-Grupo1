@@ -16,7 +16,9 @@ return [
         telefone VARCHAR(12) NOT NULL,
         cpf VARCHAR(12) NOT NULL,
         genero ENUM('M','F') NOT NULL,
-        data_de_nascimento DATE NOT NULL
+        data_de_nascimento DATE NOT NULL,
+        reset_token varchar(64) DEFAULT NULL,
+        reset_expires datetime DEFAULT NULL
     )"],
 
     ["name"=>"horario_disponivel" , "create" => "CREATE TABLE horario_disponivel(
