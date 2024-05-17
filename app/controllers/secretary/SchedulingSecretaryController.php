@@ -1,17 +1,11 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\secretary;
 
-use app\database\SchedulingSecretaryModel;
-
+use app\model\SchedulingSecretaryModel;
+//  use app\database\SchedulingSecretaryModel;
 class SchedulingSecretaryController{
-    // public function showAddScheduleForm($params){
-        
-    //     return[
-    //         "view" => "secretary/SchedulingSecretaryView.php",
-    //         "data" => ["title" => "agenda"]
-    //     ];
-    // }
+
     public function showSchedule(){
         $page = 1;
 
@@ -39,7 +33,7 @@ class SchedulingSecretaryController{
         $pages = ceil((int)$amount[0]["count"]/ $limite); ;
         $SchedulingSecretaryModel->closeConnection();
         return[
-            "view" => "secretary/SchedulingSecretaryView.php",
+            "view" => "secretary/schedulingSecretaryView.php",
             "data" => ["title" => "agenda" ,"dados" => $dados ,"page" => $page , "pages"=>$pages]
         ];
     }
@@ -76,7 +70,7 @@ class SchedulingSecretaryController{
         return $dayOfTheWeek;
     }
 
-    public function AddScheduleForm($params){
+    public function AddScheduleForm(){
         $date = $_POST['data'];
         $times = isset($_POST['times']) ? $_POST['times'] : [];
         $formatoTime = 'H:i';
@@ -105,7 +99,6 @@ class SchedulingSecretaryController{
     
     public function deleteSchedule($params){
         $id = isset($params["delete_id"]) ? $params["delete_id"] : null;
-
         if (!$id) {
             echo "ID inválido.";
             return;
@@ -115,12 +108,16 @@ class SchedulingSecretaryController{
         $SchedulingSecretaryModel->closeConnection();
 
         $this->showSchedule();
-        header("Location: http://localhost/horario?delete=success");
+        header("Location: http://localhost/horarios?delete=success");
         exit();
     }
 
-    public function putSchedule($params){
+    // public function putSchedule($params){
         
+    //     $id = isset($params["put_id"]) ? $params["put_id"] : null;
+    //     $date = $_POST['data'];
+    //     $time  = $_POST['hora'];
+    public function putSchedule($params){
         $id = isset($params["put_id"]) ? $params["put_id"] : null;
         $date = $_POST['data'];
         $time  = $_POST['hora'];
@@ -146,8 +143,9 @@ class SchedulingSecretaryController{
         $SchedulingSecretaryModel->closeConnection();
         
         $this->showSchedule();
-        header("Location: http://localhost/horario?edit=success");
+        header("Location: http://localhost/horarios?edit=success");
         exit();
     }
     
 }
+?>
