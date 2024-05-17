@@ -43,6 +43,6 @@ use app\model\AuthUserModel;
         <input type="password" id="senha" name="senha" required><br>
         <input type="submit" name="submit" value="Enviar">
     </form>
-    <button><a href="/cadastro">cadastro</a></button>
+    <button><a href="/cadastro">cadastrar</a></button>
     
 </div>
