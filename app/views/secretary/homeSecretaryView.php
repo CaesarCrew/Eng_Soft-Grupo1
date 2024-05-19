@@ -8,8 +8,8 @@
 </head>
 <body>
     <a href="http://localhost/horarios">horarios</a>
-            <form method="POST" action="/logout">
+    <form method="POST" action="/logoutSecretary">
         <button type="submit">Logout</button>
-        </form>
+    </form>
 </body>
 </html>
