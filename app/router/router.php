@@ -20,6 +20,8 @@ function routes(){
                 'controller' => "user\HomeUserController@showHomeUser",
                 'middleware' => 'handleUser'
             ],
+            '/sendMailPassword' => "user\AuthUserController@showSendMailPassword",
+            '/resetPasswordConfirm' => "user\AuthUserController@showResetPasswordConfirm",
         ],
 
         'POST' =>[
@@ -46,6 +48,8 @@ function routes(){
             ],
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
+            '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
+            '/resetPassword' => "user\AuthUserController@resetPassword",
         ],  
 
         'PUT' =>[
@@ -126,3 +130,4 @@ function router(){
     throw new  Exception();
    
 }
+    

@@ -113,6 +113,28 @@ class AuthUserModel  extends Connect{
         }
     }
 
+    public function isEmailExists($email) {
+        $stmt = $this->pdo->prepare("SELECT * FROM usuario WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function storeResetToken($email, $token, $expires) {
+        $stmt = $this->pdo->prepare("UPDATE usuario SET reset_token = ?, reset_expires = ? WHERE email = ?");
+        $stmt->execute([$token, $expires, $email]);
+    }
+
+    public function isValidToken($token) {
+        $stmt = $this->pdo->prepare("SELECT * FROM usuario WHERE reset_token = ? AND reset_expires > NOW()");
+        $stmt->execute([$token]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function updatePassword($token, $newPasswordHash) {
+        $stmt = $this->pdo->prepare("UPDATE usuario SET senha = ?, reset_token = NULL, reset_expires = NULL WHERE reset_token = ?");
+        $stmt->execute([$newPasswordHash, $token]);
+    }
+
 }
 
 

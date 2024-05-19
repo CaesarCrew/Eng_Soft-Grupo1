@@ -4,6 +4,9 @@ namespace app\controllers\user;
 
 use app\model\AuthUserModel;
 use app\validators\AuthValidator;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 class authUserController{
     
@@ -96,5 +99,80 @@ class authUserController{
     public function logoutUser(){
         return $this->ShowSignIn();
     }
+
+    public function showSendMailPassword() {
+        return [
+            "view" => "user/SendMailPasswordView.php",
+            "data" => ["title" => "Redefinir Senha"]
+        ];
+    }
+
+    public function sendResetPasswordEmail() {
+        $userEmail = $_POST['email'] ?? '';
+        $authUserModel = new AuthUserModel();
+
+        if ($authUserModel->isEmailExists($userEmail)) {
+            $mail = new PHPMailer(true);
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'sandbox.smtp.mailtrap.io';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'a166241e8e8b4e';
+                $mail->Password = '43ec379524d21a';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+                $mail->CharSet = 'utf-8';
+
+                $mail->setFrom('atendimento2013@healthconnect.com', 'HealthConnect');
+                $mail->addAddress($userEmail);
+                $mail->Subject = 'Redefinição de senha';
+                $mail->isHTML(true);
+
+                $token = bin2hex(random_bytes(32));
+                $expires = date("Y-m-d H:i:s", strtotime("+1 hour"));
+
+                $authUserModel->storeResetToken($userEmail, $token, $expires);
+
+                $mail->Body = 'Olá! Clique no link a seguir para redefinir sua senha: <a href="http://localhost/resetPasswordConfirm?token=' . urlencode($token) . '">Redefinir senha</a>';
+
+                $mail->send();
+                echo 'Email enviado com sucesso! Verifique sua caixa de entrada para redefinir sua senha.';
+            } catch (Exception $e) {
+                echo 'O email não pôde ser enviado. Erro: ', $mail->ErrorInfo;
+            }
+        } else {
+            echo 'O email não pode ser enviado porque o endereço de email é inválido.';
+        }
+    }
+
+    public function showResetPasswordConfirm() {
+        return [
+            "view" => "user/ResetPasswordConfirmView.php",
+            "data" => ["title" => "Confirmar Redefinição de Senha"]
+        ];
+    }
+
+    public function resetPassword() {
+        $token = $_POST['token'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
+
+        $authUserModel = new AuthUserModel();
+        if ($authUserModel->isValidToken($token)) {
+            if ($newPassword && ($newPassword === $confirmPassword)) {
+                $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+                $authUserModel->updatePassword($token, $newPasswordHash);
+                echo 'Sua senha foi redefinida com sucesso!';
+                echo '<a href="http://localhost/login">Ir para Login</a>';
+            } else {
+                echo 'As senhas não coincidem ou senha inválida.';
+                echo '<a href="javascript:history.back()">Tentar novamente</a>';
+            }
+        } else {
+            echo 'Token inválido ou expirado.';
+            echo '<a href="http://localhost/app/views/user/SendMailPasswordView.php">Tente Novamente</a>';
+        }
+    }
 }
+
 ?>
