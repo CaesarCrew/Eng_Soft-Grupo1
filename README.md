@@ -29,7 +29,7 @@ Este requisito permite que os usuários realizem login no sistema para acessar s
 - Após o login bem-sucedido, o usuário terá acesso às funcionalidades do sistema.
 
 ## Protótipo
-![RF01_-_login](https://uploaddeimagens.com.br/imagens/NgUZBxA)
+![RF01_-_login](CasosDeUsoExpandido/img/loginPaciente.png)
 
 ### RF02 - Cadastrar Usuário no Sistema
 
@@ -44,7 +44,7 @@ Este requisito permite que os usuários se cadastrem no sistema, preenchendo cam
 - O sistema deve verificar se o e-mail fornecido já está em uso e registrar o paciente no sistema com sucesso.
 
 ## Protótipo
-![RF02_-_cadastro](https://uploaddeimagens.com.br/imagens/oYUepTk)
+![RF02_-_cadastro](CasosDeUsoExpandido/img/cadastro.png)
 
 ### RF03 - Redefinir Senha no Sistema
 
@@ -81,7 +81,7 @@ Este requisito permite que a secretaria adicione os horários disponíveis para 
 **Critério de Aceitação:** 
 - A secretaria deve estar devidamente logada no sistema para realizar esta tarefa.
 
-![RF05_-_cadastrar_horario](CasoDeUsoExpandido/img/adicionarHorarios.png)
+![RF05_-_cadastrar_horario](CasosDeUsoExpandido/img/adicionarHorarios.png)
 
 ### RF06 - Deletar Horários Disponíveis no Sistema
 
