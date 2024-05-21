@@ -81,7 +81,7 @@ Este requisito permite que a secretaria adicione os horários disponíveis para 
 **Critério de Aceitação:** 
 - A secretaria deve estar devidamente logada no sistema para realizar esta tarefa.
 
-![RF05_-_cadastrar_horario](https://uploaddeimagens.com.br/imagens/W29TjwQ)
+![RF05_-_cadastrar_horario](CasoDeUsoExpandido/img/adicionarHorarios.png)
 
 ### RF06 - Deletar Horários Disponíveis no Sistema
 
