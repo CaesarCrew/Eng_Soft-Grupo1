@@ -44,5 +44,5 @@ use app\model\AuthUserModel;
         <input type="submit" name="submit" value="Enviar">
     </form>
     <button><a href="/cadastro">cadastrar</a></button>
-    
+    <button><a href="/sendMailPassword">Esqueceu sua senha?</a></button>
 </div>

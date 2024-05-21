@@ -4,18 +4,22 @@ namespace app\controllers\user;
 
 use app\model\AuthUserModel;
 use app\validators\AuthValidator;
+use PHPMailer\PHPMailer\Exception;
 
-class authUserController{
+require 'smtp.php'; //adicionar arquivo stmp.php com a sua configuração do stmp
+class authUserController {
     
-    public function showSignUp(){
-        return[
+    public function showSignUp() {
+        return [
             "view" => "user/signUpUserView.php",
             "data" => ["title" => "Cadastro"]
         ];
     }
-    public function signUp (){
+    
+    public function signUp() {
         $AuthUserModel = new AuthUserModel;
         $validateDataUser = new AuthValidator;
+
         if (
             !empty($_POST["nome"]) &&
             !empty($_POST["senha"]) &&
@@ -35,7 +39,7 @@ class authUserController{
             $data_de_nascimento = $_POST["data_de_nascimento"];
 
             $validateDataUSer = $validateDataUser->ValidatorSignUp($nome , $senha , $email , $telefone , $cpf , $genero , $data_de_nascimento);
-            if(!$validateDataUSer){
+            if (!$validateDataUSer) {
                 return $this->showSignUp();
             }
 
@@ -64,15 +68,14 @@ class authUserController{
         }
     }
     
-
-    public function ShowSignIn(){
-        return[
+    public function ShowSignIn() {
+        return [
             "view" => "user/signInUserView.php",
             "data" => ["title" => "Login"]
         ];
     }
 
-    public function signIn(){
+    public function signIn() {
         $AuthUserModel = new AuthUserModel;
 
         if (!empty($_POST["email"]) && !empty($_POST["senha"])) {
@@ -93,8 +96,75 @@ class authUserController{
             }
         } 
     }
-    public function logoutUser(){
+
+    public function logoutUser() {
         return $this->ShowSignIn();
+    }
+
+    public function showSendMailPassword() {
+        return [
+            "view" => "user/SendMailPasswordView.php",
+            "data" => ["title" => "Redefinir Senha"]
+        ];
+    }
+
+    public function sendResetPasswordEmail() {
+        $userEmail = $_POST['email'] ?? '';
+        $authUserModel = new AuthUserModel();
+
+        if ($authUserModel->isEmailExists($userEmail)) {
+            try {
+                $mail = getConfiguredMailer();
+
+                $mail->setFrom('atendimento@healthconnect.com', 'HealthConnect');
+                $mail->addAddress($userEmail);
+                $mail->Subject = 'Redefinição de senha';
+                $mail->isHTML(true);
+
+                $token = bin2hex(random_bytes(32));
+                $expires = date("Y-m-d H:i:s", strtotime("+1 hour"));
+
+                $authUserModel->storeResetToken($userEmail, $token, $expires);
+
+                $mail->Body = 'Olá! Clique no link a seguir para redefinir sua senha: <a href="http://localhost/resetPasswordConfirm?token=' . urlencode($token) . '">Redefinir senha</a>';
+
+                $mail->send();
+                echo 'Email enviado com sucesso! Verifique sua caixa de entrada para redefinir sua senha.';
+            } catch (Exception $e) {
+                echo 'O email não pôde ser enviado. Erro: ', $mail->ErrorInfo;
+            }
+        } else {
+            echo 'O email não pode ser enviado porque o endereço de email é inválido.';
+        }
+    }
+
+    public function showResetPasswordConfirm() {
+        return [
+            "view" => "user/ResetPasswordConfirmView.php",
+            "data" => ["title" => "Confirmar Redefinição de Senha"]
+        ];
+    }
+
+    public function resetPassword() {
+        $token = $_POST['token'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
+
+        $authUserModel = new AuthUserModel();
+        if ($authUserModel->isValidToken($token)) {
+            if ($newPassword && ($newPassword === $confirmPassword)) {
+                $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+                $authUserModel->updatePassword($token, $newPasswordHash);
+                echo 'Sua senha foi redefinida com sucesso!';
+                echo '<a href="http://localhost/login">Ir para Login</a>';
+            } else {
+                echo 'As senhas não coincidem ou senha inválida.';
+                echo '<a href="javascript:history.back()">Tentar novamente</a>';
+            }
+        } else {
+            echo 'Token inválido ou expirado.';
+            echo '<a href="http://localhost/app/views/user/SendMailPasswordView.php">Tente Novamente</a>';
+        }
     }
 }
 ?>
