@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Secretaria</title>
+    <title>Login Usuário</title>
     <style>
         body {
             display: flex;
@@ -44,35 +44,62 @@
             padding: 10px;
             border: none;
             border-radius: 4px;
-            background-color: #0056b3; /* Nova cor para o botão "Enviar" */
+            background-color: #0056b3;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
-        /* Estilo para o link "HOME" */
-        a.home-link {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            cursor: pointer;
+        .form_login .link_cadastrar, .form_login .link_esqueceu {
+            float: right;
+        }
+        .form_login .link_cadastrar a, .form_login .link_esqueceu a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .form_login .link_cadastrar a:hover, .form_login .link_esqueceu a:hover {
+            text-decoration: underline;
+        }
+        .secretary_login {
+            margin-top: 30px;
+            width: 300px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #622A8F;
+        }
+        .secretary_login a {
             color: white;
-            text-decoration: none; /* Removendo sublinhado do link */
-            font-size: 18px; /* Ajustando o tamanho da fonte */
+            text-decoration: none;
+            display: inline-block;
+        }
+        .secretary_login:hover {
+            cursor: pointer;
+            margin: 1px solid #622A8F;
         }
     </style>
 </head>
 <body>
-<a href="/home" class="home-link">HOME</a>
+
 <div class="container">
-    <h1>Login Secretaria</h1>
+    <h1>Login Usuário</h1>
     <div class="form_login">
-        <form method="POST" action="/loginSecretaria">
-            <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" name="usuario" required><br>
+        <form method="POST" action="/login">
+            <label for="email">E-mail:</label>
+            <input type="text" id="email" name="email" required><br>
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required><br>
             <input type="submit" name="submit" value="Enviar">
         </form>
+        <div class="link_cadastrar">
+            <a href="http://localhost/cadastro">Não têm conta? Cadastre-se</a>
+        </div>
+        <br>
+        <div class="link_esqueceu">
+            <a href="/sendMailPassword">Esqueceu sua senha?</a>
+        </div>
+    </div>
+    <div class="secretary_login">
+        <a href="http://localhost/loginSecretaria" class="secretary_button">Você é Secretária? Faça Login aqui</a>
     </div>
 </div>
 

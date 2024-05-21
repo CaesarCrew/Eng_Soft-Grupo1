@@ -1,5 +1,5 @@
 <?php
-namespace app\database;
+namespace app\model;
 use PDO;
 use Connect;
 use PDOException;
