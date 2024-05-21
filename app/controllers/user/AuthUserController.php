@@ -4,21 +4,22 @@ namespace app\controllers\user;
 
 use app\model\AuthUserModel;
 use app\validators\AuthValidator;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-class authUserController{
+require 'smtp.php'; //adicionar arquivo stmp.php com a sua configuração do stmp
+class authUserController {
     
-    public function showSignUp(){
-        return[
+    public function showSignUp() {
+        return [
             "view" => "user/signUpUserView.php",
             "data" => ["title" => "Cadastro"]
         ];
     }
-    public function signUp (){
+    
+    public function signUp() {
         $AuthUserModel = new AuthUserModel;
         $validateDataUser = new AuthValidator;
+
         if (
             !empty($_POST["nome"]) &&
             !empty($_POST["senha"]) &&
@@ -38,7 +39,7 @@ class authUserController{
             $data_de_nascimento = $_POST["data_de_nascimento"];
 
             $validateDataUSer = $validateDataUser->ValidatorSignUp($nome , $senha , $email , $telefone , $cpf , $genero , $data_de_nascimento);
-            if(!$validateDataUSer){
+            if (!$validateDataUSer) {
                 return $this->showSignUp();
             }
 
@@ -67,15 +68,14 @@ class authUserController{
         }
     }
     
-
-    public function ShowSignIn(){
-        return[
+    public function ShowSignIn() {
+        return [
             "view" => "user/signInUserView.php",
             "data" => ["title" => "Login"]
         ];
     }
 
-    public function signIn(){
+    public function signIn() {
         $AuthUserModel = new AuthUserModel;
 
         if (!empty($_POST["email"]) && !empty($_POST["senha"])) {
@@ -96,7 +96,8 @@ class authUserController{
             }
         } 
     }
-    public function logoutUser(){
+
+    public function logoutUser() {
         return $this->ShowSignIn();
     }
 
@@ -112,18 +113,10 @@ class authUserController{
         $authUserModel = new AuthUserModel();
 
         if ($authUserModel->isEmailExists($userEmail)) {
-            $mail = new PHPMailer(true);
             try {
-                $mail->isSMTP();
-                $mail->Host = 'sandbox.smtp.mailtrap.io';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'a166241e8e8b4e';
-                $mail->Password = '43ec379524d21a';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-                $mail->CharSet = 'utf-8';
+                $mail = getConfiguredMailer();
 
-                $mail->setFrom('atendimento2013@healthconnect.com', 'HealthConnect');
+                $mail->setFrom('atendimento@healthconnect.com', 'HealthConnect');
                 $mail->addAddress($userEmail);
                 $mail->Subject = 'Redefinição de senha';
                 $mail->isHTML(true);
@@ -174,5 +167,4 @@ class authUserController{
         }
     }
 }
-
 ?>
