@@ -4,9 +4,10 @@ namespace app\middleware;
 class MiddlewareSession {
 
     public function __construct(){
-        session_set_cookie_params(['lifetime' => 0, 'httponly' => true]);
-        session_start();
-        
+        if (session_status() === PHP_SESSION_NONE) {
+            session_set_cookie_params(['lifetime' => 0, 'httponly' => true]);
+            session_start();
+        }
     }
 
     public function handleUser(){
@@ -24,8 +25,6 @@ class MiddlewareSession {
     public function logout() {
         session_unset();
         session_destroy();
-        header('Location: http://localhost/');
-        exit();
     }
 
 }

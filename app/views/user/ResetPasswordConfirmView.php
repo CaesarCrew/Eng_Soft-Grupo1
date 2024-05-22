@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Secretaria</title>
+    <title>Reconfiguração de Senha</title>
     <style>
         body {
             display: flex;
@@ -13,6 +13,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: rgb(164, 70, 238);
+            position: relative;
         }
         .container {
             text-align: center;
@@ -31,7 +32,6 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        .form_login input[type="text"],
         .form_login input[type="password"] {
             width: calc(100% - 22px);
             padding: 10px;
@@ -39,17 +39,16 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .form_login input[type="submit"] {
+        .form_login button[type="submit"] {
             width: 100%;
             padding: 10px;
             border: none;
             border-radius: 4px;
-            background-color: #0056b3; /* Nova cor para o botão "Enviar" */
+            background-color: #0056b3;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
-        /* Estilo para o link "HOME" */
         a.home-link {
             position: absolute;
             top: 20px;
@@ -64,14 +63,19 @@
 <body>
 <a href="/home" class="home-link">HOME</a>
 <div class="container">
-    <h1>Login Secretaria</h1>
+    <h2>Redefinir Senha</h2>
     <div class="form_login">
-        <form method="POST" action="/loginSecretaria">
-            <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" name="usuario" required><br>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required><br>
-            <input type="submit" name="submit" value="Enviar">
+        <form action="/resetPassword" method="POST">
+            <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
+            <div>
+                <label for="new_password">Nova Senha:</label>
+                <input type="password" id="new_password" name="new_password" required>
+            </div>
+            <div>
+                <label for="confirm_password">Confirmar Nova Senha:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <button type="submit">Confirmar Redefinição de Senha</button>
         </form>
     </div>
 </div>

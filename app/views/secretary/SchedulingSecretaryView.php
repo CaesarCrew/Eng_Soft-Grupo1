@@ -1,203 +1,121 @@
-<?php
-
-use app\database\SchedulingSecretaryModel;
-
-class SchedulingSecretaryController{
-    // public function showAddScheduleForm($params){
-        
-    //     return[ 
-    //         "view" => "secretary/SchedulingSecretaryView.php",
-    //         "data" => ["title" => "agenda"]
-    //     ];
-    // }
-    public function showSchedule(){
-        $page = 1;
-
-        if(isset($_GET["pagina"])){
-            $page = filter_input(INPUT_GET, "pagina" ,FILTER_VALIDATE_INT);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Horários</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #A446EE;
+            margin: 0;
+            padding: 20px;
+            position: relative;
         }
-        if (isset($_GET['edit']) && $_GET['edit'] === 'success') {
-            echo "<p>Edição realizada com sucesso!</p>";
+        h1 {
+            /*position: absolute;*/
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
         }
-        if (isset($_GET['delete']) && $_GET['delete'] === 'success') {
-            echo "<p>deletado  com sucesso!</p>";
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
         }
-
-        if (!$page) {
-            $page = 1;
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-
-        $limite = 4;
-        $inicio = ($page * $limite) - $limite;
-        
-        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $dados = $SchedulingSecretaryModel->getTimeTables($inicio , $limite);
-        
-        $amount = $SchedulingSecretaryModel->numberOfLines();
-        $pages = ceil((int)$amount[0]["count"]/ $limite); ;
-        $SchedulingSecretaryModel->closeConnection();
-        return[
-            "view" => "secretary/SchedulingSecretaryView.php",
-            "data" => ["title" => "agenda" ,"dados" => $dados ,"page" => $page , "pages"=>$pages]
-        ];
-    }
-
-    public function dayOfTheWeek($date){
-        $dayOfTheWeek = null;
-        
-        $formatoData = 'Y-m-d'; 
-        
-
-        if(!empty($date)){
-            $dateTime = \DateTime::createFromFormat($formatoData, $date);
-        }else{
-            echo "data não enviada";
-            return null;
+        form label {
+            display: block;
+            margin-bottom: 5px;
         }
-        
-        if ($dateTime && $dateTime->format($formatoData) === $date) {
-            
-            $daysOfTheWeek = [
-                1 => 'Segunda-feira',
-                2 => 'Terça-feira',
-                3 => 'Quarta-feira',
-                4 => 'Quinta-feira',
-                5 => 'Sexta-feira',
-                6 => 'Sábado',
-                7 => 'Domingo'
-            ];
-            $dayOfTheWeek = $daysOfTheWeek[$dateTime->format('N')];
-        } else {
-            echo "A data $date não é válida.";
-            return null;
+        form input[type="date"],
+        form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-        return $dayOfTheWeek;
-    }
-
-    public function AddScheduleForm(){
-        $date = $_POST['data'];
-        $times = isset($_POST['times']) ? $_POST['times'] : [];
-        $formatoTime = 'H:i';
-        
-        
-        $dayOfTheWeek = $this->dayOfTheWeek($date);
-
-        if($dayOfTheWeek === null){
-            return;
+        form button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-
-        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        foreach($times as $time){
-            $dateTime = \DateTime::createFromFormat($formatoTime, $time);
-            if (!$dateTime   ||  $dateTime->format($formatoTime) !== $time) {
-                echo "A hora $time não é válida.";
-                return;
-            }
-            $SchedulingSecretaryModel->add($dayOfTheWeek , $date , $time);
+        form button:hover {
+            background-color: #0056b3;
         }
-
-        $SchedulingSecretaryModel->closeConnection();
-        
-        return  $this->showSchedule();
-    }
-    
-    // public function deleteSchedule($params){
-    //     $id = isset($params["delete_id"]) ? $params["delete_id"] : null;
-    public function deleteSchedule($id){
-        if (!$id) {
-            echo "ID inválido.";
-            return;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
-        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $SchedulingSecretaryModel->deleteRecord($id);
-        $SchedulingSecretaryModel->closeConnection();
-
-        $this->showSchedule();
-        header("Location: http://localhost/horarios?delete=success");
-        exit();
-    }
-
-    // public function putSchedule($params){
-        
-    //     $id = isset($params["put_id"]) ? $params["put_id"] : null;
-    //     $date = $_POST['data'];
-    //     $time  = $_POST['hora'];
-    public function putSchedule($id , $date , $time){
-        $formatoTime = 'H:i';
-
-
-        $dateTime = \DateTime::createFromFormat($formatoTime, $time);
-            if (!$dateTime   ||  $dateTime->format($formatoTime) !== $time) {
-                echo "A hora $time não é válida.";
-                return;
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
         }
-        
-        if (!$id) {
-            echo "ID inválido.";
-            return;
+        th {
+            background-color: #f2f2f2;
         }
+        td button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        td button:hover {
+            background-color: #0056b3;
+        }
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #007BFF;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        .pagination a.active {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
 
-        $dayOfTheWeek = $this->dayOfTheWeek($date);
-        
-        
-        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $SchedulingSecretaryModel->putRecord($id , $dayOfTheWeek ,$date ,$time);
-        $SchedulingSecretaryModel->closeConnection();
-        
-        $this->showSchedule();
-        
-    }
-    
-}
+<h1 onclick="window.location.href='/homeSecretaria'">Home</h1>
 
-?>
-
-<!-- -----------------------------------------------------------    -->
-<!-- -----------------------------------------------------------    -->
-<!-- -----------------------------------------------------------    -->
-<!-- -----------------------------------------------------------    -->
-<!-- -----------------------------------------------------------    -->
-
-<?php $SchedulingSecretaryController = new SchedulingSecretaryController;?>
-
-<?php 
-$showSchedule = $SchedulingSecretaryController->showSchedule();
-$dados = $showSchedule["data"]["dados"]; 
-$page = $showSchedule["data"]["page"];
-$pages = $showSchedule["data"]["pages"];
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addHorario'])) {
-    $SchedulingSecretaryController->AddScheduleForm();
-    header("Location: http://localhost/horarios");
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['put'])) {
-    $id = $_POST['put'];
-    $date = $_POST['data'];
-    $time  = $_POST['hora'];
-    $SchedulingSecretaryController->putSchedule($id , $date , $time );
-    }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
-    $id = $_POST['id'];
-    $SchedulingSecretaryController->deleteSchedule($id);
-}
-?>
-
-
-<form method="POST" action="/horarios">
+<form id="form-horarios" method="POST" action="/horarios">
     <label for="data">Data:</label>
-    <input type="date" id="data" name="data" required><br><br>
-
+    <input type="date" id="data" name="data" required>
+    
     <label for="times[]">Hora:</label>
-
-    <select name="times[]"  multiple id="timesSelect">
+    <select name="times[]" multiple id="timesSelect">
         <?php
         $start = strtotime('08:00');
         $end = strtotime('18:00');
-        $interval = 15 * 60; 
+        $interval = 15 * 60; // 15 minutos em segundos
 
         for ($i = $start; $i <= $end; $i += $interval) {
             $time = date('H:i', $i);
@@ -206,77 +124,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
         ?>
     </select>
 
-    <!-- <button type="submit">Adicionar Horário</button> -->
-    <button type="submit" name="addHorario">Adicionar Horário</button>
+    <button type="submit">Adicionar Horário</button>
 </form>
 
-<form method="POST" action="/logout">
-    <button type="submit" name="logout">Logout</button>
-</form>
- 
-<table >
-    <thead>
+<div class="container">
+    <table>
+        <thead>
             <tr>
-                <th>dia da semana</th>
-                <th>data</th>
-                <th>hora</th>
+                <th>Dia da Semana</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Ações</th>
             </tr>
-    </thead>
-    <tbody>
-        
-        <?php foreach($dados as $dado) { ?> 
-            
-            <tr>
-                <td><?php echo  $dado["dia_da_semana"] ;?></td>
-
-                <form method="POST" action="/horarios?>">
+        </thead>
+        <tbody>
+            <?php foreach($dados as $dado) { ?>
+                <tr>
+                    <td><?php echo $dado["dia_da_semana"]; ?></td>
+                    <td><?php echo $dado["data"]; ?></td>
+                    <td><?php echo substr($dado["hora"], 0, 5); ?></td>
                     <td>
-                        <span id="data-<?php echo $dado["id"]; ?>"><?php echo $dado["data"]; ?></span>
-                        <input name = "data" type="date" id="edit-data-<?php echo $dado["id"]; ?>" value="<?php echo date("Y-m-d", strtotime(str_replace("-", "/", $dado["data"]))); ?>" style="display: none;">
+                        <button onclick="toggleEdit(<?php echo $dado['id']; ?>)">Editar</button>
+                        <form method="POST" action="/horarios/delete_id/<?php echo $dado["id"]?>">
+                            <input type="hidden" name="id" value="<?php echo $dado["id"]; ?>">
+                            <button type="submit">Deletar</button>
+                        </form>
                     </td>
-                    <td>
-                        <span id="hora-<?php echo $dado["id"]; ?>"><?php echo substr($dado["hora"], 0, 5); ?></span>
-                        <input name = "hora" type="time" id="edit-hora-<?php echo $dado["id"]; ?>" value="<?php echo substr($dado["hora"], 0, 5); ?>" style="display: none;">
-                    </td>
-                    <td>
-                        <!-- <button type="submit"  id="enviar-<?php echo $dado["id"]; ?>" style="display: none;">Confirmar</button> -->
-                        <button type="submit"  id="enviar-<?php echo $dado["id"]; ?>" style="display: none;" value="<?php echo $dado["id"]; ?>" name ="put">Confirmar</button>
-                    </td>
-                </form>
-                    <td>
-                            <button  onclick="toggleEdit(<?php echo $dado['id']; ?>)">Editar</button>
-                    </td>
-                    <td>
-                        <!-- <form method="POST" action="/agenda/delete_id/<?php echo $dado["id"]?>"> -->
-                        <form method="POST" action="/horarios">
-                            <input type="hidden" name="id" value=<?php echo $dado["id"] ;?>>
-                            <button type="submit" name ="delete">Delete</button>
-                        <button type="submit" id="enviar-<?php echo $dado["id"]; ?>" style="display: none;">Confirmar</button>
-                    </td>
-                </form>
-                   
-                <td>
-</td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 
-            </tr>
-        <?php } ?>
-    </tbody>
-    
-</table>
-
-<!--  paginação -->
-
-<a href="?pagina=1">Primeira</a>
-<?php if($page>1){ ?>
-<a href="?pagina=<?=$page-1 ?>"><<<</a>
-<?php }?>
-
-<?php echo $page; ?>
-
-<?php if($page<$pages){?>
-<a href="?pagina=<?=$page+1?>">>>></a>
-<?php }?>
-<a href="?pagina=<?=$pages?>">Ultima</a>
+    <div class="pagination">
+        <a href="?pagina=1">Primeira</a>
+        <?php if($page > 1): ?>
+            <a href="?pagina=<?=$page - 1 ?>"><<<</a>
+        <?php endif; ?>
+        <?php echo $page; ?>
+        <?php if($page < $pages): ?>
+            <a href="?pagina=<?=$page + 1 ?>">>>></a>
+        <?php endif; ?>
+        <a href="?pagina=<?=$pages ?>">Última</a>
+    </div>
+</div>
 
 <script>
     function toggleEdit(id) {
@@ -301,3 +191,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
         }
     }
 </script>
+
+</body>
+</html>

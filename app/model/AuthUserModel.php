@@ -1,6 +1,6 @@
 <?php
 
-namespace app\database;
+namespace app\model;
 use PDO;
 use Connect;
 use PDOException;
@@ -33,7 +33,7 @@ class AuthUserModel  extends Connect{
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $rows =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (empty($rows)) {
+        if (empty($rows)){
             return true;
         } else {
             return false;
@@ -86,7 +86,6 @@ class AuthUserModel  extends Connect{
 
         $this->insertAddress (  $id , $cep ,$logradouro ,$numero ,$complemento ,$bairro , $cidade , $estado);
         
-        echo "Dados salvos nas duas tabelas com sucesso!";
         } catch (PDOException $e) {
             
             echo "Erro ao salvar  dados: " . $e->getMessage();
@@ -107,11 +106,33 @@ class AuthUserModel  extends Connect{
     
             $stmt->execute();
     
-            echo "Endereço cadastrado com sucesso!";
+            
             return;
         } catch (PDOException $e) {
             echo "Erro ao cadastrar endereço: " . $e->getMessage();
         }
+    }
+
+    public function isEmailExists($email) {
+        $stmt = $this->pdo->prepare("SELECT * FROM usuario WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function storeResetToken($email, $token, $expires) {
+        $stmt = $this->pdo->prepare("UPDATE usuario SET reset_token = ?, reset_expires = ? WHERE email = ?");
+        $stmt->execute([$token, $expires, $email]);
+    }
+
+    public function isValidToken($token) {
+        $stmt = $this->pdo->prepare("SELECT * FROM usuario WHERE reset_token = ? AND reset_expires > NOW()");
+        $stmt->execute([$token]);
+        return $stmt->rowCount() > 0;
+    }
+
+    public function updatePassword($token, $newPasswordHash) {
+        $stmt = $this->pdo->prepare("UPDATE usuario SET senha = ?, reset_token = NULL, reset_expires = NULL WHERE reset_token = ?");
+        $stmt->execute([$newPasswordHash, $token]);
     }
 
 }
