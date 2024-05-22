@@ -11,8 +11,12 @@ $dotenv->load();
 
 $MiddlewareSession = new MiddlewareSession;
 
+$connect = new Connect();
+$connect->getConnection();
+
 try {
     $data = router();
+    
     $viewName = $data["view"];
     extract($data["data"]); 
     if(!isset($viewName)){
@@ -26,6 +30,7 @@ try {
 
     require VIEWS."indexView.php";
 } catch (Exception $e) {
+    echo $e;
     require VIEWS."erro_404.php";
 }
 
