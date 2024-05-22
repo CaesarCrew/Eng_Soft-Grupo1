@@ -10,7 +10,7 @@ Adeus às intermináveis chamadas telefônicas e longas esperas por uma resposta
 ## Relatórios de gestão
 - Sprint 1 - [Relatório 1](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.1.0)
 - Sprint 2 - [Relatório 2](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.2.0-autentifica%C3%A7%C3%A3o_e_autoriza%C3%A7%C3%A3o)
-- Sprint 3 - [Relatório 3]()
+- Sprint 3 - [Relatório 3](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.3.0-MVC)
 
 
 ## Definindo os Requisitos Funcionais do Projeto
