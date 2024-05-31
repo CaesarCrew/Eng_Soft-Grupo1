@@ -24,7 +24,6 @@ try {
     }
 
     if(!file_exists(VIEWS.$viewName)){
-
         throw new Exception(("view {$viewName} não encontrada"));
     }
 

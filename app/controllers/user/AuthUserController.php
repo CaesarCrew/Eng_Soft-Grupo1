@@ -6,7 +6,7 @@ use app\model\AuthUserModel;
 use app\validators\AuthValidator;
 use PHPMailer\PHPMailer\Exception;
 
-require 'smtp.php'; //adicionar arquivo stmp.php com a sua configuração do stmp
+//require 'smtp.php'; //adicionar arquivo stmp.php com a sua configuração do stmp
 class authUserController {
     
     public function showSignUp() {

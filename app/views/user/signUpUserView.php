@@ -4,89 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #A446EE;
-            overflow: auto;
-            position: relative; /* Adicionando position relative para o body */
-        }
-        .form_container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 500px;
-            margin: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            max-height: 90vh;
-        }
-        .form_container label {
-            margin-top: 10px;
-            font-weight: bold;
-            display: block;
-        }
-        .form_container input[type="text"],
-        .form_container input[type="password"],
-        .form_container input[type="email"],
-        .form_container input[type="date"],
-        .form_container input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .form_container input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        .form_container .gender-container {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .form_container .gender-container label {
-            margin-right: 5px;
-            margin-left: 15px;
-        }
-        .form_container button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-sizing: border-box;
-        }
-        .form_container button:hover {
-            background-color: #0056b3;
-        }
-        a.home-link {
-            position: absolute; /* Alterando para posição absoluta */
-            top: 20px;
-            left: 20px; /* Ajustando para o canto superior esquerdo */
-            cursor: pointer;
-            color: white; /* Adicionando cor branca para melhor visibilidade */
-            text-decoration: none; /* Removendo sublinhado do link */
-            font-size: 18px; /* Ajustando o tamanho da fonte */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 <a href="/home" class="home-link">HOME</a>
-<div class="form_container">
+<div class="form_login">
     <form method="POST" action="/cadastro">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nome" required>
@@ -104,7 +26,7 @@
         <input type="text" id="cpf" name="cpf" required maxlength="12">
         
         <label for="sexo">Sexo:</label>
-        <div class="gender-container">
+        <div class="gender">
             <label for="generoM">M</label>
             <input type="checkbox" id="generoM" name="genero" value="M">
             <label for="generoF">F</label>

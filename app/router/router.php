@@ -127,7 +127,6 @@ function router(){
         return controller($controllerUri, $params);
     }
 
-    throw new  Exception();
-   
+    throw new Exception();
 }
     
