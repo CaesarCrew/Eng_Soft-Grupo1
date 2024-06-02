@@ -69,7 +69,7 @@
 
 <div class="container">
     <button class="button" onclick="window.location.href='http://localhost/horarios'">Cadastrar Horário</button>
-    <button class="button">Agendar Consulta</button>
+    <button class="button" onclick="window.location.href='http://localhost/agendarHorarios'">Agendar Consulta</button>
     <button class="button">Visualizar Agendamentos</button>
     <button class="button">Cancelar Consulta</button>
 </div>

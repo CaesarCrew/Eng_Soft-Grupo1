@@ -86,6 +86,7 @@ class authUserController {
             
             if ($user_id) {
                 $_SESSION['user_id'] = $user_id;
+                $_SESSION['tipo_usuario'] = 'usuario';
                 echo "Sucesso!"; // Fazer direcionamento paara a pagina de agendamento
                 header('Location: http://localhost/home');
                 exit();
