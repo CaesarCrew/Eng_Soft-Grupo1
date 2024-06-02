@@ -1,9 +1,9 @@
 <?php
 use app\middleware\MiddlewareSession;
 
-function routes(){
-    return[
-        'GET' =>[
+function routes() {
+    return [
+        'GET' => [
             '/' => "HomeController@index",
             '/loginSecretaria' => "secretary\AuthSecretaryController@showLoginSecretary",
             '/horarios' => [
@@ -22,9 +22,13 @@ function routes(){
             ],
             '/sendMailPassword' => "user\AuthUserController@showSendMailPassword",
             '/resetPasswordConfirm' => "user\AuthUserController@showResetPasswordConfirm",
+            '/meus_agendamentos' => [
+                'controller' => "secretary\SchedulingSecretaryController@listAppointments",
+                'middleware' => 'handleUser'
+            ],
         ],
 
-        'POST' =>[
+        'POST' => [
             '/loginSecretaria' => "secretary\AuthSecretaryController@signIn",
             '/horarios' => [
                 'controller' => "secretary\SchedulingSecretaryController@AddScheduleForm",
@@ -39,26 +43,30 @@ function routes(){
                 'middleware' => 'handleSecretary'
             ],
             '/logoutSecretary' => [
-                'controller' =>"secretary\AuthSecretaryController@logoutSecretary",
+                'controller' => "secretary\AuthSecretaryController@logoutSecretary",
                 'middleware' => 'logout'
             ],
             '/logout' => [
-                'controller' =>"user\AuthUserController@logoutUser",
+                'controller' => "user\AuthUserController@logoutUser",
                 'middleware' => 'logout'
             ],
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
             '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
             '/resetPassword' => "user\AuthUserController@resetPassword",
+            '/horarios/cancel_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@cancelSchedule",
+                'middleware' => 'handleUser'
+            ],
+            '/horarios/cancel_secretary_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@cancelSchedule",
+                'middleware' => 'handleSecretary'
+            ],
         ],  
 
-        'PUT' =>[
-            
-        ],
-        'DELETE' =>[
-            
-        ]
-        
+        'PUT' => [],
+
+        'DELETE' => []
     ];
 }
 

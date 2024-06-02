@@ -35,6 +35,18 @@ class SchedulingSecretaryModel extends Connect{
             echo "Hora {$time} já cadastrado!";
         }
     }
+    public function cancelAppointment($id) {
+        $stmt = $this->pdo->prepare("UPDATE horario_disponivel SET disponivel = 0 WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+
+    public function getAppointmentsByUser($userId) {
+        $stmt = $this->pdo->prepare("SELECT * FROM horario_disponivel WHERE user_id = :userId AND disponivel = 1");
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function checkIfThereIsTimeAndDate($date , $time){
         $stmt = $this->pdo->prepare("SELECT * FROM horario_disponivel WHERE data = :date AND hora = :time");
         $stmt->bindParam(':date', $date);

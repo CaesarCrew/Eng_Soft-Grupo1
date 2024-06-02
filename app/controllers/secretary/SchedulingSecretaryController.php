@@ -37,6 +37,31 @@ class SchedulingSecretaryController{
             "data" => ["title" => "agenda" ,"dados" => $dados ,"page" => $page , "pages"=>$pages]
         ];
     }
+    public function cancelSchedule($params) {
+        $id = isset($params["cancel_id"]) ? $params["cancel_id"] : null;
+        if (!$id) {
+            echo "ID inválido.";
+            return;
+        }
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        $SchedulingSecretaryModel->cancelAppointment($id);
+        $SchedulingSecretaryModel->closeConnection();
+
+        $this->showSchedule();
+        header("Location: http://localhost/horarios?cancel=success");
+        exit();
+    }
+
+    public function listAppointments() {
+        $userId = $_SESSION['user_id'];
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        $appointments = $SchedulingSecretaryModel->getAppointmentsByUser($userId);
+        $SchedulingSecretaryModel->closeConnection();
+        return [
+            "view" => "user/listAppointmentsView.php",
+            "data" => ["title" => "Meus Agendamentos", "appointments" => $appointments]
+        ];
+    }
 
     public function dayOfTheWeek($date){
         $dayOfTheWeek = null;
