@@ -1,13 +1,19 @@
 <?php
+//router.php
 use app\middleware\MiddlewareSession;
 
 function routes(){
     return[
         'GET' =>[
+            
             '/' => "HomeController@index",
             '/loginSecretaria' => "secretary\AuthSecretaryController@showLoginSecretary",
             '/horarios' => [
                 'controller' => "secretary\SchedulingSecretaryController@showSchedule",
+                'middleware' => 'handleSecretary'
+            ],
+            '/agendarHorarios' => [
+                'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
             '/homeSecretaria' => [
@@ -28,6 +34,10 @@ function routes(){
             '/loginSecretaria' => "secretary\AuthSecretaryController@signIn",
             '/horarios' => [
                 'controller' => "secretary\SchedulingSecretaryController@AddScheduleForm",
+                'middleware' => 'handleSecretary'
+            ],
+            '/selecionarHorario' => [
+                'controller' => "secretary\ScheduleTimeSecretaryController@selectTime",
                 'middleware' => 'handleSecretary'
             ],
             '/horarios/delete_id/[0-9]+' => [
