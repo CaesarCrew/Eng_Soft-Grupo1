@@ -17,10 +17,6 @@ input {
     background-color: #AAA5A5;
 }
 
-input[type=text]:focus{
-    background-color: #9737e0;
-}
-
 .container {
     max-width: 750px;
     margin: auto;
@@ -43,30 +39,87 @@ input[type=text]:focus{
 
 .form_login label{
     margin-top: 0%;
-    margin-left: 24px;
     font-size: larger;
+}
+
+.form_login label.label_cadastro{
+    margin-left: 48px;
 }
 
 .form_login div{
     margin: 8px 80px;
     padding: 8px;
+    padding-left: 16px;
     border-radius: 8px;
+    background-color: #AAA5A5;
+}
+
+.form_login .gender {
+    max-width: 70%;
+    margin: 10px auto 8px;
+    text-align: center;
+    padding-left: 8px;
+    background: none;
+}
+
+.gender label{
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.gender div{
+    margin: auto;
+    display: inline-block;
+}
+
+.gender .data, .gender .estado{
+    margin-left: 70px;
+    padding: 8px;
+}
+
+.input_label .sexo{
+    position: relative;
+    right: 10px;
+}
+
+.input_label .cep{
+    position: relative;
+    right: 110px;
+}
+
+.form_login .input_label{
+    margin: auto;
+    padding: 0px;
+    text-align: center;
+    background: none;
+}
+
+.input_label .labels_cad{
+    position: relative;
+    left: 100px;
+}
+
+.input_label .labels_cads{
+    position: relative;
+    left: 130px;
+}
+
+.form_login input[type="text"]:focus, .form_login input[type="password"]:focus{
+    outline: none;
+    background-color: #AAA5A5;
 }
 
 .form_login input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.form_login .gender {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.form_login input[type="submit"]{
+    position: relative;
+    left: 80%;
+    padding: 6px 8px;
+    border-radius: 8px;
 }
 
-.form_login .gender label {
-    margin-right: 5px;
-    margin-left: 15px;
-}
 
 .sla{
     display: block;
@@ -81,6 +134,8 @@ input[type=text]:focus{
     font-size: larger;
     background: rgba(0, 0, 0, 0.4);
     color: white;
+    text-align: center;
+    text-decoration: none;
     width: 60%;
     max-width: 600px;
     padding: 8px 0px;
@@ -94,6 +149,7 @@ input[type=text]:focus{
     margin: 2px -8px;
     right: 12px;
     color: white;
+    text-decoration: none;
 }
 
 .button {
@@ -114,6 +170,11 @@ input[type=text]:focus{
 
 .button:hover {
     background-color: #9737e0;
+}
+
+.form_label{
+    margin-top: 0%;
+    margin-left: 24px;
 }
 
 .title{

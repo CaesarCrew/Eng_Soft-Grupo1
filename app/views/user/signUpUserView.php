@@ -4,61 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="styles.css?v=<?php echo time();?>"/>
 </head>
 <body>
-<a href="/home" class="home-link">HOME</a>
+<a href="/home" class="home">HOME</a>
+
 <div class="form_login">
     <form method="POST" action="/cadastro">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
-        
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required>
+        <h2 class="form_label">Cadastro de Paciente</h2>
+        <label class="label_cadastro" for="nome">Nome</label>
+        <div>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <label class="label_cadastro" for="senha">Senha</label>
+        <div>
+            <input type="password" id="senha" name="senha" required>
+        </div>
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="telefone">Telefone</label>
-        <input type="text" id="telefone" name="telefone" required maxlength="12">
-        
-        <label for="cpf">CPF</label>
-        <input type="text" id="cpf" name="cpf" required maxlength="12">
-        
-        <label for="sexo">Sexo:</label>
+        <label class="label_cadastro" for="email">E-mail</label>
+        <div>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <label class="label_cadastro" for="telefone">Telefone</label>
+        <div>
+            <input type="text" id="telefone" name="telefone" required maxlength="12">
+        </div>
+
+        <label class="label_cadastro" for="cpf">CPF</label>
+        <div>
+            <input type="text" id="cpf" name="cpf" required maxlength="12">
+        </div>
+        <div class="input_label">
+            <label class="sexo" for="sexo">Sexo</label>
+            <label class="labels_cad" for="data_de_nascimento">Data de Nascimento</label>
+        </div>
+
         <div class="gender">
+            <div>
             <label for="generoM">M</label>
             <input type="checkbox" id="generoM" name="genero" value="M">
             <label for="generoF">F</label>
             <input type="checkbox" id="generoF" name="genero" value="F">
+            </div>
+            <div class="data">
+            <input type="date" id="data_de_nascimento" name="data_de_nascimento" required>
+            </div>
         </div>
 
-        <label for="data_de_nascimento">Data de Nascimento</label>
-        <input type="date" id="data_de_nascimento" name="data_de_nascimento" required>
-        
-        <label for="cep">CEP</label>
-    <input type="text" id="cep" name="cep" maxlength="8" required>
+        <label class="label_cadastro" for="logradouro">Logradouro</label>
+        <div>
+        <input type="text" id="logradouro" name="logradouro" required>
+        </div>
 
-    <label for="logradouro">Logradouro</label>
-    <input type="text" id="logradouro" name="logradouro" required>
+        <label class="label_cadastro" for="numero">Número</label>
+        <div>
+        <input type="text" id="numero" name="numero" required>
+        </div>
 
-    <label for="numero">Número</label>
-    <input type="text" id="numero" name="numero" required>
+        <label class="label_cadastro" for="complemento">Complemento</label>
+        <div>
+        <input type="text" id="complemento" name="complemento">
+        </div>
 
-    <label for="complemento">Complemento</label>
-    <input type="text" id="complemento" name="complemento">
+        <label class="label_cadastro" for="bairro">Bairro</label>
+        <div>
+        <input type="text" id="bairro" name="bairro" required>
+        </div>
 
-    <label for="bairro">Bairro</label>
-    <input type="text" id="bairro" name="bairro" required>
+        <label class="label_cadastro" for="cidade">Cidade</label>
+        <div>
+        <input type="text" id="cidade" name="cidade" required>
+        </div>
 
-    <label for="cidade">Cidade</label>
-    <input type="text" id="cidade" name="cidade" required>
+        <div class="input_label">
+            <label class="cep" for="cep">CEP</label>
+            <label class="labels_cads" for="estado">Estado</label>
+        </div>
+        <div class="gender">
+            <div>
+                <input type="text" id="cep" name="cep" maxlength="8" required>
+            </div>
+            <div class="estado">
+                <input type="text" id="estado" name="estado" maxlength="2" required>
+            </div>
+        </div>
 
-    <label for="estado">Estado</label>
-    <input type="text" id="estado" name="estado" maxlength="2" required>
-
-    <button type="submit" name="signUp">Enviar</button>
-</form>
+        <input type="submit" name="signUp" value="Enviar">
+    </form>
+</div>
 
 
 <script>
