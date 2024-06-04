@@ -1,5 +1,5 @@
 <?php
-//router.php
+// router.php
 use app\middleware\MiddlewareSession;
 
 function routes(){
@@ -20,7 +20,7 @@ function routes(){
                 'middleware' => 'handleSecretary'
             ],
             '/visualizarAgendamentos' => [
-                'controller' => "secretary\ScheduleTimeSecretaryController@showAppointments",
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@showAppointments",
                 'middleware' => 'handleSecretary'
             ],
             '/cadastro' => "user\AuthUserController@showSignUp",
@@ -64,7 +64,7 @@ function routes(){
             '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
             '/resetPassword' => "user\AuthUserController@resetPassword",
             '/cancelarHorario' => [
-                'controller' => "secretary\ScheduleTimeSecretaryController@cancelSchedule",
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@cancelSchedule",
                 'middleware' => 'handleSecretary'
             ],
         ],
