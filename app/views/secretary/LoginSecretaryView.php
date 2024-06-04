@@ -66,7 +66,7 @@
 <div class="container">
     <h1>Login Secretaria</h1>
     <div class="form_login">
-        <form method="POST" action="/loginSecretaria">
+        <form method="POST" action="/loginSecretaria" id="form_login">
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" name="usuario" required><br>
             <label for="senha">Senha:</label>
@@ -75,6 +75,39 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById("form_login").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const loginData = {
+        usuario: document.getElementById("usuario").value,
+        senha: document.getElementById("senha").value
+    };
+
+    try {
+        const response = await fetch('http://localhost/loginSecretaria', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
+
+        const text = await response.text();
+        console.log('Raw response:', text);
+
+        const data = JSON.parse(text);
+        if (data.status === 'success') {
+            window.location.replace('http://localhost/homeSecretaria');
+        } else {
+            console.error('Erro de login:', data.message);
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+});
+</script>
 
 </body>
 </html>

@@ -83,7 +83,7 @@
 <div class="container">
     <h1>Login Usuário</h1>
     <div class="form_login">
-        <form method="POST" action="/login">
+        <form id ="form_login" method="POST" action="/login"  onsubmit="logarUser(event)">
             <label for="email">E-mail:</label>
             <input type="text" id="email" name="email" required><br>
             <label for="senha">Senha:</label>
@@ -102,6 +102,39 @@
         <a href="http://localhost/loginSecretaria" class="secretary_button">Você é Secretária? Faça Login aqui</a>
     </div>
 </div>
+<script>
+    async function logarUser(){
+        event.preventDefault();
 
+        const form = document.getElementById("form_login");
+        const formData = new FormData(form);
+
+        try{ 
+                const response = await fetch("http://localhost/login", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: formData.get('email'),
+                        senha: formData.get('senha')
+                    })
+                })
+                const text = await response.text();
+
+                const data = JSON.parse(text);
+                if (data.status === 'success') {
+                    console.log("login realizado com sucesso")
+                    window.location.replace('http://localhost/home');
+                
+                } else {
+                    alert('Erro  ao realizar login ');
+                    console.error('Erro ao logar:', data.message);
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+    }
+</script>
 </body>
 </html>

@@ -27,11 +27,13 @@ class SchedulingSecretaryModel extends Connect{
             $stmt->bindParam(':time', $time);
             try {
                 $stmt->execute();
-                echo "Inserção bem-sucedida!";
+                
+                 return ["status" => "success","mensagem" => "horario cadastrado com succeso"];
             } catch (PDOException $e) {
-                echo "Erro ao inserir dados: " . $e->getMessage();
+                return ["status" => "error","mensagem" => $e->getMessage()];
             }
         }else{
+            return ["status" => "error","mensagem" => "horario ja cadastrado."];
             echo "Hora {$time} já cadastrado!";
         }
     }
@@ -64,20 +66,47 @@ class SchedulingSecretaryModel extends Connect{
         return $amount;
     }
     public function deleteRecord ($id){
-        $stmt = $this->pdo->prepare("DELETE  FROM horario_disponivel where id= :id");
+        $stmtBefore = $this->pdo->prepare("SELECT COUNT(*) FROM horario_disponivel WHERE id = :id");
+        $stmtBefore->bindParam(':id', $id);
+        $stmtBefore->execute();
+        $countBefore = $stmtBefore->fetchColumn();
+
+        
+        $stmt = $this->pdo->prepare("DELETE FROM horario_disponivel WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
+
         
-        return;
+        $stmtAfter = $this->pdo->prepare("SELECT COUNT(*) FROM horario_disponivel WHERE id = :id");
+        $stmtAfter->bindParam(':id', $id);
+        $stmtAfter->execute();
+        $countAfter = $stmtAfter->fetchColumn();
+
+        
+        $wasDeleted = $countBefore > $countAfter;
+
+        return $wasDeleted;
     }
     public function putRecord($id ,$dia_da_semana,$date , $time){
-        $stmt = $this->pdo->prepare("UPDATE horario_disponivel SET dia_da_semana = :dia_da_semana, `data` = :data, hora = :hora WHERE id = :id");
+       
+        $stmt = $this->pdo->prepare("SELECT dia_da_semana, `data`, hora FROM horario_disponivel WHERE id = :id");
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':dia_da_semana', $dia_da_semana);
-        $stmt->bindParam(':data', $date);
-        $stmt->bindParam(':hora', $time);
         $stmt->execute();
-        
-        return;
+        $existingData = $stmt->fetch(PDO::FETCH_ASSOC);
+       
+        if (is_array($existingData) && ($existingData['data'] != $date || date('H:i', strtotime($existingData['hora'])) != $time)) {
+            
+            $updateStmt = $this->pdo->prepare("UPDATE horario_disponivel SET dia_da_semana = :dia_da_semana, `data` = :data, hora = :hora WHERE id = :id");
+            $updateStmt->bindParam(':id', $id);
+            $updateStmt->bindParam(':dia_da_semana', $dia_da_semana);
+            $updateStmt->bindParam(':data', $date);
+            $updateStmt->bindParam(':hora', $time);
+            $success = $updateStmt->execute();
+            $success = $updateStmt->rowCount() > 0;
+            return $success;
+        } else {
+           
+            return false;
+        }
     }
 }

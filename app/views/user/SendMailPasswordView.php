@@ -65,13 +65,40 @@
 <div class="container">
     <h1>Redefinir Senha</h1>
     <div class="form_login">
-        <form method="POST" action="/sendMailPassword">
+        <form method="POST" action="/sendMailPassword" id="resetPasswordForm">
             <label for="email">Seu Email:</label>
             <input type="email" id="email" name="email" required><br>
             <button type="submit" name="resetPassword">Redefinir Senha</button>
         </form>
     </div>
 </div>
+<script>
+document.getElementById('resetPasswordForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
 
+    const email = document.getElementById('email').value;
+    
+    try {
+        const response = await fetch('http://localhost/sendMailPassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        });
+        const text = await response.text();
+        const result = JSON.parse(text);
+        
+        if (result.status === 'success') {
+            alert(result.message);
+        } else {
+            alert('Erro: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao tentar enviar o email de redefinição de senha.');
+    }
+});
+</script>
 </body>
 </html>

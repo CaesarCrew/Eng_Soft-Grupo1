@@ -65,7 +65,7 @@
 <div class="container">
     <h2>Redefinir Senha</h2>
     <div class="form_login">
-        <form action="/resetPassword" method="POST">
+        <form action="/resetPassword" method="POST" id = "resetPasswordForm">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
             <div>
                 <label for="new_password">Nova Senha:</label>
@@ -79,6 +79,36 @@
         </form>
     </div>
 </div>
+<script>
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                token: formData.get('token'),
+                new_password: formData.get('new_password'),
+                confirm_password: formData.get('confirm_password')
+            };
+
+            fetch('/resetPasswordConfirm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.status === 'success') {
+                    window.location.href = '/login';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 
 </body>
 </html>

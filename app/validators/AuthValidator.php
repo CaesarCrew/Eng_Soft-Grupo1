@@ -52,6 +52,7 @@ class AuthValidator{
                 }
             }
             
+            
               function validarDataNascimento($dataNascimento) {
                 
                 $dataNasc = new \DateTime($dataNascimento);
@@ -72,11 +73,9 @@ class AuthValidator{
                 echo "nome pode conter só letras e espaço";
                 return false;
             }
-            if (!preg_match('/(?=.*[A-Za-z])(?=.*\d)/', $senha)) {
-                echo "A senha deve contém pelo menos uma letra e um número.";
+            
+            if($this->validarPassword($senha) === false){
                 return false;
-            }else{
-               
             }
             
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -133,6 +132,14 @@ class AuthValidator{
             return true;
     
         
+    }
+    public function validarPassword($senha){
+        if (!preg_match('/(?=.*[A-Za-z])(?=.*\d)/', $senha)) {
+            // echo "A senha deve contém pelo menos uma letra e um número.";
+            return false;
+        }else{
+            return true;
+        }
     }
 }
 

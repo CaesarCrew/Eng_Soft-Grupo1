@@ -10,6 +10,10 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/showHorarios' => [
+                'controller' => "secretary\SchedulingSecretaryController@showTimes",
+                'middleware' => 'handleSecretary'
+            ],
             '/homeSecretaria' => [
                 'controller' => "secretary\HomeSecretaryController@ShowDiarySecretary",
                 'middleware' => 'handleSecretary'
@@ -30,14 +34,8 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@AddScheduleForm",
                 'middleware' => 'handleSecretary'
             ],
-            '/horarios/delete_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
-                'middleware' => 'handleSecretary'
-            ],
-            '/horarios/put_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
-                'middleware' => 'handleSecretary'
-            ],
+            
+            
             '/logoutSecretary' => [
                 'controller' =>"secretary\AuthSecretaryController@logoutSecretary",
                 'middleware' => 'logout'
@@ -49,13 +47,23 @@ function routes(){
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
             '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
-            '/resetPassword' => "user\AuthUserController@resetPassword",
+            '/resetPasswordConfirm' => "user\AuthUserController@resetPassword",
         ],  
 
         'PUT' =>[
+            '/horarios/put_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
+                'middleware' => 'handleSecretary'
+            ],
+               
             
         ],
         'DELETE' =>[
+            
+            '/horarios/delete_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
+                'middleware' => 'handleSecretary'
+            ],
             
         ]
         
