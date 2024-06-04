@@ -12,7 +12,7 @@ class authUserController {
     public function showSignUp() {
         return [
             "view" => "user/signUpUserView.php",
-            "data" => ["title" => "Cadastro"]
+            "data" => ["title" => "Cadastro" ,  "style" =>"public/css/user/signUpUser.css"]
         ];
     }
     public function signUp() {
@@ -81,7 +81,7 @@ class authUserController {
     public function ShowSignIn() {
         return [
             "view" => "user/signInUserView.php",
-            "data" => ["title" => "Login"]
+            "data" => ["title" => "Login" ,  "style" =>"public/css/user/signInUser.css"]
         ];
     }
 
@@ -117,8 +117,8 @@ class authUserController {
 
     public function showSendMailPassword() {
         return [
-            "view" => "user/SendMailPasswordView.php",
-            "data" => ["title" => "Redefinir Senha"]
+            "view" => "user/sendMailPasswordView.php",
+            "data" => ["title" => "Redefinir Senha" ,  "style" =>"public/css/user/sendMailPassword.css"]
         ];
     }
 
@@ -156,8 +156,8 @@ class authUserController {
     
     public function showResetPasswordConfirm() {
         return [
-            "view" => "user/ResetPasswordConfirmView.php",
-            "data" => ["title" => "Confirmar Redefinição de Senha"]
+            "view" => "user/resetPasswordConfirmView.php",
+            "data" => ["title" => "Confirmar Redefinição de Senha" ,  "style" =>"public/css/user/resetPasswordConfirm.css"]
         ];
     }
 

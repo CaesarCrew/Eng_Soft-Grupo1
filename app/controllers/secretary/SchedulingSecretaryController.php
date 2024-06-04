@@ -34,7 +34,7 @@ class SchedulingSecretaryController{
         $SchedulingSecretaryModel->closeConnection();
         return[
             "view" => "secretary/schedulingSecretaryView.php",
-            "data" => ["title" => "agenda" ,"dados" => $dados ,"page" => $page , "pages"=>$pages]
+            "data" => ["title" => "agenda" ,  "style" =>"public/css/secretary/SchedulingSecretary.css","dados" => $dados ,"page" => $page , "pages"=>$pages]
         ];
     }
 

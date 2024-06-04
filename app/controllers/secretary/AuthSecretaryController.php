@@ -8,7 +8,7 @@ class AuthSecretaryController{
     public function showLoginSecretary(){
         return[
                     "view" => "secretary/loginSecretaryView.php",
-                    "data" => ["title" => "Login Secretaria"]
+                   "data" => ["title" => "Login Secretaria",  "style" =>"public/css/secretary/LoginSecretary.css"]
                 ];
 
     }
@@ -22,6 +22,7 @@ class AuthSecretaryController{
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
             
+        
            
             if (!empty($data["usuario"]) && !empty($data["senha"])) {
                 $usuario = $data["usuario"];
