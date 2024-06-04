@@ -97,6 +97,8 @@ class authUserController {
     
             if ($user_id) {
                 $_SESSION['user_id'] = $user_id;
+                $_SESSION['tipo_usuario'] = 'usuario';
+
                 echo json_encode(["status" => "success", "message" => "Autenticacao bem-sucedida!"]);
                 http_response_code(200); 
             } else {

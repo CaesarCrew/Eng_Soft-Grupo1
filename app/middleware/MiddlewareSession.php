@@ -11,21 +11,22 @@ class MiddlewareSession {
     }
 
     public function handleUser(){
-       if(!isset($_SESSION['user_id'])){
+        if (!isset($_SESSION['user_id']) && !isset($_SESSION['tipo_usuario'])) {
             header('Location: http://localhost/login');
             exit();
         }
     }
+
     public function handleSecretary(){
-          if(!isset($_SESSION['secretary_id'])){
-            header('Location: http://localhost/loginSecretaria');
+        if (!isset($_SESSION['secretary_id']) || $_SESSION['tipo_secretary'] !== 'secretaria') {
+            header('Location: /loginSecretaria');
             exit();
         }
     }
+
     public function logout() {
         session_unset();
         session_destroy();
     }
-
 }
 ?>

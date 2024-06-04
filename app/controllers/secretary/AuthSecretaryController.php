@@ -32,11 +32,13 @@ class AuthSecretaryController{
 
                 if ($secretary_id) {
                     $_SESSION['secretary_id'] = $secretary_id;
+                    $_SESSION['tipo_secretary'] = 'secretaria';
                     http_response_code(200);
                     echo json_encode([
                         'status' => 'success',
                         'message' => 'Login successful'
                     ]);
+
                 } else {
                     
                     http_response_code(401);
