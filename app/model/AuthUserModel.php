@@ -83,12 +83,9 @@ class AuthUserModel  extends Connect{
         $stmt->execute();
 
         $id = $this->pdo->lastInsertId();
+
+        $this->insertAddress (  $id , $cep ,$logradouro ,$numero ,$complemento ,$bairro , $cidade , $estado);
         
-        $AddressSalve = $this->insertAddress (  $id , $cep ,$logradouro ,$numero ,$complemento ,$bairro , $cidade , $estado);
-        if($AddressSalve){
-            return true;
-        }
-        return false;
         } catch (PDOException $e) {
             
             echo "Erro ao salvar  dados: " . $e->getMessage();
@@ -110,11 +107,9 @@ class AuthUserModel  extends Connect{
             $stmt->execute();
     
             
-            return false;
+            return;
         } catch (PDOException $e) {
-           
-            return true;
-            
+            echo "Erro ao cadastrar endereço: " . $e->getMessage();
         }
     }
 
