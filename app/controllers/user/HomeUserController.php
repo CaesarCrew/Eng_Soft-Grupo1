@@ -2,11 +2,11 @@
 
 namespace app\controllers\user;
 
-class HomeUserController{
+class homeUserController{
     public function showHomeUser(){
         return[
-            "view" => "user/homeUser.php",
-            "data" => ["title" => "home"]
+            "view" => "user/homeUserView.php",
+            "data" => ["title" => "home" ,  "style" =>"public/css/user/homeUser.css"]
         ];
     }
 
