@@ -120,3 +120,34 @@ Este requisito permite que os usuários visualizem os horários disponíveis par
 **Critério de Aceitação:** 
 - Os horários disponíveis devem ser apresentados de forma clara e organizada, indicando a data e hora disponível .
 - Os horários devem ser atualizados em tempo real para refletir quais horários ainda estão disponíveis para agendamento.
+
+
+### RF09 - Agendar Horário No Sistema
+
+#### Descrição:
+Este requisito permite que pacientes e secretárias agendem um horário disponível para consulta no sistema.
+
+#### User Story:
+**Persona 01 - Paciente**  
+**Persona 02 - Secretaria**  
+**User Story:** Como paciente ou secretaria, desejo agendar um horário disponível no sistema para uma consulta.  
+**Critério de Aceitação:** 
+- O paciente ou secretaria deve estar devidamente logado no sistema para realizar o agendamento.
+- O sistema deve apresentar ao paciente ou secretaria apenas os horários disponíveis no momento do agendamento.
+- Após a seleção de um horário, o sistema deve confirmar o agendamento e remover esse horário da lista de disponíveis.
+- Caso o paciente tente agendar um horário que foi reservado por outro usuário no mesmo momento, o sistema deve informar que o horário não está mais disponível e solicitar a seleção de um novo horário.
+
+
+### RF10 - Cancelar Horário Agendado no Sistema
+
+#### Descrição:
+Este requisito permite que pacientes e secretárias cancelem horários previamente agendados no sistema.
+
+#### User Story:
+**Persona 01 - Paciente**  
+**Persona 02 - Secretaria**  
+**User Story:** Como paciente ou secretaria, desejo cancelar um horário previamente agendado no sistema caso eu não possa comparecer à consulta.  
+**Critério de Aceitação:** 
+- O paciente ou a secretaria deve estar devidamente logado no sistema para realizar o cancelamento.
+- Após a confirmação do cancelamento, o sistema deve atualizar a lista de horários disponíveis em tempo real.
+- O horário cancelado deve ser novamente disponibilizado para agendamento por outros usuários.

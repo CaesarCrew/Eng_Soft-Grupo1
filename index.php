@@ -1,5 +1,5 @@
 <?php
-
+//index.php
 use app\middleware\MiddlewareSession;
 
 require __DIR__ . "/vendor/autoload.php";
