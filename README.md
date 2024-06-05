@@ -8,7 +8,7 @@ Nosso sistema web, projetado especialmente para simplificar sua vida quando se t
 Adeus às intermináveis chamadas telefônicas e longas esperas por uma resposta. Com nosso sistema, você pode agendar sua consulta em questão de minutos, tudo com alguns cliques simples. Libere seu tempo para o que realmente importa na sua vida!
 
 ## Relatórios de gestão
-**Link Trello:**https://trello.com/b/nZVoiD8E/kanban
+**Link Trello:** https://trello.com/b/nZVoiD8E/kanban
 - Sprint 1 - [Relatório 1](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.1.0)
 - Sprint 2 - [Relatório 2](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.2.0-autentifica%C3%A7%C3%A3o_e_autoriza%C3%A7%C3%A3o)
 - Sprint 3 - [Relatório 3](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.3.0-mvc)
