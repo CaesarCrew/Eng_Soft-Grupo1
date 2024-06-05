@@ -1,18 +1,25 @@
 <?php
-
 use app\middleware\MiddlewareSession;
 
 function routes(){
-    return[
-        'GET' =>[
+    return [
+        'GET' => [
             '/' => "HomeController@index",
             '/loginSecretaria' => "secretary\AuthSecretaryController@showLoginSecretary",
             '/horarios' => [
                 'controller' => "secretary\SchedulingSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/agendarHorarios' => [
+                'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
+                'middleware' => 'handleSecretary'
+            ],
             '/homeSecretaria' => [
                 'controller' => "secretary\HomeSecretaryController@ShowDiarySecretary",
+                'middleware' => 'handleSecretary'
+            ],
+            '/visualizarAgendamentos' => [
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@showAppointments",
                 'middleware' => 'handleSecretary'
             ],
             '/cadastro' => "user\AuthUserController@showSignUp",
@@ -25,7 +32,7 @@ function routes(){
             '/resetPasswordConfirm' => "user\AuthUserController@showResetPasswordConfirm",
         ],
 
-        'POST' =>[
+        'POST' => [
             '/loginSecretaria' => "secretary\AuthSecretaryController@signIn",
             '/horarios' => [
                 'controller' => "secretary\SchedulingSecretaryController@AddScheduleForm",
@@ -33,6 +40,10 @@ function routes(){
             ],
             '/horarios/edit_id/[0-9]+' =>[
                 'controller' => "secretary\SchedulingSecretaryController@editSchedule",
+                'midleware' => 'handleSecretary'
+            ],
+            '/selecionarHorario' => [
+                'controller' => "secretary\ScheduleTimeSecretaryController@selectTime",
                 'middleware' => 'handleSecretary'
             ],
             '/horarios/delete_id/[0-9]+' => [
@@ -40,26 +51,27 @@ function routes(){
                 'middleware' => 'handleSecretary'
             ],
             '/logoutSecretary' => [
-                'controller' =>"secretary\AuthSecretaryController@logoutSecretary",
+                'controller' => "secretary\AuthSecretaryController@logoutSecretary",
                 'middleware' => 'logout'
             ],
             '/logout' => [
-                'controller' =>"user\AuthUserController@logoutUser",
+                'controller' => "user\AuthUserController@logoutUser",
                 'middleware' => 'logout'
             ],
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
             '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
             '/resetPassword' => "user\AuthUserController@resetPassword",
-        ],  
-
-        'PUT' =>[
-            
+            '/cancelarHorario' => [
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@cancelSchedule",
+                'middleware' => 'handleSecretary'
+            ],
         ],
-        'DELETE' =>[
-            
+
+        'PUT' => [
+        ],
+        'DELETE' => [
         ]
-        
     ];
 }
 
@@ -71,13 +83,13 @@ function exactMatchUriInArrayRoutes($uri ,$routes){
 }
 
 function regularExpressionArrayRouter($uri ,$routes ){
-   return array_filter($routes, 
-   function ($value) use ($uri){
-       $regex = str_replace('/','\/' ,ltrim($value , '/'));
-       return preg_match("/^$regex$/" ,ltrim($uri,'/'));
-   },ARRAY_FILTER_USE_KEY);
+    return array_filter($routes, 
+        function ($value) use ($uri){
+            $regex = str_replace('/','\/' ,ltrim($value , '/'));
+            return preg_match("/^$regex$/" ,ltrim($uri,'/'));
+        }, ARRAY_FILTER_USE_KEY);
 }
-function params($uri,$matchedUri){
+function params($uri, $matchedUri){
     if(!empty($matchedUri)){
         $matchedToGetParams = array_keys($matchedUri)[0];
         return array_diff(
@@ -88,7 +100,7 @@ function params($uri,$matchedUri){
     return [];
 }
 
-function paramsFormat($uri,$params){
+function paramsFormat($uri, $params){
     $paramsData = [];
     foreach($params as $index => $param){
         $paramsData[$uri[$index-1]] = $param;
@@ -109,7 +121,6 @@ function router(){
         $uri = explode('/', ltrim($uri , '/'));
         $params = params($uri, $matchedUri);
         $params = paramsFormat($uri, $params);
-        
     }
     if (!empty($matchedUri)) {
         $routeDetails = array_values($matchedUri)[0];
@@ -119,15 +130,13 @@ function router(){
             $middlewareMethod = $routeDetails['middleware'];
             $middlewareClass->$middlewareMethod();
             $controllerUri = $routeDetails['controller'];
-            
-        }else{
+        } else {
             $controllerUri = $routeDetails;
-            
         }
     
         return controller($controllerUri, $params);
     }
-
+  
     throw new Exception();
 }
-    
+?>
