@@ -97,6 +97,31 @@ class SchedulingSecretaryController{
         return  $this->showSchedule();
     }
     
+    public function editSchedule($params){
+        $id = isset($params["edit_id"]) ? $params["edit_id"] : null;
+        if (!$id) {
+            echo "ID inválido.";
+            return;
+        }
+        $date = isset($_POST['data']) ? trim($_POST['data']) : null;
+        $time = isset($_POST['hora']) ? trim($_POST['hora']) : null;
+        $formatoTime = 'H:i';
+    
+        if (!$date || !$time) {
+            echo "Data ou hora não fornecida.";
+            return;
+        }
+
+        $dayOfTheWeek = $this->dayOfTheWeek($date);
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        $SchedulingSecretaryModel->editRecord($id , $dayOfTheWeek, $date , $time);
+        $SchedulingSecretaryModel->closeConnection();
+
+        $this->showSchedule();
+        header("Location: http://localhost/horarios?edit=success");
+        exit();
+    }
+
     public function deleteSchedule($params){
         $id = isset($params["delete_id"]) ? $params["delete_id"] : null;
         if (!$id) {
@@ -109,41 +134,6 @@ class SchedulingSecretaryController{
 
         $this->showSchedule();
         header("Location: http://localhost/horarios?delete=success");
-        exit();
-    }
-
-    // public function putSchedule($params){
-        
-    //     $id = isset($params["put_id"]) ? $params["put_id"] : null;
-    //     $date = $_POST['data'];
-    //     $time  = $_POST['hora'];
-    public function putSchedule($params){
-        $id = isset($params["put_id"]) ? $params["put_id"] : null;
-        $date = $_POST['data'];
-        $time  = $_POST['hora'];
-        $formatoTime = 'H:i';
-
-
-        $dateTime = \DateTime::createFromFormat($formatoTime, $time);
-            if (!$dateTime   ||  $dateTime->format($formatoTime) !== $time) {
-                echo "A hora $time não é válida.";
-                return;
-        }
-        
-        if (!$id) {
-            echo "ID inválido.";
-            return;
-        }
-
-        $dayOfTheWeek = $this->dayOfTheWeek($date);
-        
-        
-        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $SchedulingSecretaryModel->putRecord($id , $dayOfTheWeek ,$date ,$time);
-        $SchedulingSecretaryModel->closeConnection();
-        
-        $this->showSchedule();
-        header("Location: http://localhost/horarios?edit=success");
         exit();
     }
     

@@ -1,4 +1,5 @@
 <?php
+
 use app\middleware\MiddlewareSession;
 
 function routes(){
@@ -30,12 +31,12 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@AddScheduleForm",
                 'middleware' => 'handleSecretary'
             ],
-            '/horarios/delete_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
+            '/horarios/edit_id/[0-9]+' =>[
+                'controller' => "secretary\SchedulingSecretaryController@editSchedule",
                 'middleware' => 'handleSecretary'
             ],
-            '/horarios/put_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
+            '/horarios/delete_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
                 'middleware' => 'handleSecretary'
             ],
             '/logoutSecretary' => [

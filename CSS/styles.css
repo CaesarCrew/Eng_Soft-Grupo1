@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to bottom right, #b774eb, #a446ee);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+div{
+    display: block;
+}
+
+input {
+    max-width: 80%;
+    border: none;
+    font-size: medium;
+    background-color: #AAA5A5;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+    padding: 24px;
+    position: relative;
+    background-color: #D9D9D9;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}

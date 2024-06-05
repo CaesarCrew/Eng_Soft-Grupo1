@@ -1,0 +1,161 @@
+input{
+    width: 100%;
+}
+
+.form_login {
+    max-width: 750px;
+    margin: 60px auto;
+    padding: 40px 0px 45px;
+    position: relative;
+    border-radius: 16px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.form_login label.label_cadastro{
+    margin-left: 48px;
+}
+
+.form_login label{
+    margin-top: 0%;
+    font-size: larger;
+}
+
+.form_login .input_label{
+    margin: auto;
+    padding: 0px;
+    text-align: center;
+    background: none;
+}
+
+.input_label .labels_cad{
+    position: relative;
+    left: 100px;
+}
+
+.input_label .labels_cads{
+    position: relative;
+    left: 130px;
+}
+
+.input_label .sexo{
+    position: relative;
+    right: 20px;
+}
+
+.input_label .cep{
+    position: relative;
+    right: 110px;
+}
+
+.form_login input[type="checkbox"] {
+    max-width: min-content;
+    margin-right: 10px;
+}
+
+.form_login input[type="submit"]{
+    max-width: max-content;
+    position: relative;
+    left: 80%;
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+
+.form_login input:focus{
+    outline: none;
+    background-color: #AAA5A5;
+}
+
+.form_login div{
+    margin: 8px 80px;
+    padding: 8px;
+    padding-left: 16px;
+    border-radius: 8px;
+    background-color: #AAA5A5;
+}
+
+.form_login .gender {
+    max-width: 70%;
+    margin: 10px auto 8px;
+    text-align: center;
+    padding-left: 8px;
+    background: none;
+}
+
+.gender div{
+    margin: auto;
+    display: inline-block;
+}
+
+.gender .data{
+    width: 25%;
+    margin-left: 70px;
+    padding: 8px;
+}
+
+.gender .estado{
+    margin-left: 70px;
+    padding: 8px;
+}
+
+.form_label{
+    margin-top: 0%;
+    margin-left: 24px;
+}
+
+.home{
+    position: relative;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    font-size: xx-large;
+}
+
+@media (max-width:480px) {
+    .form_login .gender {
+        margin: 10px auto 8px;
+        align-items: center;
+        text-align: center;
+        padding-left: 8px;
+        background: none;
+    }
+    
+    .gender div{
+        max-width: 30%;
+        margin: auto;
+        display: inline-flex;
+    }
+    
+    .gender .data{
+        width: 30%;
+        margin-left: 70px;
+        padding: 8px;
+    }
+    
+    .gender .estado{
+        margin-left: 70px;
+        padding: 8px;
+    }
+
+    .input_label .labels_cad{
+        position: relative;
+        left: 18%;
+    }
+    
+    .input_label .labels_cads{
+        position: relative;
+        left: 20%;
+    }
+    
+    .input_label .sexo{
+        position: relative;
+        right: 1%;
+    }
+    
+    .input_label .cep{
+        position: relative;
+        right: 20%;
+    }
+}

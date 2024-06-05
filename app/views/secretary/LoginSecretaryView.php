@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Secretaria</title>
-    <link rel="stylesheet" href="styles.css?v=<?php echo time();?>"/>
+    <link rel="stylesheet" href="CSS\styles.css?v=<?php echo time();?>"/>
+    <link rel="stylesheet" href="CSS\LoginSecretary.css?v=<?php echo time();?>"/>
 </head>
 <body>
 <h1 class="title"> LOGIN </h1>
@@ -19,6 +20,7 @@
                 <label class="input_label" for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required/>
             </div>
+            <input type="submit" name="submit" value="Enviar">
         </form>
 </body>
 </html>
