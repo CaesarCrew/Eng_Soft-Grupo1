@@ -8,7 +8,7 @@ class AuthSecretaryController{
     public function showLoginSecretary(){
         return[
                     "view" => "secretary/loginSecretaryView.php",
-                   "data" => ["title" => "Login Secretaria",  "style" =>"public/css/secretary/LoginSecretary.css"]
+                    "data" => ["title" => "Login Secretaria"]
                 ];
 
     }
@@ -20,51 +20,31 @@ class AuthSecretaryController{
         $AuthSecretaryModel = new AuthSecretaryModel;
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $data = json_decode(file_get_contents('php://input'), true);
-            
-        
-           
-            if (!empty($data["usuario"]) && !empty($data["senha"])) {
-                $usuario = $data["usuario"];
-                $senha = $data["senha"];
+            if (!empty($_POST["usuario"]) && !empty($_POST["senha"])) {
+                $usuario = $_POST["usuario"];
+                $senha = $_POST["senha"];
 
                 $secretary_id = $AuthSecretaryModel->checkUser($usuario, $senha);
-
+                
                 if ($secretary_id) {
                     $_SESSION['secretary_id'] = $secretary_id;
                     $_SESSION['tipo_secretary'] = 'secretaria';
-                    http_response_code(200);
-                    echo json_encode([
-                        'status' => 'success',
-                        'message' => 'Login successful'
-                    ]);
-
+                    header('Location: http://localhost/homeSecretaria');
+                    exit();
                 } else {
                     
-                    http_response_code(401);
-                    echo json_encode([
-                        'status' => 'error',
-                        'message' => 'Usuario ou senha incorretos.'
-                    ]);
+                    echo "Usuário ou senha incorretos.";
+                    return $this->showLoginSecretary();
                 }
-            } else {
-                
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Dados incompletos.'
-                ]);
-            }
-        } else {
-            
-            http_response_code(405);
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Método não permitido.'
-            ]);
+            } 
         }
     }
-    
 }
 
 ?>
+
+<?php
+// $authUserController = new AuthUserController;
+// $authUserController->login();
+?>
+ 

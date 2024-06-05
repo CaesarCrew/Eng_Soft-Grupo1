@@ -1,4 +1,5 @@
 <?php
+
 namespace app\model;
 
 use PDO;
@@ -26,36 +27,36 @@ class ScheduleTimeSecretaryModel extends Connect
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addSchedule($id_horario, $tipo_criador, $id_criador)
+    public function addSchedule($id_horario, $tipo_criador, $id_criador, $cpf)
     {
         if (!$this->checkRegistered($id_horario)) {
 
-            $this->makeUnavailable($id_horario);
+            $id_paciente = $this->checkPatient($cpf);
 
-            if ($tipo_criador == 'usuario') {
-                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario) VALUES (:id_horario, :tipo_criador, :id_criador)");
-            } elseif ($tipo_criador == 'secretaria') {
-                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_secretaria) VALUES (:id_horario, :tipo_criador, :id_criador)");
+            if ($tipo_criador == 'secretaria' && $id_paciente != null) {
+                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario, id_criador_secretaria) VALUES (:id_horario, :tipo_criador, :id_paciente ,:id_criador)");
             } else {
                 return false;
             }
 
             $stmt->bindParam(':id_horario', $id_horario, PDO::PARAM_INT);
             $stmt->bindParam(':tipo_criador', $tipo_criador, PDO::PARAM_STR);
+            $stmt->bindParam(':id_paciente', $id_paciente, PDO::PARAM_INT);
             $stmt->bindParam(':id_criador', $id_criador, PDO::PARAM_INT);
 
             try {
                 $stmt->execute();
+                $this->makeUnavailable($id_horario);
                 return true; //Inserção bem-sucedida!
             } catch (PDOException $e) {
-                return false;//Erro ao inserir dados
+                return false; //Erro ao inserir dados
             }
         } else {
-            return false;//Horario Indisponivel
+            return false; //Horario Indisponivel
         }
     }
 
-    public function checkRegistered($id_horario)
+    private function checkRegistered($id_horario)
     {
         $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM consulta WHERE id_horario_disponivel = :id_horario");
         $stmt->bindParam(':id_horario', $id_horario, PDO::PARAM_INT);
@@ -65,17 +66,37 @@ class ScheduleTimeSecretaryModel extends Connect
         return ($count > 0);
     }
 
-    public function makeUnavailable($id_horario)
+    private function makeUnavailable($id_horario)
+    {
+        $sql = "UPDATE horario_disponivel SET disponivel = 0 WHERE id = :id_horario";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id_horario', $id_horario, PDO::PARAM_INT);
+
+        try {
+            $stmt->execute();
+            return true; //Horário tornou-se indisponível com sucesso!
+        } catch (PDOException $e) {
+            return false; //Erro ao tornar horário indisponível
+        }
+    }
+
+    public function checkPatient($cpf)
 {
-    $sql = "UPDATE horario_disponivel SET disponivel = 0 WHERE id = :id_horario";
+    $sql = "SELECT id FROM usuario WHERE cpf = :cpf";
     $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParam(':id_horario', $id_horario, PDO::PARAM_INT);
+    $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
 
     try {
         $stmt->execute();
-        return true;//Horário tornou-se indisponível com sucesso!
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['id']; // Retorna o ID do paciente
+        } else {
+            return false; // Paciente não encontrado
+        }
     } catch (PDOException $e) {
-        return false;//Erro ao tornar horário indisponível
+        return false; // Erro ao executar a consulta
     }
 }
+
 }

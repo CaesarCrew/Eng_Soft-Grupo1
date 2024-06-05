@@ -16,7 +16,14 @@ class ScheduleTimeSecretaryCancelController
     public function showAppointments()
     {
         $appointments = $this->model->getAppointments();
-        include 'app/views/secretary/SchedulesSecretaryViewCancel.php';
+        $viewData = [
+            "appointments" => $appointments,
+            "title" => "Agendamentos"
+        ];
+        return [
+            "view" => "secretary/SchedulesSecretaryViewCancel.php",
+            "data" => $viewData
+        ];
     }
 
     public function cancelSchedule()
@@ -24,14 +31,42 @@ class ScheduleTimeSecretaryCancelController
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_consulta'])) {
             $id_consulta = htmlspecialchars($_POST['id_consulta']);
             if ($this->model->cancelSchedule($id_consulta)) {
-                echo "Agendamento cancelado com sucesso.<br>";
+                return "Agendamento cancelado com sucesso.";
             } else {
-                echo "Falha ao cancelar o agendamento.<br>";
+                return "Falha ao cancelar o agendamento.";
             }
         }
 
         header('Location: /visualizarAgendamentos');
         exit();
+    }
+
+    public function infoPatient()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_consulta'])) {
+            $id_consulta = htmlspecialchars($_POST['id_consulta']);
+            header('Location: /visualizarAgendamentos/informacoes?id_consulta=' . $id_consulta);
+            exit();
+        }
+    }
+
+    public function listInfo()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id_consulta'])) {
+            $id_consulta = htmlspecialchars($_GET['id_consulta']);
+            $patient = $this->model->listInfo($id_consulta);
+            if ($patient) {
+                return [
+                    "view" => "secretary/infoView.php",
+                    "data" => [
+                        "title" => "Informações do Agendamento",
+                        "patient" => $patient
+                    ]
+                ];
+            } else {
+                return "Erro ao listar informações do agendamento.";
+            }
+        }
     }
 }
 ?>

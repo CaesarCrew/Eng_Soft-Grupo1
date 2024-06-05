@@ -11,13 +11,8 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
-            '/showHorarios' => [
-                'controller' => "secretary\SchedulingSecretaryController@showTimes",
-                'middleware' => 'handleSecretary'
-            ],
             '/agendarHorarios' => [
                 'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
-
                 'middleware' => 'handleSecretary'
             ],
             '/homeSecretaria' => [
@@ -26,6 +21,10 @@ function routes(){
             ],
             '/visualizarAgendamentos' => [
                 'controller' => "secretary\ScheduleTimeSecretaryCancelController@showAppointments",
+                'middleware' => 'handleSecretary'
+            ],
+            '/visualizarAgendamentos/informacoes' => [
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@listInfo",
                 'middleware' => 'handleSecretary'
             ],
             '/cadastro' => "user\AuthUserController@showSignUp",
@@ -48,6 +47,10 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryController@selectTime",
                 'middleware' => 'handleSecretary'
             ],
+            '/visualizarAgendamentos/informacoes' => [
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@infoPatient",
+                'middleware' => 'handleSecretary'
+            ],
             '/horarios/delete_id/[0-9]+' => [
                 'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
                 'middleware' => 'handleSecretary'
@@ -56,7 +59,6 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@putSchedule",
                 'middleware' => 'handleSecretary'
             ],
-
             '/logoutSecretary' => [
                 'controller' => "secretary\AuthSecretaryController@logoutSecretary",
                 'middleware' => 'logout'
@@ -68,31 +70,15 @@ function routes(){
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
             '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
-
-            '/resetPasswordConfirm' => "user\AuthUserController@resetPassword",
+            '/resetPassword' => "user\AuthUserController@resetPassword",
             '/cancelarHorario' => [
                 'controller' => "secretary\ScheduleTimeSecretaryCancelController@cancelSchedule",
                 'middleware' => 'handleSecretary'
             ],
-        ],  
-
-        'PUT' =>[
-            '/horarios/put_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
-                'middleware' => 'handleSecretary'
-            ],
-               
-            
         ],
-        'DELETE' =>[
-            
-            '/horarios/delete_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
-                'middleware' => 'handleSecretary'
-            ],
-            
-        ]
-            
+
+        'PUT' => [],
+        'DELETE' => []
     ];
 }
 

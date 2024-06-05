@@ -69,5 +69,36 @@ class ScheduleTimeSecretaryCancelModel extends Connect
             return false; // Erro ao tornar horário disponível
         }
     }
+
+    public function listInfo($id_consulta){
+        $id_usuario = $this->getId($id_consulta);
+        if($id_usuario){
+            $sql = "SELECT id, Nome, senha, email, telefone, cpf, genero, data_de_nascimento FROM usuario WHERE id = :id_usuario";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam("id_usuario", $id_usuario, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        echo "Erro ao listar";
+        return false;
+    }
+
+    private function getId($id_consulta){
+        $sql = "SELECT id_criador_usuario FROM consulta WHERE id = :id_consulta";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id_consulta', $id_consulta, PDO::PARAM_INT);
+
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) { 
+                return $result['id_criador_usuario']; // Retorna o ID do paciente
+            } else {
+                return false; // Paciente não encontrado
+            }
+        } catch (PDOException $e) {
+            return false; // Erro ao executar a consulta
+        }
+    }
 }
 ?>
