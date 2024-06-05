@@ -12,7 +12,11 @@ Adeus às intermináveis chamadas telefônicas e longas esperas por uma resposta
 - Sprint 1 - [Relatório 1](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.1.0)
 - Sprint 2 - [Relatório 2](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.2.0-autentifica%C3%A7%C3%A3o_e_autoriza%C3%A7%C3%A3o)
 - Sprint 3 - [Relatório 3](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.3.0-mvc)
+<<<<<<< HEAD
 - Sprint 4 - [Relatório 4]()
+=======
+
+>>>>>>> main
 
 ## Definindo os Requisitos Funcionais do Projeto
 
@@ -152,3 +156,4 @@ Este requisito permite que pacientes e secretárias cancelem horários previamen
 - O paciente ou a secretaria deve estar devidamente logado no sistema para realizar o cancelamento.
 - Após a confirmação do cancelamento, o sistema deve atualizar a lista de horários disponíveis em tempo real.
 - O horário cancelado deve ser novamente disponibilizado para agendamento por outros usuários.
+
