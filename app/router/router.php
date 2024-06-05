@@ -11,8 +11,13 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/showHorarios' => [
+                'controller' => "secretary\SchedulingSecretaryController@showTimes",
+                'middleware' => 'handleSecretary'
+            ],
             '/agendarHorarios' => [
                 'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
+
                 'middleware' => 'handleSecretary'
             ],
             '/homeSecretaria' => [
@@ -51,6 +56,7 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@putSchedule",
                 'middleware' => 'handleSecretary'
             ],
+
             '/logoutSecretary' => [
                 'controller' => "secretary\AuthSecretaryController@logoutSecretary",
                 'middleware' => 'logout'
@@ -62,17 +68,31 @@ function routes(){
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
             '/sendMailPassword' => "user\AuthUserController@sendResetPasswordEmail",
-            '/resetPassword' => "user\AuthUserController@resetPassword",
+
+            '/resetPasswordConfirm' => "user\AuthUserController@resetPassword",
             '/cancelarHorario' => [
                 'controller' => "secretary\ScheduleTimeSecretaryCancelController@cancelSchedule",
                 'middleware' => 'handleSecretary'
             ],
-        ],
+        ],  
 
-        'PUT' => [
+        'PUT' =>[
+            '/horarios/put_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
+                'middleware' => 'handleSecretary'
+            ],
+               
+            
         ],
-        'DELETE' => [
+        'DELETE' =>[
+            
+            '/horarios/delete_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
+                'middleware' => 'handleSecretary'
+            ],
+            
         ]
+            
     ];
 }
 
