@@ -28,6 +28,7 @@ class AuthSecretaryController{
                 
                 if ($secretary_id) {
                     $_SESSION['secretary_id'] = $secretary_id;
+                    $_SESSION['tipo_secretary'] = 'secretaria';
                     header('Location: http://localhost/homeSecretaria');
                     exit();
                 } else {

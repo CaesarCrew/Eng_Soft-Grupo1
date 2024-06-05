@@ -134,5 +134,48 @@ class AuthValidator{
     
         
     }
+    function validarCPF($cpf) {
+        
+        $soma = 0;
+    
+        if (!preg_match('/^[0-9]+$/', $cpf)){
+            return false;
+        }
+        
+        if (strlen($cpf) != 11) {
+            
+            return false;
+        }
+    
+        if (preg_match('/(\d)\1{10}/', $cpf)) {
+            
+            return false;
+        }
+        
+        $soma = 0;
+        for ($i = 0; $i < 9; $i++) {
+            $soma += ((10 - $i) * $cpf[$i]);
+        }
+        $dv1 = 11 - ($soma % 11);
+        if ($dv1 == 10 || $dv1 == 11) {
+            $dv1 = 0;
+        }
+    
+        $soma = 0;
+        for ($i = 0; $i < 10; $i++) {
+            $soma += ((11 - $i) * $cpf[$i]);
+        }
+        $dv2 = 11 - ($soma % 11);
+        if ($dv2 == 10 || $dv2 == 11) {
+            $dv2 = 0;
+        }
+    
+    
+        if ($dv1 == $cpf[9] && $dv2 == $cpf[10]) {
+            return true; 
+        } else {
+            return false;
+        }
+    }
 }
 

@@ -8,10 +8,15 @@ Nosso sistema web, projetado especialmente para simplificar sua vida quando se t
 Adeus às intermináveis chamadas telefônicas e longas esperas por uma resposta. Com nosso sistema, você pode agendar sua consulta em questão de minutos, tudo com alguns cliques simples. Libere seu tempo para o que realmente importa na sua vida!
 
 ## Relatórios de gestão
+**Link Trello:** https://trello.com/b/nZVoiD8E/kanban
 - Sprint 1 - [Relatório 1](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.1.0)
 - Sprint 2 - [Relatório 2](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.2.0-autentifica%C3%A7%C3%A3o_e_autoriza%C3%A7%C3%A3o)
 - Sprint 3 - [Relatório 3](https://github.com/CaesarCrew/Eng_Soft-Grupo1/releases/tag/v1.3.0-mvc)
+<<<<<<< HEAD
+- Sprint 4 - [Relatório 4]()
+=======
 
+>>>>>>> main
 
 ## Definindo os Requisitos Funcionais do Projeto
 
@@ -120,3 +125,35 @@ Este requisito permite que os usuários visualizem os horários disponíveis par
 **Critério de Aceitação:** 
 - Os horários disponíveis devem ser apresentados de forma clara e organizada, indicando a data e hora disponível .
 - Os horários devem ser atualizados em tempo real para refletir quais horários ainda estão disponíveis para agendamento.
+
+
+### RF09 - Agendar Horário No Sistema
+
+#### Descrição:
+Este requisito permite que pacientes e secretárias agendem um horário disponível para consulta no sistema.
+
+#### User Story:
+**Persona 01 - Paciente**  
+**Persona 02 - Secretaria**  
+**User Story:** Como paciente ou secretaria, desejo agendar um horário disponível no sistema para uma consulta.  
+**Critério de Aceitação:** 
+- O paciente ou secretaria deve estar devidamente logado no sistema para realizar o agendamento.
+- O sistema deve apresentar ao paciente ou secretaria apenas os horários disponíveis no momento do agendamento.
+- Após a seleção de um horário, o sistema deve confirmar o agendamento e remover esse horário da lista de disponíveis.
+- Caso o paciente tente agendar um horário que foi reservado por outro usuário no mesmo momento, o sistema deve informar que o horário não está mais disponível e solicitar a seleção de um novo horário.
+
+
+### RF10 - Cancelar Horário Agendado no Sistema
+
+#### Descrição:
+Este requisito permite que pacientes e secretárias cancelem horários previamente agendados no sistema.
+
+#### User Story:
+**Persona 01 - Paciente**  
+**Persona 02 - Secretaria**  
+**User Story:** Como paciente ou secretaria, desejo cancelar um horário previamente agendado no sistema caso eu não possa comparecer à consulta.  
+**Critério de Aceitação:** 
+- O paciente ou a secretaria deve estar devidamente logado no sistema para realizar o cancelamento.
+- Após a confirmação do cancelamento, o sistema deve atualizar a lista de horários disponíveis em tempo real.
+- O horário cancelado deve ser novamente disponibilizado para agendamento por outros usuários.
+

@@ -33,10 +33,11 @@ return [
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         id_horario_disponivel INT(6) UNSIGNED NOT NULL,
         tipo_criador ENUM('usuario','secretaria') NOT NULL,
-        id_criador INT(6) UNSIGNED NOT NULL,
-        FOREIGN KEY (id_horario_disponivel) REFERENCES horario_disponivel(id),
-        FOREIGN KEY (id_criador) REFERENCES usuario(id) ON DELETE CASCADE,
-        FOREIGN KEY (id_criador) REFERENCES secretaria(id) ON DELETE CASCADE
+        id_criador_usuario INT(6) UNSIGNED,
+        id_criador_secretaria INT(6) UNSIGNED,
+        FOREIGN KEY (id_horario_disponivel) REFERENCES horario_disponivel(id) ON DELETE CASCADE,
+        FOREIGN KEY (id_criador_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
+        FOREIGN KEY (id_criador_secretaria) REFERENCES secretaria(id) ON DELETE CASCADE
     )"] ,
     ["name"=>"endereco" , "create" => "CREATE TABLE endereco (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
