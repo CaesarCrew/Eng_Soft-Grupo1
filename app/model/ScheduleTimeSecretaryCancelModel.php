@@ -70,17 +70,17 @@ class ScheduleTimeSecretaryCancelModel extends Connect
         }
     }
 
-    public function listInfo($id_consulta){
+    public function listInfomation($id_consulta){
         $id_usuario = $this->getId($id_consulta);
         if($id_usuario){
-            $sql = "SELECT id, Nome, senha, email, telefone, cpf, genero, data_de_nascimento FROM usuario WHERE id = :id_usuario";
+            $sql = "SELECT *FROM usuario WHERE id = :id_usuario";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->bindParam("id_usuario", $id_usuario, PDO::PARAM_INT);
+            $stmt->bindParam(":id_usuario", $id_usuario, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         echo "Erro ao listar";
-        return false;
+        return null;
     }
 
     private function getId($id_consulta){

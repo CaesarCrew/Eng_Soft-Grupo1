@@ -6,7 +6,7 @@ use PDO;
 use Connect;
 use PDOException;
 
-class ScheduleTimeSecretaryModel extends Connect
+class ScheduleTimeUserModel extends Connect
 {
     private $pdo;
 
@@ -30,14 +30,13 @@ class ScheduleTimeSecretaryModel extends Connect
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addSchedule($id_horario, $tipo_criador, $id_criador, $cpf)
+    public function addSchedule($id_horario, $tipo_criador, $id_paciente)
     {
         if (!$this->checkRegistered($id_horario)) {
 
-            $id_paciente = $this->checkPatient($cpf);
-
-            if ($tipo_criador == 'secretaria' && $id_paciente != null) {
-                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario, id_criador_secretaria) VALUES (:id_horario, :tipo_criador, :id_paciente ,:id_criador)");
+            if ($tipo_criador == 'usuario' && $id_paciente != null) {
+                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario) 
+                                             VALUES (:id_horario, :tipo_criador, :id_paciente)");
             } else {
                 return false;
             }
@@ -45,7 +44,6 @@ class ScheduleTimeSecretaryModel extends Connect
             $stmt->bindParam(':id_horario', $id_horario, PDO::PARAM_INT);
             $stmt->bindParam(':tipo_criador', $tipo_criador, PDO::PARAM_STR);
             $stmt->bindParam(':id_paciente', $id_paciente, PDO::PARAM_INT);
-            $stmt->bindParam(':id_criador', $id_criador, PDO::PARAM_INT);
 
             try {
                 $stmt->execute();
@@ -82,24 +80,4 @@ class ScheduleTimeSecretaryModel extends Connect
             return false; //Erro ao tornar horário indisponível
         }
     }
-
-    public function checkPatient($cpf)
-{
-    $sql = "SELECT id FROM usuario WHERE cpf = :cpf";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParam(':cpf', $cpf, PDO::PARAM_STR);
-
-    try {
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            return $result['id']; // Retorna o ID do paciente
-        } else {
-            return false; // Paciente não encontrado
-        }
-    } catch (PDOException $e) {
-        return false; // Erro ao executar a consulta
-    }
-}
-
 }

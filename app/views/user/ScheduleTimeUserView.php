@@ -1,17 +1,12 @@
 <body>
     <nav>
-        <a href="/homeSecretaria" class="home-link">Home</a>
+        <a href="/home" class="home-link">Home</a>
     </nav>
-    
+
     <div class="container">
         <h1>Horários Disponíveis</h1>
-        <form id="select-form" method="POST" action="/selecionarHorario">
-            <input type="hidden" name="secretary_id" value="<?php echo htmlspecialchars($_SESSION['secretary_id']); ?>">
-
-            <div>
-                <label for="cpf">CPF do Paciente:</label>
-                <input type="text" id="cpf" name="cpf" required>
-            </div>
+        <form id="select-form" method="POST" action="/selecionarHorario_paciente">
+            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user_id']); ?>">
 
             <table>
                 <tr>
@@ -46,7 +41,7 @@
         </form>
     </div>
 
-    <script src="public/js/secretary/ScheduleTimeSecretaryModel.js"></script>
+    <script src="public/js/user/ScheduleTime.js"></script>
 </body>
 
 </html>

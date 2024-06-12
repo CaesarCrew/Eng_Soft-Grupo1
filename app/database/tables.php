@@ -37,7 +37,7 @@ return [
         id_criador_secretaria INT(6) UNSIGNED,
         FOREIGN KEY (id_horario_disponivel) REFERENCES horario_disponivel(id) ON DELETE CASCADE,
         FOREIGN KEY (id_criador_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
-        FOREIGN KEY (id_criador_secretaria) REFERENCES secretaria(id) ON DELETE CASCADE
+        FOREIGN KEY (id_criador_secretaria) REFERENCES secretaria(id) ON DELETE CASCADE,
     )"] ,
     ["name"=>"endereco" , "create" => "CREATE TABLE endereco (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

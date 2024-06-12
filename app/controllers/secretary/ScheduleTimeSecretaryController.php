@@ -19,7 +19,8 @@ class ScheduleTimeSecretaryController
         $schedules = $this->model->getAvailableSchedules();
         $viewData = [
             "schedules" => $schedules,
-            "title" => "Realizar Agendamento"
+            "title" => "Realizar Agendamento",
+            "style" => "public/css/ScheduleTime.css"
         ];
         return [
             "view" => "secretary/ScheduleTimeSecretaryView.php",
@@ -32,34 +33,55 @@ class ScheduleTimeSecretaryController
         $validateDataUser = new AuthValidator;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $selectedSchedules = $_POST['selected_schedules'] ?? [];
-            $secretaryId = $_POST['secretary_id'] ?? '';
-            $cpf = $_POST['cpf'] ?? '';
+            $data = json_decode(file_get_contents('php://input'), true);
+            
+            $selectedSchedules = $data['selected_schedules'] ?? [];
+            $secretaryId = $data['secretary_id'] ?? '';
+            $cpf = $data['cpf'] ?? '';
 
             // Validar o CPF
             if (!$validateDataUser->validarCPF($cpf)) {
-                return "Cpf digitado é inválido";
+                http_response_code(400);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'CPF digitado é inválido.'
+                ]);
+                return;
             }
 
             // Verificar se o paciente está registrado e obter o ID do paciente
             $patientId = $this->model->checkPatient($cpf);
             if (!$patientId) {
-                return "Paciente com CPF $cpf não está cadastrado.";
+                http_response_code(404);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => "Paciente com CPF $cpf não está cadastrado."
+                ]);
+                return;
             }
 
             // Adicionar os agendamentos selecionados
             $messages = [];
             foreach ($selectedSchedules as $id) {
                 if ($this->model->addSchedule($id, 'secretaria', $secretaryId, $cpf)) {
-                    $messages[] = "Agendamento feito com sucesso para o horário com ID $id.";
+                    $messages[] = "Agendamento feito com sucesso!";
                 } else {
                     $messages[] = "Falha ao selecionar o horário com ID $id.";
                 }
             }
 
-            return $messages;
+            http_response_code(200);
+            echo json_encode([
+                'status' => 'success',
+                'messages' => $messages
+            ]);
+        } else {
+            http_response_code(405);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Método não permitido.'
+            ]);
         }
-
-        return "Por favor, envie os dados do formulário via método POST.";
     }
 }
+?>

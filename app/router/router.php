@@ -15,6 +15,10 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/agendarHorariosPaciente' => [
+                'controller' => "user\ScheduleTimeUserController@showSchedule",
+                'middleware' => 'handleUser'
+            ],
             '/homeSecretaria' => [
                 'controller' => "secretary\HomeSecretaryController@ShowDiarySecretary",
                 'middleware' => 'handleSecretary'
@@ -47,9 +51,9 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryController@selectTime",
                 'middleware' => 'handleSecretary'
             ],
-            '/visualizarAgendamentos/informacoes' => [
-                'controller' => "secretary\ScheduleTimeSecretaryCancelController@infoPatient",
-                'middleware' => 'handleSecretary'
+            '/selecionarHorario_paciente' => [
+                'controller' => "user\ScheduleTimeUserController@selectTime",
+                'middleware' => 'handleUser'
             ],
             '/horarios/delete_id/[0-9]+' => [
                 'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
@@ -96,6 +100,7 @@ function regularExpressionArrayRouter($uri ,$routes ){
             return preg_match("/^$regex$/" ,ltrim($uri,'/'));
         }, ARRAY_FILTER_USE_KEY);
 }
+
 function params($uri, $matchedUri){
     if(!empty($matchedUri)){
         $matchedToGetParams = array_keys($matchedUri)[0];
@@ -107,6 +112,7 @@ function params($uri, $matchedUri){
     return [];
 }
 
+
 function paramsFormat($uri, $params){
     $paramsData = [];
     foreach($params as $index => $param){
@@ -114,6 +120,7 @@ function paramsFormat($uri, $params){
     }
     return $paramsData;
 }
+
 
 function router(){
     $uri = parse_url($_SERVER["REQUEST_URI"] , PHP_URL_PATH);
