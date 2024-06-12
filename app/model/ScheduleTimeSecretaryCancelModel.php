@@ -72,7 +72,6 @@ class ScheduleTimeSecretaryCancelModel extends Connect
 
     public function listInfomation($id_consulta){
         $id_usuario = $this->getId($id_consulta);
-        echo $id_usuario;
         if($id_usuario){
             $sql = "SELECT *FROM usuario WHERE id = :id_usuario";
             $stmt = $this->pdo->prepare($sql);

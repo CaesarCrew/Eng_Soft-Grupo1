@@ -58,15 +58,9 @@ class ScheduleTimeSecretaryCancelController
             $patient = $this->model->listInfomation($id_consulta);
             if ($patient !== null) {
                 unset($patient['senha']);
-                $viewData = [
-                    "patient" => $patient,
-                    "title" => "Informações do Paciente",
-                    'style' => 'public/css/secretary/info.css'
-                ];
                 return [
                     "view" => "secretary/infoView.php",
-                    "data" => $viewData,
-                    var_dump($viewData)
+                    "data" => ["patient" => $patient, "title" => "Informações do Paciente", 'style' => 'public/css/secretary/Info.css']
                 ];
             } else {
                 return [

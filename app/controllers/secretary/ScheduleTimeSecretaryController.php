@@ -20,7 +20,7 @@ class ScheduleTimeSecretaryController
         $viewData = [
             "schedules" => $schedules,
             "title" => "Realizar Agendamento",
-            "style" => "public/css/secretary/ScheduleTime.css"
+            "style" => "public/css/ScheduleTime.css"
         ];
         return [
             "view" => "secretary/ScheduleTimeSecretaryView.php",

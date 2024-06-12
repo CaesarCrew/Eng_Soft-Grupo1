@@ -15,6 +15,10 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/agendarHorariosPaciente' => [
+                'controller' => "user\ScheduleTimeUserController@showSchedule",
+                'middleware' => 'handleUser'
+            ],
             '/homeSecretaria' => [
                 'controller' => "secretary\HomeSecretaryController@ShowDiarySecretary",
                 'middleware' => 'handleSecretary'
@@ -46,6 +50,10 @@ function routes(){
             '/selecionarHorario' => [
                 'controller' => "secretary\ScheduleTimeSecretaryController@selectTime",
                 'middleware' => 'handleSecretary'
+            ],
+            '/selecionarHorario_paciente' => [
+                'controller' => "user\ScheduleTimeUserController@selectTime",
+                'middleware' => 'handleUser'
             ],
             '/horarios/delete_id/[0-9]+' => [
                 'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
