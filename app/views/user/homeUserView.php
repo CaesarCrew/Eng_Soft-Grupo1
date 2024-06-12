@@ -4,7 +4,7 @@
 
     <div class="container">
         <button class="button" onclick="window.location.href='http://localhost/agendarHorariosPaciente'">Agendar Consulta</button>
-        <button class="button">Visualizar Agendamentos</button>
+        <button class="button" onclick="window.location.href='http://localhost/visualizarAgendamentosUsuario'">Visualizar Agendamentos</button>
     </div>
 
     <form method="POST" action="/logout" class="logout">
