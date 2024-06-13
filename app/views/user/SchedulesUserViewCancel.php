@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Meus Agendamentos</title>
-    <link rel="stylesheet" type="text/css" href="/public/css/user/ScheduleTimeUserCancel.css">
-</head>
 <body>
     <nav>
         <a href="/home" class="home-link">Home</a>
