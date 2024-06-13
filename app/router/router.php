@@ -37,6 +37,10 @@ function routes(){
                 'controller' => "user\HomeUserController@showHomeUser",
                 'middleware' => 'handleUser'
             ],
+            '/visualizarAgendamentosUsuario' => [
+                'controller' => "user\ScheduleTimeUserCancelController@showAppointments",
+                'middleware' => 'handleUser'
+            ],
             '/sendMailPassword' => "user\AuthUserController@showSendMailPassword",
             '/resetPasswordConfirm' => "user\AuthUserController@showResetPasswordConfirm",
         ],
@@ -70,6 +74,10 @@ function routes(){
             '/logout' => [
                 'controller' => "user\AuthUserController@logoutUser",
                 'middleware' => 'logout'
+            ],
+            '/cancelarConsultaUsuario' => [
+                'controller' => "user\ScheduleTimeUserCancelController@cancelAppointment",
+                'middleware' => 'handleUser'
             ],
             '/cadastro' => "user\AuthUserController@signUp",
             '/login' => "user\AuthUserController@signIn",
