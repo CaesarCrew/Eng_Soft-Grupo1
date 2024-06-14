@@ -36,7 +36,9 @@
             </tbody>
         </table>
     </div>
-
+    <form method="POST" action="/logout" class="logout">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>                
     <script src="public/js/user/ScheduleTimeUserCancel.js"></script>
 </body>
 </html>
