@@ -1,77 +1,168 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #A446EE;
-    overflow: auto;
-    position: relative; /* Adicionando position relative para o body */
+    padding: 0;
 }
-.form_container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+body {
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden; /* Evita a barra de rolagem horizontal */
+    background-image: url('BackgroundMedium.png');
+}
+
+.container {
+    display: flex;
+    height: 100%;
     width: 100%;
-    max-width: 500px;
-    margin: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    max-height: 90vh;
 }
-.form_container label {
-    margin-top: 10px;
-    font-weight: bold;
-    display: block;
+
+.container__apresentacao {
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    width: 50%;
+    color: white;
+    user-select: none;
+    display: flex;
+    align-items: flex-end;
 }
-.form_container input[type="text"],
-.form_container input[type="password"],
-.form_container input[type="email"],
-.form_container input[type="date"],
-.form_container input[type="number"] {
+
+.container__apresentacao__background {
     width: 100%;
-    padding: 8px;
-    margin: 5px 0 10px 0;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.apresentacao {
+    font-size: 4rem;
+    position: absolute;
+    bottom: 0;
+    padding: 4%;
+    padding-right: 6%;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #ffffff, #33333300);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container__registro {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 50px;
+    padding-top: 5rem;
+    background-color: #ffffff;
+}
+
+.form__titulo {
+    text-align: left;
+}
+
+.form__titulo h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.container__registro__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.container__registro__esquerda,
+.container__registro__direita {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input, select {
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
 }
-.form_container input[type="checkbox"] {
-    margin-right: 10px;
+
+.checkboxes {
+    display: flex;
+    gap: 140px;
+    align-items: center;
 }
-.form_container .gender-container {
+
+.checkboxes label {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    gap: 1px;
 }
-.form_container .gender-container label {
-    margin-right: 5px;
-    margin-left: 15px;
+
+input[type="checkbox"] {
+    width: 45px;
+    height: 20px;
 }
-.form_container button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007BFF;
+
+button {
+    background-color: #007bff;
     color: white;
-    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: 40%;
+    align-self: center;
     transition: background-color 0.3s ease;
-    box-sizing: border-box;
 }
-.form_container button:hover {
-    background-color: #0056b3;
+
+button:hover {
+    background-color: #0056b3; /* Cor mais escura ao passar o mouse */
 }
-a.home-link {
-    position: absolute; /* Alterando para posição absoluta */
-    top: 20px;
-    left: 20px; /* Ajustando para o canto superior esquerdo */
-    cursor: pointer;
-    color: white; /* Adicionando cor branca para melhor visibilidade */
-    text-decoration: none; /* Removendo sublinhado do link */
-    font-size: 18px; /* Ajustando o tamanho da fonte */
+
+.form__botoes {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.form__botoes p {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.form__botoes p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.header {
+    position: absolute;
+    top: 30px;
+    left: 34px;
+    font-size: 1.9rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
 }
