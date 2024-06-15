@@ -1,8 +1,10 @@
-<link rel="stylesheet" href="../public/css/secretary/info.css">
 <body>
     <div class="header">
         <a href="/homeSecretaria">HealthConnect</a>
     </div>
+    <form method="POST" action="/logoutSecretary" class="logout">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
     <div class="container">
         <h2 class="title">Informações do Paciente</h2>
 
@@ -41,11 +43,9 @@
             <p>Informações do paciente não encontradas.</p>
         <?php endif; ?>
 
-        <a class="button" href="/visualizarAgendamentos">Voltar para a lista de agendamentos</a>
+        <div class="button-container">
+            <a class="login-button" href="/visualizarAgendamentos">Voltar para a lista de agendamentos</a>
+        </div>
     </div>
-
-    <form method="POST" action="/logoutSecretary" class="logout">
-        <button type="submit" class="logout-button">Logout</button>
-    </form>
 </body>
 </html>
