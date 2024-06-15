@@ -60,7 +60,7 @@ class ScheduleTimeSecretaryCancelController
                 unset($patient['senha']);
                 return [
                     "view" => "secretary/infoView.php",
-                    "data" => ["patient" => $patient, "title" => "Informações do Paciente", 'style' => 'public/css/secretary/Info.css']
+                    "data" => ["patient" => $patient, "title" => "Informações do Paciente", 'style' => 'public/css/secretary/info.css']
                 ];
             } else {
                 return [

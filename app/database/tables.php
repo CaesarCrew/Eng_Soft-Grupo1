@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     ["name"=>"secretaria" , "create" => "CREATE TABLE secretaria(
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
