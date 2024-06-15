@@ -4,11 +4,12 @@ namespace app\controllers;
 
 class HomeController{
     public function index($params){
-        
-        
-        return[
+        return [
             "view" => "homeView.php",
-            "data" => ["title" => "Home"]
+            "data" => [
+                "title" => "Home",
+                "style" => "public/css/secretary/info.css"
+            ]
         ];
     }
 }

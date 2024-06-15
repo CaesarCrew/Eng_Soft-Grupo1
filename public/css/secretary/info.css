@@ -11,15 +11,46 @@ body {
     position: relative; /* Necessário para posicionar o header */
 }
 
-h1 {
-    position: absolute;
-    top: 30px;
-    left: 34px;
-    font-size: 1.9rem;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
+.container {
+    border-radius: 16px; /* Reduzido para um design mais compacto */
+    background-color: var(--background-mode, #fff);
+    width: 400px; /* Reduzido para um tamanho mais compacto */
+    max-width: 100%;
+    padding: 32px 48px 48px; /* Reduzido o padding para diminuir o espaço interno */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Exemplo de sombra para destacar o container */
+    text-align: center;
+    position: relative; /* Necessário para o espaçador */
+    margin-top: 100px; /* Ajuste conforme necessário */
+}
+
+.title {
+    color: var(--foreground-high, #101828);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.user-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-button {
+    background-color: var(--container-primary, #1570ef);
+    color: var(--foreground-onColor, #fcfcfd);
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 16px 0;
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
     text-decoration: none;
-    color: white;
+}
+
+.login-button:hover {
+    background-color: #125bb2; /* Cor mais escura ao passar o mouse */
 }
 
 .header {
@@ -34,75 +65,4 @@ h1 {
 .header a {
     text-decoration: none;
     color: white;
-}
-
-.container {
-    background-color: #fff;
-    width: 60%; /* Adjust the width for a wider container */
-    max-width: 600px; /* Ensure the container does not get too large */
-    padding: 40px; /* Increase padding for a 'fatter' look */
-    border-radius: 16px; /* Rounded corners */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-    text-align: center;
-    margin-top: 20px; /* Slight top margin */
-}
-
-h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    text-align: left;
-}
-
-th, td {
-    padding: 15px; /* Increase padding for better spacing */
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-.button {
-    display: inline-block;
-    padding: 12px 24px; /* Increase padding for a bigger button */
-    margin-top: 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 16px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.button:hover {
-    background-color: #0056b3;
-}
-
-.logout {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.logout-button {
-    background-color: #dc3545;
-    color: white;
-    padding: 12px 24px; /* Increase padding for a bigger button */
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #c82333;
 }
