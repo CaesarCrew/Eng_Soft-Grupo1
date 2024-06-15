@@ -1,71 +1,147 @@
+/* Reset de margens para o body e ajustes gerais */
 body {
+    margin: 0;
+    height: 100vh; /* 100% da altura da viewport */
+    background-image: url('BackgroundFull.png');
+    background-size: cover; /* Cobrir toda a área do body */
+    background-position: center; /* Centralizar a imagem */
+    font-family: 'Poppins', sans-serif; /* Exemplo de fonte para o texto */
+    /* Adicione estilos adicionais conforme necessário */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: rgb(164, 70, 238);
 }
+
+.container a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
 .container {
+    border-radius: 20px;
+    background-color: var(--background-mode, #fff);
+    width: 540px;
+    max-width: 100%;
+    padding: 48px 72px 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Exemplo de sombra para destacar o container */
     text-align: center;
 }
-.form_login {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 0 auto;
-    position: relative;
+
+.title {
+    color: var(--foreground-high, #101828);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
 }
-.form_login label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+
+.campo {
+    text-align: left;
+    margin-top: 24px;
 }
-.form_login input[type="text"],
-.form_login input[type="password"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.form_login input[type="submit"] {
+
+.campo label {
+    color: var(--foreground-default, #344054);
+    text-transform: capitalize;
+}
+
+.input-container {
     width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #0056b3;
-    color: white;
+    height: 48px;
+    border-radius: 8px;
+    border: 3px solid rgba(209, 233, 255, 1);
+    padding: 0 12px;
+    box-sizing: border-box;
     font-size: 16px;
+    margin-top: 8px;
+}
+
+.login-button {
+    background-color: var(--container-primary, #1570ef);
+    color: var(--foreground-onColor, #fcfcfd);
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    padding: 16px 0;
+    width: 100%;
+    margin-top: 32px;
+    font-size: 18px;
     cursor: pointer;
 }
-.form_login .link_cadastrar, .form_login .link_esqueceu {
-    float: right;
+
+.login-button:hover {
+    background-color: #125bb2; /* Cor mais escura ao passar o mouse */
 }
-.form_login .link_cadastrar a, .form_login .link_esqueceu a {
-    color: #007BFF;
+
+.forgot-password {
+    color: var(--foreground-primary, #1570ef);
+    font-family: Poppins, sans-serif;
+}
+
+.account-check-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.no-account-text,
+.secretary-login-text {
+    color: var(--foreground-low, #98a2b3);
+    font-family: Poppins, sans-serif;
+    margin-right: 4px;
+}
+
+.signup-link,
+.secretary-login-link {
+    color: var(--foreground-primary, #1570ef);
+    font-family: Poppins, sans-serif;
+}
+
+/* Adicione essas regras de estilo para o header */
+.header {
+    position: absolute;
+    top: 30px;
+    left: 34px;
+    font-size: 1.9rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header a {
     text-decoration: none;
-    font-size: 12px;
-}
-.form_login .link_cadastrar a:hover, .form_login .link_esqueceu a:hover {
-    text-decoration: underline;
-}
-.secretary_login {
-    margin-top: 30px;
-    width: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #622A8F;
-}
-.secretary_login a {
     color: white;
-    text-decoration: none;
-    display: inline-block;
 }
-.secretary_login:hover {
-    cursor: pointer;
-    margin: 1px solid #622A8F;
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .input-container,
+    .login-button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .account-check-container {
+        margin-top: 10px;
+    }
 }

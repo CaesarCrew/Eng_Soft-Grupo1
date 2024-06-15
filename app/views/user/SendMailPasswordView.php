@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redefinir Senha</title>
-    <style>
-       
-    </style>
-</head>
 <body>
-<a href="/home" class="home-link">HOME</a>
-<div class="container">
-    <h1>Redefinir Senha</h1>
-    <div class="form_login">
+    <div class="container">
+        <div class="header">
+            <a href="/home">HealthConnect</a>
+        </div>
+        <h2 class="title">Redefinir Senha</h2>
         <form method="POST" action="/sendMailPassword" id="resetPasswordForm">
-            <label for="email">Seu Email:</label>
-            <input type="email" id="email" name="email" required><br>
-            <button type="submit" name="resetPassword">Redefinir Senha</button>
+            <div class="campo">
+                <label for="email">Seu Email:</label>
+                <div class="input-container">
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <button type="submit" class="login-button" name="resetPassword">Redefinir Senha</button>
         </form>
     </div>
-</div>
-<script src="public/js/user/SendMailPassword.js"></script>
+    <script src="public/js/user/SendMailPassword.js"></script>
 </body>
 </html>
