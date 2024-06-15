@@ -72,30 +72,29 @@ body {
 .container__registro__form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .form {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
 }
 
-.container__registro__esquerda,
-.container__registro__direita {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    font-size: 1rem;
+/* Estilo específico para labels dos campos de entrada */
+.form .input-label {
+    display: block;
+    margin-bottom: 8px; 
 }
 
-.campo {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+/* Estilo específico para labels dos checkboxes */
+.form .checkbox-label {
+    display: block;
 }
 
-input, select {
+.form input, .form select {
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 100%;
@@ -103,21 +102,29 @@ input, select {
     font-size: 1rem;
 }
 
-.checkboxes {
+input::placeholder {
+    color: #888;
+}
+
+.gender-container {
     display: flex;
-    gap: 140px;
+    gap: 130px; /* Espaço entre os elementos */
     align-items: center;
 }
 
-.checkboxes label {
+.gender-container .checkbox-group {
     display: flex;
     align-items: center;
-    gap: 1px;
+    gap: 5px;
 }
 
-input[type="checkbox"] {
-    width: 45px;
-    height: 20px;
+.full-width {
+    flex: 1 1 100%;
+    text-align: center;
+}
+
+.half-width {
+    flex: 1 1 45%;
 }
 
 button {
@@ -129,13 +136,55 @@ button {
     cursor: pointer;
     font-size: 1rem;
     margin-top: 1rem;
-    width: 40%;
+    width: 30%; /* Ajustado para ser menor */
     align-self: center;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+.account-check-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.header {
+    position: absolute;
+    top: 30px;
+    left: 34px;
+    font-size: 1.9rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input[type="checkbox"] {
+    width: 45px;
+    height: 20px;
+}
+
+.checkboxes {
+    display: flex;
+    gap: 240px;
+    align-items: center;
+}
+
+.checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .form__botoes {
@@ -153,16 +202,3 @@ button:hover {
     text-decoration: none;
 }
 
-.header {
-    position: absolute;
-    top: 30px;
-    left: 34px;
-    font-size: 1.9rem;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-}
-
-.header a {
-    text-decoration: none;
-    color: white;
-}
