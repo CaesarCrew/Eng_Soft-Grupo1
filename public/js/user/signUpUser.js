@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    
     document.getElementById("generoM").addEventListener("click", function() {
         genero('m');
     });

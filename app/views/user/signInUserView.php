@@ -1,7 +1,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="#">HealthConnect</a>
+            <a href="/">HealthConnect</a>
         </div>
         <h2 class="title">Login Usuário</h2>
         <form id="form_login" method="POST" action="/login" onsubmit="logarUser(event)">
