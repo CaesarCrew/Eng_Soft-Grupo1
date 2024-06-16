@@ -21,7 +21,7 @@ class ScheduleTimeSecretaryCancelModel extends Connect
 
     public function getAppointments()
     {
-        $sql = "SELECT consulta.id, horario_disponivel.data, horario_disponivel.hora, consulta.tipo_criador, consulta.status_consulta
+        $sql = "SELECT consulta.id, horario_disponivel.data, horario_disponivel.hora, consulta.tipo_criador
                 FROM consulta
                 INNER JOIN horario_disponivel ON consulta.id_horario_disponivel = horario_disponivel.id
                 ORDER BY horario_disponivel.data, horario_disponivel.hora";
@@ -98,18 +98,6 @@ class ScheduleTimeSecretaryCancelModel extends Connect
             }
         } catch (PDOException $e) {
             return false; // Erro ao executar a consulta
-        }
-    }
-
-    public function alterStatus($id_consulta, $novo_status){
-        $stmt = $this->pdo->prepare('UPDATE consulta SET status_consulta = :novo_status WHERE id = :id_consulta');
-        $stmt->bindValue(":id_consulta", $id_consulta, PDO::PARAM_INT);
-        $stmt->bindValue(":novo_status", $novo_status, PDO::PARAM_INT);
-        try{
-            $stmt->execute();
-            return true;
-        } catch(PDOException $e){
-            return false;
         }
     }
 }
