@@ -11,6 +11,10 @@ function routes(){
                 'controller' => "secretary\SchedulingSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/horariosAPI' => [
+                'controller' => "secretary\SchedulingSecretaryController@showScheduleAPI",
+                'middleware' => 'handleSecretary'
+            ],
             '/agendarHorarios' => [
                 'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
@@ -59,14 +63,7 @@ function routes(){
                 'controller' => "user\ScheduleTimeUserController@selectTime",
                 'middleware' => 'handleUser'
             ],
-            '/horarios/delete_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
-                'middleware' => 'handleSecretary'
-            ],
-            '/horarios/put_id/[0-9]+' => [
-                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
-                'middleware' => 'handleSecretary'
-            ],
+            
             '/logoutSecretary' => [
                 'controller' => "secretary\AuthSecretaryController@logoutSecretary",
                 'middleware' => 'logout'
@@ -89,8 +86,22 @@ function routes(){
             ],
         ],
 
-        'PUT' => [],
-        'DELETE' => []
+        'PUT' =>[
+            '/horarios/put_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@putSchedule",
+                'middleware' => 'handleSecretary'
+            ],
+               
+            
+        ],
+        'DELETE' =>[
+            
+            '/horarios/delete_id/[0-9]+' => [
+                'controller' => "secretary\SchedulingSecretaryController@deleteSchedule",
+                'middleware' => 'handleSecretary'
+            ],
+            
+        ]
     ];
 }
 
