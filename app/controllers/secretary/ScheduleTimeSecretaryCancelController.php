@@ -75,4 +75,26 @@ class ScheduleTimeSecretaryCancelController
             'message' => 'Método inválido.'
         ];
     }
+
+    public function alterStatus(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_consulta'])) {
+            $id_consulta = htmlspecialchars($_POST['id_consulta']);
+            $novo_status = htmlspecialchars($_POST['novo_status']);
+            if ($this->model->alterStatus($id_consulta, $novo_status)) {
+                return [
+                    'status' => 'success',
+                    'message' => 'Status atualizado.'
+                ];
+            } else {
+                return [
+                    'status' => 'error',
+                    'message' => 'Falha ao atualizar status.'
+                ];
+            }
+        }
+        return [
+            'status' => 'error',
+            'message' => 'Método inválido.'
+        ];
+    }
 }
