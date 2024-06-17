@@ -34,7 +34,6 @@ return [
         tipo_criador ENUM('usuario','secretaria') NOT NULL,
         id_criador_usuario INT(6) UNSIGNED,
         id_criador_secretaria INT(6) UNSIGNED,
-        status_consulta TINYINT NOT NULL CHECK (status_consulta  IN (0, 1, 2)),
         FOREIGN KEY (id_horario_disponivel) REFERENCES horario_disponivel(id) ON DELETE CASCADE,
         FOREIGN KEY (id_criador_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
         FOREIGN KEY (id_criador_secretaria) REFERENCES secretaria(id) ON DELETE CASCADE
