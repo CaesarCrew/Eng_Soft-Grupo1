@@ -37,7 +37,7 @@ class ScheduleTimeSecretaryModel extends Connect
             $id_paciente = $this->checkPatient($cpf);
 
             if ($tipo_criador == 'secretaria' && $id_paciente != null) {
-                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario, id_criador_secretaria, status_consulta) VALUES (:id_horario, :tipo_criador, :id_paciente ,:id_criador, 0)");
+                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario, id_criador_secretaria) VALUES (:id_horario, :tipo_criador, :id_paciente ,:id_criador)");
             } else {
                 return false;
             }
