@@ -1,7 +1,7 @@
 document.getElementById("select-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const confirmSubmission = confirm("Deseja comfirmar o agendamento?");
+    const confirmSubmission = confirm("Deseja confirmar o agendamento?");
     if (!confirmSubmission) {
         return;
     }
