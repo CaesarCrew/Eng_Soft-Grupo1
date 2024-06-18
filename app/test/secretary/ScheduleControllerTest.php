@@ -66,7 +66,7 @@ class ScheduleControllerTest extends TestCase
         $url = 'http://localhost/horarios';
         $postData = [
             'data' => '2025-06-01',
-            'times' => ['09:00' ,'09:15' , '09:30']
+            'times' => ['09:00' ,'09:15' , '09:30' ,'11:30']
         ];
 
         $result = $this->simulatePostRequest($url, $postData);
