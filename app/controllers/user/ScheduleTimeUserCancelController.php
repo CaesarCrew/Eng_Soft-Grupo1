@@ -18,6 +18,7 @@ class ScheduleTimeUserCancelController
     public function showAppointments()
     {
         $appointments = $this->model->getUserAppointments($_SESSION['user_id']);
+        
         $viewData = [
             "appointments" => $appointments,
             "title" => "Meus Agendamentos",
