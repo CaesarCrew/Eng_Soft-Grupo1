@@ -42,5 +42,27 @@ class AuthSecretaryControllerTest extends TestCase {
 
         $this->assertStringContainsString('"status":"error"', $output, "Teste de login com dados incompletos falhou.");
     }
+
+    public function testEmptyCredentials() {
+        $postData = [
+            'usuario' => '',
+            'senha' => ''
+        ];
+        $output = $this->simulatePostRequest('http://localhost/loginSecretaria', $postData);
+
+        $this->assertStringContainsString('"status":"error"', $output, "Teste de login com credenciais vazias falhou.");
+    }
+
+    public function testSQLInjectionAttempt() {
+        $postData = [
+            'usuario' => "' OR '1'='1",
+            'senha' => "' OR '1'='1"
+        ];
+        $output = $this->simulatePostRequest('http://localhost/loginSecretaria', $postData);
+
+        $this->assertStringContainsString('"status":"error"', $output, "Teste de login com tentativa de SQL injection falhou.");
+    }
+
+   
 }
 ?>

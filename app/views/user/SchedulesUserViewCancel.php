@@ -23,7 +23,7 @@
                             <td><?php echo htmlspecialchars($appointment['id']); ?></td>
                             <td><?php echo htmlspecialchars(date('d/m/Y', strtotime($appointment['data']))); ?></td>
                             <td><?php echo htmlspecialchars($appointment['hora']); ?></td>
-                            <td><?php switch ($appointment['status_consulta']) {
+                            <td><?php switch ($appointment['status']) {
                                 case 0:
                                     echo "Pendente";
                                 break;

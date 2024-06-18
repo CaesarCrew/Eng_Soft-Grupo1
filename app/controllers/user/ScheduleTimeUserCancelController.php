@@ -7,10 +7,12 @@ use app\model\ScheduleTimeUserCancelModel;
 class ScheduleTimeUserCancelController
 {
     private $model;
+    private $headerFunction;
 
-    public function __construct()
+    public function __construct($headerFunction = 'header')
     {
         $this->model = new ScheduleTimeUserCancelModel();
+        $this->headerFunction = $headerFunction;
     }
 
     public function showAppointments()
@@ -29,21 +31,21 @@ class ScheduleTimeUserCancelController
 
     public function cancelAppointment()
     {
-    header('Content-Type: application/json');
+        ($this->headerFunction)('Content-Type: application/json');
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_consulta'])) {
-        $id_consulta = htmlspecialchars($_POST['id_consulta']);
-        
-        if ($this->model->cancelAppointment($id_consulta)) {
-            echo json_encode(['message' => 'Consulta cancelada com sucesso']);
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_consulta'])) {
+            $id_consulta = htmlspecialchars($_POST['id_consulta']);
+            
+            if ($this->model->cancelAppointment($id_consulta)) {
+                echo json_encode(['message' => 'Consulta cancelada com sucesso']);
+            } else {
+                ($this->headerFunction)('HTTP/1.1 500 Internal Server Error');
+                echo json_encode(['message' => 'Falha ao cancelar a consulta']);
+            }
         } else {
-            http_response_code(500); // Código de erro interno do servidor
-            echo json_encode(['message' => 'Falha ao cancelar a consulta']);
+            ($this->headerFunction)('HTTP/1.1 400 Bad Request');
+            echo json_encode(['message' => 'Requisição inválida']);
         }
-    } else {
-        http_response_code(400); // Código de erro de solicitação inválida
-        echo json_encode(['message' => 'Requisição inválida']);
-    }
     }
 }
 ?>
