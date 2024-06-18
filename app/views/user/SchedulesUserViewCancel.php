@@ -23,19 +23,7 @@
                             <td><?php echo htmlspecialchars($appointment['id']); ?></td>
                             <td><?php echo htmlspecialchars(date('d/m/Y', strtotime($appointment['data']))); ?></td>
                             <td><?php echo htmlspecialchars($appointment['hora']); ?></td>
-                            <td><?php switch ($appointment['status_consulta']) {
-                                case 0:
-                                    echo "Pendente";
-                                break;
-                                case 1:
-                                    echo "Realizada";
-                                break;
-                                case 2:
-                                    echo "Não compareceu";
-                                break;
-                                default:
-                                    echo "Status desconhecido";
-                                break;}?></td>
+                            <td><?php echo htmlspecialchars($appointment['status']);?></td>
                             <td class="button-container">
                                 <button type="button" class="cancel-button" onclick="cancelAppointment(<?php echo htmlspecialchars($appointment['id']); ?>)">Cancelar</button>
                                 <form id="cancel-form-<?php echo htmlspecialchars($appointment['id']); ?>" method="POST" action="/cancelarConsultaUsuario" style="display: none;">
