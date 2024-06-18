@@ -71,30 +71,15 @@ class SchedulingSecretaryController{
     }
 
     public function showScheduleAPI(){
-        $page = 1;
-    
-        if(isset($_GET["pagina"])){
-            $page = filter_input(INPUT_GET, "pagina" ,FILTER_VALIDATE_INT);
-        }
-    
-        if (!$page) {
-            $page = 1;
-        }
-    
-        $limite = 4;
-        $inicio = ($page * $limite) - $limite;
-    
+        
         $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-        $dados = $SchedulingSecretaryModel->getTimeTables($inicio , $limite);
-    
-        $amount = $SchedulingSecretaryModel->numberOfLines();
-        $pages = ceil((int)$amount[0]["count"]/ $limite);
+        $dados = $SchedulingSecretaryModel->getTimeTables(0 , 10000000000);
     
         $SchedulingSecretaryModel->closeConnection();
     
         // Retornar os dados em formato JSON
         header('Content-Type: application/json');
-        echo json_encode(["dados" => $dados, "page" => $page, "pages" => $pages]);
+        echo json_encode(["dados" => $dados]);
     }
     
     public function AddScheduleForm() {

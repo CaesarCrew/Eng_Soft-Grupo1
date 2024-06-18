@@ -19,6 +19,10 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryController@showSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/agendarHorariosAPI' => [
+                'controller' => "secretary\ScheduleTimeSecretaryController@showScheduleAPI",
+                'middleware' => 'handleSecretary'
+            ],
             '/agendarHorariosPaciente' => [
                 'controller' => "user\ScheduleTimeUserController@showSchedule",
                 'middleware' => 'handleUser'
@@ -59,6 +63,7 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryController@selectTime",
                 'middleware' => 'handleSecretary'
             ],
+            
             '/selecionarHorario_paciente' => [
                 'controller' => "user\ScheduleTimeUserController@selectTime",
                 'middleware' => 'handleUser'

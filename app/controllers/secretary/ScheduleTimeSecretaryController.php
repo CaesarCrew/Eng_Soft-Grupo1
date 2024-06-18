@@ -17,6 +17,8 @@ class ScheduleTimeSecretaryController
     public function showSchedule()
     {
         $schedules = $this->model->getAvailableSchedules();
+
+        echo json_encode(["dados" => $schedules]);
         $viewData = [
             "schedules" => $schedules,
             "title" => "Realizar Agendamento",
@@ -27,7 +29,13 @@ class ScheduleTimeSecretaryController
             "data" => $viewData
         ];
     }
+    public function showScheduleAPI()
+    {
+        $schedules = $this->model->getAvailableSchedules();
 
+        echo json_encode(["dados" => $schedules]);
+    }
+    
     public function selectTime()
     {
         $validateDataUser = new AuthValidator;
@@ -63,6 +71,7 @@ class ScheduleTimeSecretaryController
             // Adicionar os agendamentos selecionados
             $messages = [];
             foreach ($selectedSchedules as $id) {
+                
                 if ($this->model->addSchedule($id, 'secretaria', $secretaryId, $cpf)) {
                     // $messages[] = "Agendamento feito com sucesso!";
                     http_response_code(200);
@@ -79,7 +88,7 @@ class ScheduleTimeSecretaryController
                     ]);
                 }
             }
-
+            return;
             
         } else {
             http_response_code(405);

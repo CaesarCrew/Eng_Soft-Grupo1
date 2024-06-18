@@ -66,7 +66,7 @@ class ScheduleControllerTest extends TestCase
         $url = 'http://localhost/horarios';
         $postData = [
             'data' => '2025-06-01',
-            'times' => ['09:00']
+            'times' => ['09:00' ,'09:15' , '09:30']
         ];
 
         $result = $this->simulatePostRequest($url, $postData);
@@ -141,7 +141,7 @@ class ScheduleControllerTest extends TestCase
         ];
 
         
-        $nonExistentId = 1;
+        $nonExistentId = 535;
         $putUrl = $url . '/put_id/' . $nonExistentId;
         $ch = curl_init($putUrl);
 
