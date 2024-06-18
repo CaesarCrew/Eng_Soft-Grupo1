@@ -87,6 +87,10 @@ function routes(){
                 'controller' => "secretary\ScheduleTimeSecretaryCancelController@cancelSchedule",
                 'middleware' => 'handleSecretary'
             ],
+            '/updateStatus' => [
+                'controller' => "secretary\ScheduleTimeSecretaryCancelController@updateStatus",
+                'middleware' => 'handleSecretary'
+            ],
         ],
 
         'PUT' => [],
