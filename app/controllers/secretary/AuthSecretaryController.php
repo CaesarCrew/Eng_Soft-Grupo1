@@ -18,25 +18,26 @@ class AuthSecretaryController{
 
     public function signIn() {
         $AuthSecretaryModel = new AuthSecretaryModel;
-
+        
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
             
         
-           
+            
+            
             if (!empty($data["usuario"]) && !empty($data["senha"])) {
                 $usuario = $data["usuario"];
                 $senha = $data["senha"];
 
                 $secretary_id = $AuthSecretaryModel->checkUser($usuario, $senha);
-
+                
                 if ($secretary_id) {
                     $_SESSION['secretary_id'] = $secretary_id;
                     $_SESSION['tipo_secretary'] = 'secretaria';
                     http_response_code(200);
                     echo json_encode([
                         'status' => 'success',
-                        'message' => 'Login successful'
+                        'message' => 'Login success'
                     ]);
 
                 } else {
@@ -63,6 +64,7 @@ class AuthSecretaryController{
                 'message' => 'Método não permitido.'
             ]);
         }
+        
     }
     
 }

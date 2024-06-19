@@ -35,8 +35,8 @@ class ScheduleTimeUserModel extends Connect
         if (!$this->checkRegistered($id_horario)) {
 
             if ($tipo_criador == 'usuario' && $id_paciente != null) {
-                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario) 
-                                             VALUES (:id_horario, :tipo_criador, :id_paciente)");
+                $stmt = $this->pdo->prepare("INSERT INTO consulta (id_horario_disponivel, tipo_criador, id_criador_usuario, status) 
+                                             VALUES (:id_horario, :tipo_criador, :id_paciente, 'pendente')");
             } else {
                 return false;
             }

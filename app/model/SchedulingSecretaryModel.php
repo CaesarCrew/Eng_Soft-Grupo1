@@ -27,8 +27,8 @@ class SchedulingSecretaryModel extends Connect{
             $stmt->bindParam(':time', $time);
             try {
                 $stmt->execute();
-                
-                 return ["status" => "success","mensagem" => "horario cadastrado com succeso"];
+                $lastInsertId = $this->pdo->lastInsertId();
+                return ["status" => "success", "mensagem" => "Horário cadastrado com sucesso", "id" => $lastInsertId];
             } catch (PDOException $e) {
                 return ["status" => "error","mensagem" => $e->getMessage()];
             }

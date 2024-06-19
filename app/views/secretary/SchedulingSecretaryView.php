@@ -1,14 +1,14 @@
 <body>
 
-    <div class="header">
-        <a href="/homeSecretaria">HealthConnect</a>
-    </div>
+    <header>
+        <a href="/homeSecretaria" class="home-link">HealthConnect</a>
+    </header>
 
     <div class="container">
         <form id="form-horarios" method="POST" action="/horarios" onsubmit="AddHorario(event)">
             <label for="data">Data:</label>
             <input type="date" id="data" name="data" required>
-            
+
             <label for="times[]">Hora:</label>
             <select name="times[]" multiple id="timesSelect">
                 <?php
@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($dados as $dado) { ?>
+                <?php foreach ($dados as $dado) { ?>
                     <tr>
                         <td><?php echo $dado["dia_da_semana"]; ?></td>
                         <td>
@@ -58,22 +58,21 @@
 
         <div class="pagination">
             <a href="?pagina=1">Primeira</a>
-            <?php if($page > 1): ?>
-                <a href="?pagina=<?= $page - 1 ?>"><<<</a>
-            <?php endif; ?>
-            <?= $page; ?>
-            <?php if($page < $pages): ?>
-                <a href="?pagina=<?= $page + 1 ?>">>>></a>
-            <?php endif; ?>
-            <a href="?pagina=<?= $pages ?>">Última</a>
+            <?php if ($page > 1) : ?>
+                <a href="?pagina=<?= $page - 1 ?>">
+                    <<<< /a>
+                    <?php endif; ?>
+                    <?= $page; ?>
+                    <?php if ($page < $pages) : ?>
+                        <a href="?pagina=<?= $page + 1 ?>">>>></a>
+                    <?php endif; ?>
+                    <a href="?pagina=<?= $pages ?>">Última</a>
         </div>
     </div>
 
-    <!-- <div class="logout"> 
-        <button onclick="window.location.href='/logoutSecretary'">Logout</button>
-    </div> -->
 
     <script src="public/js/secretary/SchedulingSecretary.js"></script>
 
 </body>
+
 </html>

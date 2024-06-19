@@ -21,7 +21,7 @@ class ScheduleTimeUserCancelModel extends Connect
 
     public function getUserAppointments($user_id)
     {
-        $sql = "SELECT consulta.id, horario_disponivel.data, horario_disponivel.hora
+        $sql = "SELECT consulta.id, horario_disponivel.data, horario_disponivel.hora, status
                 FROM consulta
                 INNER JOIN horario_disponivel ON consulta.id_horario_disponivel = horario_disponivel.id
                 WHERE consulta.id_criador_usuario = :user_id
