@@ -202,3 +202,4 @@ Este requisito permite que a secretaria visualize as informações dos pacientes
 - O sistema deve verificar as permissões do usuário para garantir que apenas indivíduos autorizados possam visualizar as informações dos pacientes.
 - A funcionalidade de busca deve ser responsiva e exibir resultados relevantes rapidamente.
 
+
