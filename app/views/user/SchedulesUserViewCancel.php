@@ -24,6 +24,7 @@
                             <td><?php echo htmlspecialchars(date('d/m/Y', strtotime($appointment['data']))); ?></td>
                             <td><?php echo htmlspecialchars($appointment['hora']); ?></td>
                             <td><?php echo htmlspecialchars($appointment['status']);?></td>
+
                             <td class="button-container">
                                 <button type="button" class="cancel-button" onclick="cancelAppointment(<?php echo htmlspecialchars($appointment['id']); ?>)">Cancelar</button>
                                 <form id="cancel-form-<?php echo htmlspecialchars($appointment['id']); ?>" method="POST" action="/cancelarConsultaUsuario" style="display: none;">

@@ -64,69 +64,84 @@ class SchedulingSecretaryController{
             ];
             $dayOfTheWeek = $daysOfTheWeek[$dateTime->format('N')];
         } else {
-            echo "A data $date não é válida.";
+            echo "A data $date nao eh valida.";
             return null;
         }
         return $dayOfTheWeek;
     }
 
+    public function showScheduleAPI(){
+        
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        $dados = $SchedulingSecretaryModel->getTimeTables(0 , 10000000000);
+    
+        $SchedulingSecretaryModel->closeConnection();
+    
+        // Retornar os dados em formato JSON
+        header('Content-Type: application/json');
+        echo json_encode(["dados" => $dados]);
+    }
+    
     public function AddScheduleForm() {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $date = isset($data['data']) ? $data['data'] : null;
-    $times = isset($data['times']) ? $data['times'] : [];
-    $formatoTime = 'H:i';
-
-    // Verificar se a data fornecida é anterior à data atual
-    $currentDate = date('Y-m-d');
-    if ($date < $currentDate) {
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Não é possível cadastrar horários anteriores à data atual.']);
-        return;
-    }
-
-    if (!$date || empty($times)) {
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Data ou horários não fornecidos.']);
-        return;
-    }
-
-    $dayOfTheWeek = $this->dayOfTheWeek($date);
-
-    if ($dayOfTheWeek === null) {
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Data inválida.']);
-        return;
-    }
-
-    $SchedulingSecretaryModel = new SchedulingSecretaryModel;
-    foreach ($times as $time) {
-        $dateTime = \DateTime::createFromFormat($formatoTime, $time);
-        if (!$dateTime || $dateTime->format($formatoTime) !== $time) {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $date = isset($data['data']) ? $data['data'] : null;
+        $times = isset($data['times']) ? $data['times'] : [];
+        $formatoTime = 'H:i';
+        
+        if (!$date || empty($times)) {
             http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => "A hora $time não é válida."]);
+            echo json_encode(['status' => 'error', 'message' => 'Data ou horarios nao fornecidos.']);
             return;
         }
-        $response = $SchedulingSecretaryModel->add($dayOfTheWeek, $date, $time);
-        if ($response["status"] === "error") {
+    
+        // Verificação de data passada
+        $currentDate = new \DateTime();
+        $providedDate = \DateTime::createFromFormat('Y-m-d', $date);
+    
+        if (!$providedDate || $providedDate < $currentDate) {
             http_response_code(400);
-            echo json_encode($response);
+            echo json_encode(['status' => 'error', 'message' => 'Data passada ou invalida.']);
             return;
         }
+    
+        $dayOfTheWeek = $this->dayOfTheWeek($date);
+    
+        if ($dayOfTheWeek === null) {
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'Data invalida.']);
+            return;
+        }
+    
+        $SchedulingSecretaryModel = new SchedulingSecretaryModel;
+        foreach ($times as $time) {
+            $dateTime = \DateTime::createFromFormat($formatoTime, $time);
+            if (!$dateTime || $dateTime->format($formatoTime) !== $time) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => "A hora $time nao eh valida."]);
+                return;
+            }
+            $response = $SchedulingSecretaryModel->add($dayOfTheWeek, $date, $time);
+            if($response["status"] === "error"){
+                http_response_code(400);
+                echo json_encode($response);
+                return;
+            }
+        }
+    
+        $SchedulingSecretaryModel->closeConnection();
+    
+        http_response_code(201);
+        echo json_encode($response);
+       
     }
-
-    $SchedulingSecretaryModel->closeConnection();
-
-    http_response_code(201);
-    echo json_encode(['status' => 'success', 'message' => 'Horários adicionados com sucesso.']);
-}
-
+    
     
     public function deleteSchedule($params){
         
         $id = isset($params["delete_id"]) ? $params["delete_id"] : null;
         if (!$id) {
             http_response_code(400); 
-            echo json_encode(['status' => 'error', 'message' => 'ID inválido.']);
+            echo json_encode(['status' => 'error', 'message' => 'ID invalido.']);
             return;
         }
         $SchedulingSecretaryModel = new SchedulingSecretaryModel;

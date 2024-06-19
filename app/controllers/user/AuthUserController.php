@@ -4,6 +4,7 @@ namespace app\controllers\user;
 
 use app\model\AuthUserModel;
 use app\validators\AuthValidator;
+use app\validators\AddressValidator;
 use PHPMailer\PHPMailer\Exception;
 
 require 'smtp.php'; //adicionar arquivo stmp.php com a sua configuração do stmp
@@ -39,8 +40,8 @@ class authUserController {
             $genero = $data["genero"];
             $data_de_nascimento = $data["data_de_nascimento"];
             
-            $validateDataUSer = $validateDataUser->ValidatorSignUp($nome, $senha, $email, $telefone, $cpf, $genero, $data_de_nascimento);
-            if (!$validateDataUSer) {
+            $response = $validateDataUser->ValidatorSignUp($nome, $senha, $email, $telefone, $cpf, $genero, $data_de_nascimento);
+            if (!$response) {
                 
                 http_response_code(400); // Bad Request
                 echo json_encode(["status" => "error", "message" => "Dados de validacao invalidos."]);
@@ -61,6 +62,16 @@ class authUserController {
             $cidade = isset($data["cidade"]) ? $data["cidade"] : null;
             $estado = isset($data["estado"]) ? $data["estado"] : null;
             
+            $AddressValidator = new AddressValidator;
+
+            $response = $AddressValidator->validator($cep,$logradouro,$numero,$bairro,$cidade,$estado);
+            if (!$response) {
+                
+                http_response_code(400); // Bad Request
+                echo json_encode(["status" => "error", "message" => "Dados de validacao invalidos."]);
+                return;
+            }
+
             $singUpSalve = $AuthUserModel->signUp($nome, $senhaHash, $email, $telefone, $cpf, $genero, $dateTime, $cep, $logradouro, $numero, $complemento, $bairro, $cidade, $estado);
             
             if($singUpSalve){
@@ -146,7 +157,7 @@ class authUserController {
                 $mail->Body = 'Olá! Clique no link a seguir para redefinir sua senha: <a href="http://localhost/resetPasswordConfirm?token=' . urlencode($token) . '">Redefinir senha</a>';
     
                 $mail->send();
-                echo json_encode(['status' => 'success', 'message' => 'Email enviado com sucesso! Verifique sua caixa de entrada para redefinir sua senha.']);
+                echo json_encode(['status' => 'success', 'message' => 'Email enviado com sucesso! Verifique sua caixa de entrada para redefinir sua senha.'  , "token" => $token]);
             } catch (Exception $e) {
                 echo json_encode(['status' => 'error', 'message' => 'O email não pôde ser enviado. Erro: ' . $mail->ErrorInfo]);
             }

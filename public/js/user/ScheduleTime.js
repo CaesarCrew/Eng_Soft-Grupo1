@@ -28,7 +28,7 @@ document.getElementById("select-form").addEventListener("submit", async (event) 
         const responseData = JSON.parse(text);
 
         if (responseData.status === 'success') {
-            alert(responseData.messages.join('\n'));
+            alert(responseData.messages);
         } else {
             alert(responseData.message);
         }
