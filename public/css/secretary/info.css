@@ -1,14 +1,39 @@
 body {
-    margin: 0;
-    height: 100vh;
+    margin-top: 0px;
+    height: 100vh; /* 100% da altura da viewport */
     background-image: url('BackgroundFull.png');
-    background-size: cover;
-    background-position: center; 
-    font-family: 'Poppins', sans-serif; 
+    background-size: cover; /* Cobrir toda a área do body */
+    background-position: center; /* Centralizar a imagem */
+    font-family: 'Poppins', sans-serif; /* Fonte para o texto */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    flex-direction: column; /* Direção da flexbox */
+    align-items: center; /* Alinhamento no centro */
+    justify-content: flex-start; /* Justificação ao topo */
+}
+
+.container a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+header {
+    width: 90%;
+    padding-bottom: 80px;
+    background-image: url('BackgroundFull.png');
+    background-size: cover; /* Cobrir toda a área do body */
+    background-position: center; /* Fundo semi-transparente para destacar o cabeçalho */
+    padding: 20px 20px; /* Espaçamento interno */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    z-index: 1000; /* Z-index alto para estar acima do conteúdo */
+    position: relative; /* Fixa o cabeçalho no topo da tela */
+    top: 0;
+    left: 0;
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+header .home-link {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
 }
 
 .container {
@@ -272,4 +297,35 @@ th {
 
 .logout-button:hover {
     background-color: #c9302c;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 30px;
+        width: 90%;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .input-container,
+    .login-button {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .account-check-container {
+        margin-top: 10px;
+    }
 }
