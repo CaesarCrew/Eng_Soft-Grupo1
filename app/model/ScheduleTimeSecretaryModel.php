@@ -21,7 +21,10 @@ class ScheduleTimeSecretaryModel extends Connect
 
     public function getAvailableSchedules()
     {
-        $sql = "SELECT id, data, hora, dia_da_semana, disponivel FROM horario_disponivel WHERE disponivel = 1";
+        $sql = "SELECT id, data, hora, dia_da_semana, disponivel 
+                FROM horario_disponivel 
+                WHERE disponivel = 1 
+                AND CONCAT(data, ' ', hora) >= NOW()"; // Ajuste para selecionar horários futuros
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
