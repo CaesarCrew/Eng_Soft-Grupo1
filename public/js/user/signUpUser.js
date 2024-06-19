@@ -57,6 +57,6 @@ try {
     }
 } catch (error) {
     console.error('Erro:', error);
-    alert('Ocorreu um erro ao tentar se cadastrar.');
+    alert('Ocorreu um erro ao tentar se cadastrar. Verifique se os dados do formulário estão correto');
 }
 });

@@ -18,7 +18,7 @@ class ScheduleTimeSecretaryController
     {
         $schedules = $this->model->getAvailableSchedules();
 
-        echo json_encode(["dados" => $schedules]);
+        json_encode(["dados" => $schedules]);
         $viewData = [
             "schedules" => $schedules,
             "title" => "Realizar Agendamento",

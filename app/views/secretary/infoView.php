@@ -47,7 +47,6 @@
                     <td>
                         <input type="hidden" id="id_consulta" value="<?php echo htmlspecialchars($_GET['id_consulta']); ?>">
                         <div class="info-button-container">
-                            <button type="button" name="status" value="cancelada" class="info-button">Consulta Cancelada</button>
                             <button type="button" name="status" value="concluida" class="info-button">Consulta Concluída</button>
                             <button type="button" name="status" value="nao_compareceu" class="info-button">Não Compareceu</button>
                             <button type="button" name="status" value="pendente" class="info-button">Pendente</button>
