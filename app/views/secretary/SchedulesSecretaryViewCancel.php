@@ -13,6 +13,7 @@
                     <th>Data</th>
                     <th>Hora</th>
                     <th>Criado Por</th>
+                    <th>Status</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                             <td><?php echo htmlspecialchars(date('d/m/Y', strtotime($appointment['data']))); ?></td>
                             <td><?php echo htmlspecialchars($appointment['hora']); ?></td>
                             <td><?php echo htmlspecialchars($appointment['tipo_criador']); ?></td>
+                            <td><?php echo htmlspecialchars($appointment['status'] ?? 'pendente'); ?></td>
                             <td class="button-container">
                                 <button type="button" class="cancel-button" onclick="confirmCancellation(<?php echo htmlspecialchars($appointment['id']); ?>)">Cancelar</button>
                                 <form id="cancel-form-<?php echo htmlspecialchars($appointment['id']); ?>" method="POST" action="/cancelarHorario" style="display: none;">
@@ -40,7 +42,7 @@
                     <?php endforeach; ?>
                 <?php else : ?>
                     <tr>
-                        <td colspan="5">Nenhum agendamento encontrado</td>
+                        <td colspan="6">Nenhum agendamento encontrado</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

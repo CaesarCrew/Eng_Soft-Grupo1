@@ -5,14 +5,19 @@ class Database {
 
     public function checkBankAndTable($pdo , $dbname){
 
-        $dbname = $_ENV['DB_NAME'];
+        if($_ENV['AMBIENTE'] === "TEST"){
+            $dbname = $_ENV['DB_NAME_TEST'];
+        }else{
+            $dbname = $_ENV['DB_NAME'];
+        }
+        
         $stmt = $pdo->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbname'");
         $databaseExists = $stmt->rowCount() > 0;
         
         if (!$databaseExists) {
             
             $pdo->exec("CREATE DATABASE $dbname");
-            echo "Banco de dados '$dbname' criado com sucesso!<br>";
+            // echo "Banco de dados '$dbname' criado com sucesso!<br>";
         }else{
             return;
         }
@@ -29,7 +34,7 @@ class Database {
             if (!$tableExists) {
                 
                 $pdo->exec($table['create']);
-                echo "Tabela '{$table['name']}' criada com sucesso!<br>";
+                // echo "Tabela '{$table['name']}' criada com sucesso!<br>";
             }
         }
     }

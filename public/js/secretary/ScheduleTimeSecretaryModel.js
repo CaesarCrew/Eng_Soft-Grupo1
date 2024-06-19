@@ -1,7 +1,7 @@
 document.getElementById("select-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const confirmSubmission = confirm("Deseja comfirmar o agendamento?");
+    const confirmSubmission = confirm("Deseja confirmar o agendamento?");
     if (!confirmSubmission) {
         return;
     }
@@ -25,9 +25,9 @@ document.getElementById("select-form").addEventListener("submit", async (event) 
 
         const text = await response.text();
         const responseData = JSON.parse(text);
-
+        console.log(responseData )
         if (responseData.status === 'success') {
-            alert(responseData.messages.join('\n'));
+            alert(responseData.messages);
         } else {
             alert(responseData.message);
         }

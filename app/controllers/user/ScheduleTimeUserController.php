@@ -33,27 +33,37 @@ class ScheduleTimeUserController
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = json_decode(file_get_contents('php://input'), true);
 
-
             if (!empty($data["selected_schedules"]) && !empty($data['user_id'])) {
                 $selectedSchedules = $data['selected_schedules'] ?? [];
                 $patientId = $data['user_id'] ?? '';
-
-                // Adicionar os agendamentos selecionados
-                $messages = [];
+               
+            
+                
                 foreach ($selectedSchedules as $id) {
                     if ($this->model->addSchedule($id, 'usuario', $patientId)) {
-                        $messages[] = "Agendamento feito com sucesso!";
+                      // $messages[] = "Agendamento feito com sucesso!";
+                    http_response_code(200);
+                    echo json_encode([
+                        'status' => 'success',
+                        'messages' => "Agendamento feito com sucesso!"
+                    ]);
                     } else {
-                        $messages[] = "Falha ao selecionar o horário com ID $id.";
+                        
+                        http_response_code(500);
+                        echo json_encode([
+                            'status' => 'error',
+                            'messages' =>  "Falha ao selecionar o horario com ID $id."
+                        ]);
                     }
                 }
 
-                http_response_code(200);
+               
+            }else {
+                http_response_code(405);
                 echo json_encode([
-                    'status' => 'success',
-                    'messages' => $messages
-                ]);
-            }
+                    'status' => 'error',
+                    'message' => 'Método não permitido.'
+                ]);}
         } else {
             http_response_code(405);
             echo json_encode([

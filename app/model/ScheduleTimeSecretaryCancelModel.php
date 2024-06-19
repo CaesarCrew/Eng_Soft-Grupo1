@@ -21,12 +21,12 @@ class ScheduleTimeSecretaryCancelModel extends Connect
 
     public function getAppointments()
     {
-        $sql = "SELECT consulta.id, horario_disponivel.data, horario_disponivel.hora, consulta.tipo_criador
-                FROM consulta
-                INNER JOIN horario_disponivel ON consulta.id_horario_disponivel = horario_disponivel.id
-                ORDER BY horario_disponivel.data, horario_disponivel.hora";
-        $stmt = $this->pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "SELECT consulta.id, horario_disponivel.data, horario_disponivel.hora, consulta.tipo_criador, consulta.status
+            FROM consulta
+            INNER JOIN horario_disponivel ON consulta.id_horario_disponivel = horario_disponivel.id
+            ORDER BY horario_disponivel.data, horario_disponivel.hora";
+    $stmt = $this->pdo->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function cancelSchedule($id)
@@ -100,5 +100,54 @@ class ScheduleTimeSecretaryCancelModel extends Connect
             return false; // Erro ao executar a consulta
         }
     }
+    public function getStatus($id_consulta)
+    {
+        $sql = "SELECT status FROM consulta WHERE id = :id_consulta";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id_consulta', $id_consulta, PDO::PARAM_INT);
+
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result) { 
+                return $result['status']; // Retorna o status da consulta
+            } else {
+                return 'N/A'; // Status não encontrado
+            }
+        } catch (PDOException $e) {
+            return 'N/A'; // Erro ao executar a consulta
+        }
+    }
+    public function updateStatus($id, $status)
+    {
+        // Mapeamento dos status recebidos para os valores da tabela
+        $statusMapping = [
+            'cancelada' => 'cancelado',
+            'concluida' => 'concluído',
+            'nao_compareceu' => 'não compareceu',
+            'pendente' => 'pendente' // Adicionando 'pendente' ao mapeamento
+        ];
+
+    // Verifica se o status recebido está mapeado; se não, retorna falso
+    if (!array_key_exists($status, $statusMapping)) {
+        return false;
+    }
+
+    // Obtém o valor correto do mapeamento
+    $statusTabela = $statusMapping[$status];
+
+    // Atualiza o status na tabela consulta
+    $sql = "UPDATE consulta SET status = :status WHERE id = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(':status', $statusTabela, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    try {
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        return false;
+    }
+}
 }
 ?>
