@@ -1,0 +1,9 @@
+DB_HOST = 
+DB_USERNAME = 
+DB_PASSWORD = 
+DB_NAME = 
+
+DB_NAME_TEST = HealthConnect_TEST
+
+
+AMBIENTE = TEST
