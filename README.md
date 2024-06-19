@@ -7,7 +7,7 @@
 Nosso sistema web, projetado especialmente para simplificar sua vida quando se trata de agendar consultas médicas.
 Adeus às intermináveis chamadas telefônicas e longas esperas por uma resposta. Com nosso sistema, você pode agendar sua consulta em questão de minutos, tudo com alguns cliques simples. Libere seu tempo para o que realmente importa na sua vida!
 
-<<<<<<< HEAD
+
 ## link com tutorial de como rodar o projeto e os testes :
 https://www.youtube.com/watch?v=z731A3yN_uA&ab_channel=gabriel123
 
@@ -39,10 +39,10 @@ https://www.youtube.com/watch?v=z731A3yN_uA&ab_channel=gabriel123
 
 ## Relatórios de gestão
 
-=======
+
 ## Relatórios de gestão
 
->>>>>>> a340c93ca40b1acb0ed466d5f5ccf6753a5da9a7
+
 **Link Trello:** https://trello.com/b/nZVoiD8E/kanban
 
 
