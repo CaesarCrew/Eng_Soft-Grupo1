@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+
 <body>
     <div class="container">
         <div class="container__apresentacao">
-            <img src="public/css/user/BackgroundMedium.png" alt="BackgroundMedium" class="container__apresentacao__background">
-            <div class="header">
-                <a href="/home" class="home-link">HealthConnect</a>
+            <div class="background-image">
+                <img src="public/css/user/BackgroundMedium.png" alt="BackgroundMedium" class="container__apresentacao__background">
+                <h1 class="apresentacao">Bem-vindo. <br> Comece sua jornada agora com nosso sistema de gestão!</h1>
             </div>
-            <h1 class="apresentacao">Bem-vindo. <br> Comece sua jornada agora com nosso sistema de gestão!</h1>
         </div>
 
         <div class="container__registro">
@@ -75,11 +67,11 @@
                         <div class="gender-container">
                             <div class="checkbox-group">
                                 <input type="checkbox" id="generoM" name="genero" value="M">
-                                <label for="generoM">Masculino</label>
+                                <label for="generoM">M</label>
                             </div>
                             <div class="checkbox-group" style="margin-left: 30px;">
                                 <input type="checkbox" id="generoF" name="genero" value="F">
-                                <label for="generoF">Feminino</label>
+                                <label for="generoF">F</label>
                             </div>
                         </div>
                     </div>
@@ -99,4 +91,5 @@
     </div>
     <script src="public/js/user/signUpUser.js"></script>
 </body>
+
 </html>

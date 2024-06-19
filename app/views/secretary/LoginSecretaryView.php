@@ -1,7 +1,8 @@
+<header>
+    <a href="/home" class="home-link">HealthConnect</a>
+</header>
+
 <body>
-    <div class="header">
-        <a href="/home">HealthConnect</a>
-    </div>
     <div class="container">
         <h2 class="title">Login Secretária</h2>
         <form method="POST" action="/loginSecretaria" id="form_login">
@@ -22,4 +23,5 @@
 
     <script src="public/js/secretary/LoginSecretary.js"></script>
 </body>
+
 </html>
