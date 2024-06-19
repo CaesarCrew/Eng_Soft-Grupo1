@@ -14,7 +14,11 @@ class Connect
             ,$_ENV['DB_PASSWORD']
         );
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->exec("USE ".$_ENV['DB_NAME']);
+        if($_ENV['AMBIENTE'] === "TEST"){
+            $this->pdo->exec("USE ".$_ENV['DB_NAME_TEST']);
+        }else{
+            $this->pdo->exec("USE ".$_ENV['DB_NAME']);
+        }
         
        
         return $this->pdo;
@@ -29,7 +33,12 @@ class Connect
     }
     private function checkBankAndTable(){
         $Database = new Database();
-        $Database->checkBankAndTable( $this->pdo , $_ENV['DB_NAME']);
+        if($_ENV['AMBIENTE'] === "TEST"){
+            $Database->checkBankAndTable( $this->pdo , $_ENV['DB_NAME_TEST']);
+        }else{
+            $Database->checkBankAndTable( $this->pdo , $_ENV['DB_NAME']);
+        }
+        
     }
 
     

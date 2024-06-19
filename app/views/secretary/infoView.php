@@ -38,6 +38,21 @@
                     <th>Data de Nascimento</th>
                     <td><?php echo isset($patient[0]['data_de_nascimento']) ? htmlspecialchars($patient[0]['data_de_nascimento']) : 'N/A'; ?></td>
                 </tr>
+                <tr>
+                    <th>Status da Consulta</th>
+                    <td><?php echo isset($status) ? htmlspecialchars($status) : 'N/A'; ?></td>
+                </tr>
+                <tr>
+                    <th>Alterar Status Para</th>
+                    <td>
+                        <input type="hidden" id="id_consulta" value="<?php echo htmlspecialchars($_GET['id_consulta']); ?>">
+                        <div class="info-button-container">
+                            <button type="button" name="status" value="concluida" class="info-button">Consulta Concluída</button>
+                            <button type="button" name="status" value="nao_compareceu" class="info-button">Não Compareceu</button>
+                            <button type="button" name="status" value="pendente" class="info-button">Pendente</button>
+                        </div>
+                    </td>
+                </tr>
             </table>
         <?php else: ?>
             <p>Informações do paciente não encontradas.</p>
@@ -47,5 +62,7 @@
             <a class="login-button" href="/visualizarAgendamentos">Voltar para a lista de agendamentos</a>
         </div>
     </div>
+
+    <script src="/public/js/secretary/info.js"></script>
 </body>
 </html>

@@ -1,8 +1,25 @@
-<body>
-    <div class="header">
-        <a href="/homeSecretaria" class="home-link">HealthConnect</a>
-    </div>
+<?php
+// Determinar a página atual
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$items_per_page = 7;
+$offset = ($page - 1) * $items_per_page;
 
+// Obter o número total de horários disponíveis
+$total_items = count($schedules); // Assumindo que $schedules contém todos os horários
+$total_pages = ceil($total_items / $items_per_page);
+
+// Buscar apenas os horários para a página atual
+$current_page_schedules = array_slice($schedules, $offset, $items_per_page);
+?>
+
+
+<header>
+    <a href="/homeSecretaria" class="home-link">HealthConnect</a>
+    <form method="POST" action="/logoutSecretary" class="logout">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+</header>
+<body>
     <div class="container">
         <h1>Horários Disponíveis</h1>
         <form id="select-form" method="POST" action="/selecionarHorario">
@@ -26,8 +43,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($schedules)) {
-                        foreach ($schedules as $row) {
+                    if (!empty($current_page_schedules)) {
+                        foreach ($current_page_schedules as $row) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row["id"]) . "</td>";
                             echo "<td>" . htmlspecialchars($row["dia_da_semana"]) . "</td>";
@@ -46,14 +63,26 @@
                     ?>
                 </tbody>
             </table>
+
+            <div class="pagination">
+                <?php if ($page > 1) : ?>
+                    <a href="?page=<?php echo $page - 1; ?>" class="previous">&laquo; Anterior</a>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                    <a href="?page=<?php echo $i; ?>" class="page-number <?php echo $i == $page ? 'active' : ''; ?>"><?php echo $i; ?></a>
+                <?php endfor; ?>
+
+                <?php if ($page < $total_pages) : ?>
+                    <a href="?page=<?php echo $page + 1; ?>" class="next">Próximo &raquo;</a>
+                <?php endif; ?>
+            </div>
+
             <button type="submit" class="select-button">Enviar</button>
         </form>
     </div>
 
-    <form method="POST" action="/logoutSecretary" class="logout">
-        <button type="submit" class="logout-button">Logout</button>
-    </form>
-
     <script src="public/js/secretary/ScheduleTimeSecretaryModel.js"></script>
 </body>
+
 </html>

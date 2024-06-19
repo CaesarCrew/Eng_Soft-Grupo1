@@ -1,22 +1,63 @@
 /* Reset de margens para o body e ajustes gerais */
 body {
-    margin: 0;
+    margin-top: 0px;
     height: 100vh; /* 100% da altura da viewport */
     background-image: url('BackgroundFull.png');
     background-size: cover; /* Cobrir toda a área do body */
     background-position: center; /* Centralizar a imagem */
-    font-family: 'Poppins', sans-serif; /* Exemplo de fonte para o texto */
+    font-family: 'Poppins', sans-serif; /* Fonte para o texto */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Necessário para posicionar o header */
+    flex-direction: column; /* Direção da flexbox */
+    align-items: center; /* Alinhamento no centro */
+    justify-content: flex-start; /* Justificação ao topo */
 }
+
 
 .container a:link,
 .container a:visited,
 .container a:hover,
 .container a:active {
     text-decoration: none;
+}
+
+header {
+    width: 90%;
+    margin-bottom: 80px;
+    background-image: url('BackgroundFull.png');
+    background-size: cover; /* Cobrir toda a área do body */
+    background-position: center; /* Fundo semi-transparente para destacar o cabeçalho */
+    padding: 20px 20px; /* Espaçamento interno */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+    z-index: 1000; /* Z-index alto para estar acima do conteúdo */
+    position: relative; /* Fixa o cabeçalho no topo da tela */
+    top: 0;
+    left: 0;
+}
+
+header .home-link {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+header .logout {
+    float: right;
+    margin-right: 20px;
+}
+
+header .logout-button {
+    background-color: #dc3545; /* Cor de fundo do botão de logout */
+    color: white; /* Cor do texto */
+    padding: 8px 16px; /* Espaçamento interno */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Borda arredondada */
+    font-size: 14px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor do mouse */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+header .logout-button:hover {
+    background-color: #c82333; /* Cor mais escura ao passar o mouse */
 }
 
 .container {
@@ -118,7 +159,6 @@ body {
 }
 
 
-/* Media Queries */
 @media (max-width: 768px) {
     .container {
         padding: 30px;
@@ -137,6 +177,7 @@ body {
 @media (max-width: 480px) {
     .container {
         padding: 20px;
+        width: 90%;
     }
 
     .title {
