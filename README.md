@@ -7,6 +7,8 @@
 Nosso sistema web, projetado especialmente para simplificar sua vida quando se trata de agendar consultas médicas.
 Adeus às intermináveis chamadas telefônicas e longas esperas por uma resposta. Com nosso sistema, você pode agendar sua consulta em questão de minutos, tudo com alguns cliques simples. Libere seu tempo para o que realmente importa na sua vida!
 
+## link da landing page:
+https://gabrielbdsm.github.io/HealthConnect/
 
 ## link com tutorial de como rodar o projeto e os testes :
 https://www.youtube.com/watch?v=z731A3yN_uA&ab_channel=gabriel123
