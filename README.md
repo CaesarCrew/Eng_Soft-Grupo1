@@ -13,7 +13,7 @@ https://gabrielbdsm.github.io/HealthConnect/
 ## link com tutorial de como rodar o projeto e os testes :
 https://www.youtube.com/watch?v=z731A3yN_uA&ab_channel=gabriel123
 
-## Tutorial Para rodar o sistema pela primeira vez primeira vez:
+## Tutorial Para rodar o sistema pela primeira vez:
 #### 1- git clone https://github.com/CaesarCrew/Eng_Soft-Grupo1/tree/main
 
 #### 2- Navegar até o Diretório do Projeto
